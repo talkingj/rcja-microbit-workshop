@@ -29,14 +29,12 @@ jobs:
         run: pip install markdown
 
       - name: Build HTML
-        run: python build.py
+        run: python build.py && cp microbit-workshop.html index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
-          # Serve everything so photos in assets/ work
-          # The main page is microbit-workshop.html
 
   deploy:
     needs: build

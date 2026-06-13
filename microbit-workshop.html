@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>micro:bit — What it is and why it works</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:       #1b2945;
+  --navy-mid:   #263a5e;
+  --green:      #3db166;
+  --green-dark: #339655;
+  --blue-tint:  #eef1f8;
+  --border:     #d0d7e3;
+  --border-lt:  #e4e8ef;
+  --row-sep:    #f0f0f0;
+  --surface:    #f4f6fa;
+  --white:      #ffffff;
+  --ink:        #0a0a0a;
+  --label:      #3a3a3a;
+  --muted:      #666666;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--white);
+  -webkit-tap-highlight-color: transparent;
+}
+
+a { color: var(--navy); text-underline-offset: 3px; }
+a:hover { color: var(--green-dark); }
+button { font-family: inherit; cursor: pointer; border-radius: 0; }
+button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+/* ── TOP BAR ──────────────────────────────────── */
+#top-bar {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--navy);
+  height: 52px;
+  display: flex; align-items: center;
+  padding: 0 24px;
+  gap: 12px;
+}
+#top-bar h1 {
+  font-size: 14px; font-weight: 700;
+  letter-spacing: -0.01em; color: #fff;
+  flex: 1; min-width: 0;
+}
+.top-pill {
+  font-size: 10px; font-weight: 700;
+  background: var(--green); color: var(--navy);
+  padding: 3px 8px; white-space: nowrap; flex-shrink: 0;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+/* ── NAV ──────────────────────────────────────── */
+#nav-bar {
+  position: sticky; top: 52px; z-index: 100;
+  background: var(--white);
+  border-bottom: 2px solid var(--border-lt);
+  overflow-x: auto; scrollbar-width: none;
+}
+#nav-bar::-webkit-scrollbar { display: none; }
+#nav-inner { display: flex; min-width: max-content; padding: 0 24px; }
+.nav-tab {
+  padding: 0 16px; height: 44px;
+  font-size: 12px; font-weight: 600; color: var(--muted);
+  background: none; border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px; white-space: nowrap;
+  transition: color 80ms, border-color 80ms;
+}
+.nav-tab:hover { color: var(--navy); }
+.nav-tab.active { color: var(--navy); border-bottom-color: var(--green); }
+
+/* ── PROGRESS BAR ─────────────────────────────── */
+#progress {
+  position: fixed; top: 0; left: 0; height: 3px;
+  width: 0%; background: var(--green); z-index: 300;
+  transition: width 80ms linear;
+}
+
+/* ── HERO ─────────────────────────────────────── */
+#hero {
+  background: var(--navy);
+  padding: 52px 24px 48px;
+}
+.hero-inner { max-width: 900px; margin: 0 auto; }
+
+#hero .kicker {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--green); margin-bottom: 16px;
+}
+
+#hero h2 {
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 700; letter-spacing: -0.035em;
+  line-height: 1.1; color: #fff;
+  text-wrap: balance; margin-bottom: 20px;
+}
+
+#hero .hero-body {
+  font-size: 16px; color: rgba(255,255,255,0.6);
+  max-width: 56ch; line-height: 1.65;
+  margin-bottom: 36px;
+}
+
+.hero-stats {
+  display: flex; flex-wrap: wrap; gap: 0;
+  border: 1px solid rgba(255,255,255,0.12);
+  width: fit-content;
+}
+.hero-stat {
+  padding: 16px 24px;
+  border-right: 1px solid rgba(255,255,255,0.12);
+}
+.hero-stat:last-child { border-right: none; }
+.hs-val {
+  font-size: 26px; font-weight: 700;
+  color: #fff; letter-spacing: -0.03em;
+  line-height: 1;
+}
+.hs-label {
+  font-size: 11px; color: rgba(255,255,255,0.45);
+  margin-top: 4px; white-space: nowrap;
+}
+
+/* ── PAGE BODY ────────────────────────────────── */
+.page { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+/* ── SECTIONS ─────────────────────────────────── */
+.section {
+  padding: 52px 0;
+  border-bottom: 1px solid var(--border-lt);
+  scroll-margin-top: 98px;
+}
+.section:last-child { border-bottom: none; }
+
+.section-label {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.09em;
+  color: var(--green); margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700; letter-spacing: -0.025em;
+  color: var(--navy); line-height: 1.2;
+  text-wrap: balance; margin-bottom: 16px;
+}
+
+.section-intro {
+  font-size: 15px; color: var(--label);
+  max-width: 68ch; line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+/* ── V1 VS V2 ─────────────────────────────────── */
+.version-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.version-card {
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+}
+
+.version-hdr {
+  padding: 12px 16px;
+  font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.v1-hdr { background: var(--surface); color: var(--navy); }
+.v2-hdr { background: var(--navy); color: #fff; }
+
+.version-badge {
+  font-size: 10px; font-weight: 700;
+  padding: 2px 7px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.v1-badge { background: var(--border); color: var(--muted); }
+.v2-badge { background: var(--green); color: var(--navy); }
+
+.version-list {
+  list-style: none;
+  padding: 4px 0;
+}
+.version-list li {
+  padding: 7px 16px;
+  font-size: 12px; color: var(--label);
+  border-bottom: 1px solid var(--row-sep);
+  display: flex; align-items: center; gap: 8px;
+}
+.version-list li:last-child { border-bottom: none; }
+
+.vl-dot {
+  width: 6px; height: 6px; flex-shrink: 0;
+  border-radius: 50%;
+}
+.v1-dot { background: var(--muted); }
+.v2-dot { background: var(--green); }
+
+/* ── HARDWARE GRID ────────────────────────────── */
+.hw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+
+.hw-card {
+  background: var(--white);
+  padding: 20px;
+  transition: background 80ms;
+}
+.hw-card:hover { background: var(--surface); }
+
+.hw-icon {
+  width: 36px; height: 36px;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12px;
+}
+
+.hw-name {
+  font-size: 13px; font-weight: 700;
+  color: var(--navy); margin-bottom: 5px;
+}
+
+.hw-desc {
+  font-size: 12px; color: var(--muted);
+  line-height: 1.55;
+}
+
+.hw-tag {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--green-dark);
+  background: #e8f7ee;
+  padding: 2px 6px;
+  margin-top: 8px;
+}
+
+/* ── PROGRAMMING ──────────────────────────────── */
+.lang-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.lang-card {
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+}
+
+.lang-hdr {
+  padding: 12px 16px;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.lang-name {
+  font-size: 14px; font-weight: 700; color: #fff;
+}
+
+.lang-level {
+  font-size: 10px; font-weight: 700;
+  padding: 2px 7px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.level-beginner { background: var(--green); color: var(--navy); }
+.level-advanced { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+
+.lang-body {
+  padding: 14px 16px;
+  font-size: 12px; color: var(--label);
+  line-height: 1.6;
+}
+
+.lang-pros {
+  list-style: none; margin-top: 10px;
+}
+.lang-pros li {
+  padding: 3px 0;
+  font-size: 12px; color: var(--muted);
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.lang-pros li::before {
+  content: ''; width: 5px; height: 5px;
+  background: var(--green); border-radius: 50%;
+  margin-top: 6px; flex-shrink: 0;
+}
+
+/* ── SIMULATOR CALLOUT ────────────────────────── */
+.sim-callout {
+  background: var(--navy);
+  padding: 24px 28px;
+  display: flex; align-items: flex-start; gap: 20px;
+  margin-bottom: 32px;
+}
+
+.sim-icon {
+  width: 48px; height: 48px; min-width: 48px;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+}
+.sim-icon svg { width: 24px; height: 24px; fill: var(--navy); }
+
+.sim-title {
+  font-size: 15px; font-weight: 700; color: #fff;
+  margin-bottom: 6px;
+}
+.sim-body {
+  font-size: 13px; color: rgba(255,255,255,0.6);
+  line-height: 1.6; max-width: 60ch;
+}
+.sim-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 12px; font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border: 1px solid rgba(61,177,102,0.4);
+  padding: 5px 12px;
+  transition: background 80ms, border-color 80ms;
+}
+.sim-link:hover {
+  background: rgba(61,177,102,0.1);
+  border-color: var(--green);
+}
+
+/* ── PROJECT GALLERY ──────────────────────────── */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.project-card {
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+}
+
+.project-stripe { height: 5px; }
+
+.project-body { padding: 16px; }
+
+.project-domain {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); margin-bottom: 6px;
+}
+
+.project-name {
+  font-size: 14px; font-weight: 700;
+  color: var(--navy); margin-bottom: 6px; line-height: 1.3;
+}
+
+.project-desc {
+  font-size: 12px; color: var(--label);
+  line-height: 1.55;
+}
+
+.project-tags {
+  display: flex; flex-wrap: wrap; gap: 5px;
+  margin-top: 12px;
+}
+
+.tag {
+  font-size: 10px; font-weight: 600;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 2px 7px;
+}
+
+/* ── TEACHER PITCH ────────────────────────────── */
+.pitch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+
+.pitch-card {
+  background: var(--white);
+  padding: 24px 20px;
+}
+
+.pitch-num {
+  font-size: 32px; font-weight: 700;
+  color: var(--border);
+  letter-spacing: -0.04em;
+  line-height: 1; margin-bottom: 12px;
+}
+
+.pitch-title {
+  font-size: 14px; font-weight: 700;
+  color: var(--navy); margin-bottom: 6px;
+}
+
+.pitch-body {
+  font-size: 13px; color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── ROBOCUP SECTION ──────────────────────────── */
+.rcja-banner {
+  background: var(--navy);
+  padding: 28px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.rcja-title {
+  font-size: 18px; font-weight: 700;
+  color: #fff; margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.rcja-sub {
+  font-size: 13px; color: rgba(255,255,255,0.55);
+  max-width: 52ch; line-height: 1.6;
+}
+
+.rcja-badge {
+  background: var(--green);
+  padding: 10px 16px;
+  text-align: center; flex-shrink: 0;
+}
+.rcja-badge-val {
+  font-size: 28px; font-weight: 700;
+  color: var(--navy); letter-spacing: -0.03em;
+  line-height: 1;
+}
+.rcja-badge-label {
+  font-size: 10px; font-weight: 700;
+  color: var(--navy-mid);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-top: 3px;
+}
+
+.map-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1.5px solid var(--border);
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.map-table th {
+  background: var(--navy);
+  color: #fff;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  padding: 9px 14px;
+  text-align: left;
+  border-right: 1px solid var(--navy-mid);
+}
+.map-table th:last-child { border-right: none; }
+.map-table td {
+  padding: 10px 14px;
+  border-right: 1px solid var(--border-lt);
+  border-bottom: 1px solid var(--row-sep);
+  color: var(--label); vertical-align: top;
+}
+.map-table td:last-child { border-right: none; }
+.map-table tr:last-child td { border-bottom: none; }
+.map-table td:first-child { font-weight: 600; color: var(--ink); }
+
+.rule-ref {
+  font-family: 'Courier New', monospace;
+  font-size: 11px; color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ── CALLOUT ──────────────────────────────────── */
+.callout {
+  border: 1.5px solid var(--border);
+  border-left: 4px solid var(--green);
+  background: var(--surface);
+  padding: 14px 16px;
+  font-size: 13px; color: var(--label);
+  line-height: 1.6; margin-bottom: 20px;
+}
+.callout strong { color: var(--ink); }
+
+/* ── CODE SECTION ─────────────────────────────── */
+#s-code {
+  background: var(--surface);
+  border-top: 2px dashed var(--border);
+  padding: 64px 24px;
+  text-align: center;
+  scroll-margin-top: 98px;
+}
+.code-ph-icon {
+  width: 56px; height: 56px;
+  background: var(--navy);
+  margin: 0 auto 20px;
+  display: flex; align-items: center; justify-content: center;
+}
+.code-ph-icon svg { width: 28px; height: 28px; fill: var(--green); stroke: none; }
+.code-ph-title {
+  font-size: 22px; font-weight: 700;
+  color: var(--navy); letter-spacing: -0.02em; margin-bottom: 10px;
+}
+.code-ph-body {
+  font-size: 14px; color: var(--muted);
+  max-width: 46ch; margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* ── CODE REFERENCE (added by facilitator) ────── */
+.code-ref {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: left;
+}
+.code-ref-section {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-lt);
+}
+.code-ref-section:first-child { border-top: none; margin-top: 32px; }
+.code-ref h3 {
+  font-size: 16px; font-weight: 700;
+  color: var(--navy); margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.code-block {
+  background: var(--navy);
+  border: 1px solid var(--navy-mid);
+  padding: 20px 24px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  overflow-x: auto;
+  margin-bottom: 16px;
+  white-space: pre;
+}
+.code-block .cm { color: rgba(255,255,255,0.35); }  /* comment */
+.code-block .kw { color: #7dd3fc; }                 /* keyword */
+.code-block .st { color: #86efac; }                 /* string */
+.code-block .fn { color: #fde68a; }                 /* function */
+.code-block .nm { color: #f9a8d4; }                 /* number */
+.code-filename {
+  background: var(--navy-mid);
+  color: rgba(255,255,255,0.5);
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  padding: 5px 14px;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.pin-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1.5px solid var(--border);
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+.pin-table th {
+  background: var(--navy); color: #fff;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  padding: 8px 12px; text-align: left;
+  border-right: 1px solid var(--navy-mid);
+}
+.pin-table th:last-child { border-right: none; }
+.pin-table td {
+  padding: 8px 12px;
+  border-right: 1px solid var(--border-lt);
+  border-bottom: 1px solid var(--row-sep);
+  color: var(--label);
+}
+.pin-table td:last-child { border-right: none; }
+.pin-table tr:last-child td { border-bottom: none; }
+.pin-table code {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  background: var(--surface);
+  padding: 1px 5px;
+  border: 1px solid var(--border);
+}
+
+/* ── RESPONSIVE ───────────────────────────────── */
+@media (max-width: 640px) {
+  .page { padding: 0 16px; }
+  #top-bar, #nav-inner { padding-left: 16px; padding-right: 16px; }
+  #hero { padding: 36px 16px 32px; }
+  .version-compare, .lang-compare { grid-template-columns: 1fr; }
+  .rcja-banner { grid-template-columns: 1fr; }
+  .sim-callout { flex-direction: column; gap: 12px; }
+  .hero-stats { flex-direction: column; width: 100%; }
+  .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .hero-stat:last-child { border-bottom: none; }
+  .code-ref { padding: 0 16px; }
+}
+
+/* ── PHOTO PLACEHOLDER ────────────────────────── */
+.photo-slot {
+  background: var(--navy);
+  border: 2px dashed var(--navy-mid);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px;
+  min-height: 220px;
+  color: rgba(255,255,255,0.35);
+  font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  text-align: center; padding: 20px;
+  overflow: hidden;
+}
+.photo-slot img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo-slot svg { opacity: 0.3; }
+.photo-slot span { opacity: 0.5; }
+
+.photo-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+/* ── PRESENTATION OVERLAY ─────────────────────── */
+#pres-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--navy);
+  flex-direction: column;
+}
+
+body.presenting { overflow: hidden; }
+body.presenting #pres-overlay { display: flex; }
+
+#pres-slides {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.pres-slide {
+  position: absolute; inset: 0;
+  display: none;
+  overflow-y: auto;
+  padding: 48px clamp(32px, 6vw, 120px);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+.pres-slide.active { display: block; }
+
+.pres-slide .section-label { color: var(--green); }
+.pres-slide .section-title { color: #fff; font-size: clamp(24px, 4vw, 44px); margin-bottom: 16px; }
+.pres-slide .section-intro { color: rgba(255,255,255,0.6); font-size: 16px; max-width: 72ch; margin-bottom: 36px; }
+
+.pres-slide .kicker { color: var(--green); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
+.pres-slide h2 { color: #fff; font-size: clamp(32px, 6vw, 72px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 20px; text-wrap: balance; }
+.pres-slide .hero-body { color: rgba(255,255,255,0.6); font-size: 18px; max-width: 52ch; line-height: 1.6; margin-bottom: 36px; }
+.pres-slide .hero-stats { border-color: rgba(255,255,255,0.12); }
+.pres-slide .hero-stat { border-right-color: rgba(255,255,255,0.12); }
+.pres-slide .hs-val { color: #fff; font-size: 32px; }
+.pres-slide .hs-label { color: rgba(255,255,255,0.4); }
+
+.pres-slide .version-card { border-color: rgba(255,255,255,0.12); }
+.pres-slide .v1-hdr { background: rgba(255,255,255,0.06); }
+.pres-slide .v1-hdr span:first-child { color: rgba(255,255,255,0.8); }
+.pres-slide .version-list li { color: rgba(255,255,255,0.6); border-bottom-color: rgba(255,255,255,0.06); }
+.pres-slide .callout { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); border-left-color: var(--green); color: rgba(255,255,255,0.6); }
+.pres-slide .callout strong { color: #fff; }
+
+.pres-slide .hw-grid { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.08); }
+.pres-slide .hw-card { background: transparent; }
+.pres-slide .hw-card:hover { background: rgba(255,255,255,0.05); }
+.pres-slide .hw-name { color: #fff; }
+.pres-slide .hw-desc { color: rgba(255,255,255,0.5); }
+
+.pres-slide .lang-card { border-color: rgba(255,255,255,0.1); }
+.pres-slide .lang-body { color: rgba(255,255,255,0.55); }
+.pres-slide .lang-pros li { color: rgba(255,255,255,0.45); }
+.pres-slide .sim-callout { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
+
+.pres-slide .project-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
+.pres-slide .project-name { color: #fff; }
+.pres-slide .project-desc { color: rgba(255,255,255,0.5); }
+.pres-slide .project-domain { color: rgba(255,255,255,0.35); }
+.pres-slide .tag { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); }
+
+.pres-slide .pitch-grid { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.08); }
+.pres-slide .pitch-card { background: transparent; }
+.pres-slide .pitch-title { color: #fff; }
+.pres-slide .pitch-body { color: rgba(255,255,255,0.45); }
+.pres-slide .pitch-num { color: rgba(255,255,255,0.1); }
+
+.pres-slide .map-table { border-color: rgba(255,255,255,0.1); }
+.pres-slide .map-table td { border-color: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); }
+.pres-slide .map-table td:first-child { color: #fff; }
+.pres-slide .rcja-banner { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
+
+.pres-slide .photo-slot { border-color: rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); }
+
+.pres-slide .code-ph-icon { background: rgba(255,255,255,0.08); }
+.pres-slide .code-ph-title { color: #fff; }
+.pres-slide .code-ph-body { color: rgba(255,255,255,0.45); }
+
+.pres-slide .code-block { background: rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.1); }
+.pres-slide .code-filename { background: rgba(0,0,0,0.3); }
+.pres-slide .pin-table { border-color: rgba(255,255,255,0.1); }
+.pres-slide .pin-table td { border-color: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); }
+.pres-slide .code-ref h3 { color: #fff; }
+
+/* ── PRESENTATION NAV BAR ─────────────────────── */
+#pres-nav {
+  height: 56px;
+  background: rgba(0,0,0,0.4);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center;
+  padding: 0 24px; gap: 12px;
+  flex-shrink: 0;
+}
+
+.pres-btn {
+  background: none; border: 1.5px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.7); padding: 6px 14px;
+  font-size: 13px; font-weight: 600;
+  transition: background 80ms, border-color 80ms, color 80ms;
+  display: flex; align-items: center; gap: 6px;
+}
+.pres-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); color: #fff; }
+.pres-btn:disabled { opacity: 0.25; pointer-events: none; }
+
+#pres-counter {
+  flex: 1; text-align: center;
+  font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.06em;
+}
+
+.pres-exit {
+  background: none; border: 1.5px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.5); padding: 6px 12px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  transition: background 80ms, color 80ms;
+}
+.pres-exit:hover { background: rgba(220,38,38,0.2); border-color: rgba(220,38,38,0.4); color: #fff; }
+
+/* ── PRESENT BUTTON IN TOPBAR ─────────────────── */
+#btn-present {
+  background: none; border: 1.5px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.8); padding: 5px 12px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  transition: background 80ms, border-color 80ms, color 80ms;
+  display: flex; align-items: center; gap: 6px;
+}
+#btn-present:hover { background: var(--green); border-color: var(--green); color: var(--navy); }
+#btn-present svg { width: 12px; height: 12px; fill: currentColor; }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header id="top-bar">
+  <h1>micro:bit</h1>
+  <button id="btn-present" onclick="enterPresentation()">
+    <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+    Present
+  </button>
+  <span class="top-pill">Workshop</span>
+</header>
+
+<div id="pres-overlay" role="dialog" aria-label="Presentation mode">
+  <div id="pres-slides"></div>
+  <div id="pres-nav">
+    <button class="pres-btn" id="pres-prev" onclick="presNav(-1)" disabled>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Prev
+    </button>
+    <span id="pres-counter">1 / 8</span>
+    <button class="pres-btn" id="pres-next" onclick="presNav(1)">
+      Next
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="pres-exit" onclick="exitPresentation()">&#x2715; Exit</button>
+  </div>
+</div>
+
+<nav id="nav-bar" aria-label="Sections">
+  <div id="nav-inner">
+    <button class="nav-tab active" data-target="s-what">What is it</button>
+    <button class="nav-tab" data-target="s-hardware">Hardware</button>
+    <button class="nav-tab" data-target="s-program">Programming</button>
+    <button class="nav-tab" data-target="s-projects">What you can build</button>
+    <button class="nav-tab" data-target="s-why">Why it works</button>
+    <button class="nav-tab" data-target="s-robocup">RoboCup</button>
+    <button class="nav-tab" data-target="s-code">Coding</button>
+  </div>
+</nav>
+
+<section id="hero" aria-label="Introduction">
+<div class="hero-inner">
+<p class="kicker">A tiny board that punches above its weight</p>
+<h2>Meet the micro:bit.</h2>
+<p class="hero-body">A credit-card-sized computer built for learning. Sensors, a display, radio, and enough processing power to run real autonomous programs. Used in classrooms across 60+ countries.</p>
+<div class="hero-stats">
+  <div class="hero-stat">
+    <div class="hs-val">60+</div>
+    <div class="hs-label">countries using it</div>
+  </div>
+  <div class="hero-stat">
+    <div class="hs-val">~$30</div>
+    <div class="hs-label">AUD per board</div>
+  </div>
+  <div class="hero-stat">
+    <div class="hs-val">2</div>
+    <div class="hs-label">languages: blocks + Python</div>
+  </div>
+  <div class="hero-stat">
+    <div class="hs-val">0</div>
+    <div class="hs-label">hardware needed to start</div>
+  </div>
+</div>
+</div>
+</section>
+
+
+<div class="page">
+<section class="section" id="s-what">
+<p class="section-label">Overview</p>
+<h2 class="section-title">A single board that fits in your pocket</h2>
+<p class="section-intro">The micro:bit was created by the BBC and the Micro:bit Educational Foundation, designed specifically for schools: low cost, hard to break, easy to start, and deep enough to grow into. It sits deliberately between a toy and a professional platform.</p>
+<div class="version-compare">
+  <div class="version-card">
+    <div class="version-hdr v1-hdr">
+      <span>micro:bit V1</span>
+      <span class="version-badge v1-badge">Original</span>
+    </div>
+    <ul class="version-list">
+      <li><span class="vl-dot v1-dot"></span>5×5 LED display</li>
+      <li><span class="vl-dot v1-dot"></span>2 buttons (A and B)</li>
+      <li><span class="vl-dot v1-dot"></span>Accelerometer and compass</li>
+      <li><span class="vl-dot v1-dot"></span>Temperature and light sensing</li>
+      <li><span class="vl-dot v1-dot"></span>2.4 GHz radio and Bluetooth</li>
+      <li><span class="vl-dot v1-dot"></span>25-pin edge connector</li>
+      <li><span class="vl-dot v1-dot"></span>USB and JST battery connector</li>
+    </ul>
+  </div>
+  <div class="version-card">
+    <div class="version-hdr v2-hdr">
+      <span>micro:bit V2</span>
+      <span class="version-badge v2-badge">Current</span>
+    </div>
+    <ul class="version-list">
+      <li><span class="vl-dot v2-dot"></span>Everything in V1, plus:</li>
+      <li><span class="vl-dot v2-dot"></span>Built-in microphone</li>
+      <li><span class="vl-dot v2-dot"></span>Built-in speaker</li>
+      <li><span class="vl-dot v2-dot"></span>Capacitive touch logo (third button)</li>
+      <li><span class="vl-dot v2-dot"></span>More RAM and flash storage</li>
+      <li><span class="vl-dot v2-dot"></span>Power LED and reset button</li>
+      <li><span class="vl-dot v2-dot"></span>Backwards compatible with all V1 accessories</li>
+    </ul>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Which version do you have?</strong> Look for a notch cut into the gold edge connector at the bottom of the board. V2 has it; V1 does not. Both work with the same MakeCode editor and the same accessories.
+</div>
+</section>
+
+<section class="section" id="s-hardware">
+<p class="section-label">On the board</p>
+<h2 class="section-title">Everything built in, nothing extra to buy</h2>
+<p class="section-intro">Most microcontrollers need external components wired on before they can do anything interesting. The micro:bit ships with sensors and outputs already soldered on. On day one, with nothing but the board and a USB cable, you can detect movement, read temperature, transmit data wirelessly, and display output.</p>
+<div class="photo-row">
+  <div class="photo-slot" id="photo-microbit-front">
+    <!-- Replace with: <img src="assets/photos/microbit-front.jpg" alt="micro:bit V2 front"> -->
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1"/><circle cx="12" cy="8.5" r="1"/><circle cx="15.5" cy="8.5" r="1"/><circle cx="8.5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="15.5" cy="12" r="1"/><line x1="5" y1="17" x2="19" y2="17"/></svg>
+    <span>Photo: micro:bit board (front)</span>
+  </div>
+  <div class="photo-slot" id="photo-microbit-back">
+    <!-- Replace with: <img src="assets/photos/microbit-back.jpg" alt="micro:bit V2 back with edge connector"> -->
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="3" y1="19" x2="21" y2="19"/><line x1="7" y1="19" x2="7" y2="21"/><line x1="12" y1="19" x2="12" y2="21"/><line x1="17" y1="19" x2="17" y2="21"/></svg>
+    <span>Photo: micro:bit board (edge connector)</span>
+  </div>
+</div>
+
+<div class="hw-grid">
+
+  <div class="hw-card">
+    <div class="hw-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18"/><circle cx="8.5" cy="8.5" r="1.5" fill="#3db166" stroke="none"/><circle cx="12" cy="8.5" r="1.5" fill="#3db166" stroke="none"/><circle cx="15.5" cy="8.5" r="1.5" fill="#3db166" stroke="none"/><circle cx="8.5" cy="12" r="1.5" fill="#3db166" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="#3db166" stroke="none"/><circle cx="15.5" cy="12" r="1.5" fill="#3db166" stroke="none"/><circle cx="8.5" cy="15.5" r="1.5" fill="#3db166" stroke="none"/><circle cx="12" cy="15.5" r="1.5" fill="#3db166" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="#3db166" stroke="none"/></svg>
+    </div>
+    <div class="hw-name">5×5 LED display</div>
+    <div class="hw-desc">25 red LEDs, each individually controllable. Shows text, numbers, icons, and animations. Also acts as a light sensor when not displaying.</div>
+    <span class="hw-tag">Output + Input</span>
+  </div>
+
+  <div class="hw-card">
+    <div class="hw-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2"><circle cx="7" cy="12" r="3"/><circle cx="17" cy="12" r="3"/></svg>
+    </div>
+    <div class="hw-name">Buttons A and B</div>
+    <div class="hw-desc">Physical pushbuttons on either side of the board. Detect press, release, and hold. The primary way a user interacts with a running program.</div>
+    <span class="hw-tag">Input</span>
+  </div>
+
+  <div class="hw-card">
+    <div class="hw-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+    </div>
+    <div class="hw-name">Accelerometer</div>
+    <div class="hw-desc">Measures movement and tilt across three axes. Detects gestures: shake, tilt, freefall. Reads the board's angle in any direction.</div>
+    <span class="hw-tag">Input</span>
+  </div>
+
+  <div class="hw-card">
+    <div class="hw-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </div>
+    <div class="hw-name">Compass</div>
+    <div class="hw-desc">Measures magnetic field direction. After calibration, gives a compass bearing. Useful for navigation, detecting magnetic objects, and orientation projects.</div>
+    <span class="hw-tag">Input</span>
+  </div>
+
+  <div class="hw-card">
+    <div class="hw-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+    </div>
+    <div class="hw-name">Temperature sensor</div>
+    <div class="hw-desc">Reads the CPU die temperature, which approximates ambient temperature. Good enough for weather logging, thermostat projects, and science experiments.</div>
+    <span class="hw-tag">Input</span>
+  </div>
+
+  <div class="hw-card">
+    <div class="hw-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2"><path d="M1 6l5 6-5 6M23 6l-5 6 5 6M8 12h8"/></svg>
+    </div>
+    <div class="hw-name">Radio (2.4 GHz)</div>
+    <div class="hw-desc">Send and receive short messages between micro:bits, up to 70 m in open space. Enables multi-device projects: games, remote controls, sensor networks.</div>
+    <span class="hw-tag">Input + Output</span>
+  </div>
+
+  <div class="hw-card">
+    <div class="hw-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+    </div>
+    <div class="hw-name">Microphone (V2)</div>
+    <div class="hw-desc">Detects sound level, clap patterns, and loud/quiet events. Opens up music-reactive projects, sound-triggered automations, and noise monitoring.</div>
+    <span class="hw-tag">V2 only · Input</span>
+  </div>
+
+  <div class="hw-card">
+    <div class="hw-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+    </div>
+    <div class="hw-name">Speaker (V2)</div>
+    <div class="hw-desc">On-board buzzer that plays tones, melodies, and effects without any extra hardware. Controlled with the music blocks in MakeCode or Python's music module.</div>
+    <span class="hw-tag">V2 only · Output</span>
+  </div>
+
+  <div class="hw-card">
+    <div class="hw-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2"><rect x="2" y="14" width="20" height="6" rx="0"/><path d="M6 14V8M12 14V4M18 14V10"/></svg>
+    </div>
+    <div class="hw-name">Edge connector</div>
+    <div class="hw-desc">25 gold pads at the bottom: analogue, digital, I2C, SPI, and power pins. Connect motors, servos, extra sensors, and carrier boards. Crocodile clips work on the large pads.</div>
+    <span class="hw-tag">Extension</span>
+  </div>
+
+</div>
+</section>
+
+<section class="section" id="s-program">
+<p class="section-label">How you code it</p>
+<h2 class="section-title">Two languages, one editor, no installation</h2>
+<p class="section-intro">Programming happens in a browser. Nothing to install. The same editor supports drag-and-drop blocks and text-based Python, and switches between them at any time. A built-in simulator means students can test their code before hardware is even in the room.</p>
+<div class="sim-callout">
+  <div class="sim-icon">
+    <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+  </div>
+  <div>
+    <div class="sim-title">The simulator: your biggest classroom advantage</div>
+    <div class="sim-body">MakeCode runs a full micro:bit simulation in the browser. Students test button presses, shake events, LED output, and sensor readings without touching hardware. Entire lessons can run on nothing but a laptop.</div>
+    <a class="sim-link" href="https://makecode.microbit.org" target="_blank" rel="noopener">Open MakeCode editor</a>
+  </div>
+</div>
+
+<div class="lang-compare">
+  <div class="lang-card">
+    <div class="lang-hdr">
+      <span class="lang-name">MakeCode Blocks</span>
+      <span class="lang-level level-beginner">Beginner</span>
+    </div>
+    <div class="lang-body">
+      Drag-and-drop visual programming. Blocks snap together and colour-code by category. Code is always syntactically valid: no curly braces, no semicolons, no error messages about missing brackets.
+      <ul class="lang-pros">
+        <li>No typing required to get started</li>
+        <li>Instant feedback in the browser simulator</li>
+        <li>View the equivalent JavaScript any time</li>
+        <li>Same editor as MicroPython</li>
+      </ul>
+    </div>
+  </div>
+  <div class="lang-card">
+    <div class="lang-hdr">
+      <span class="lang-name">MicroPython</span>
+      <span class="lang-level level-advanced">Step up</span>
+    </div>
+    <div class="lang-body">
+      Real Python, running on the board. The same language used in GCSE, VCE, and undergraduate computing. Students who outgrow blocks switch here without learning a new platform or rebuying hardware.
+      <ul class="lang-pros">
+        <li>Transferable skill: Python is the most-used language globally</li>
+        <li>Access to lower-level hardware control and timing</li>
+        <li>Works in MakeCode or the dedicated Python editor</li>
+        <li>Same board, no additional cost</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Download is one drag.</strong> Clicking "Download" produces a .hex file. Drag it onto the MICROBIT USB drive and the program flashes instantly. No drivers, no software, no cable protocol. Works on Windows, Mac, and Chromebook.
+</div>
+</section>
+
+<section class="section" id="s-projects">
+<p class="section-label">Versatility</p>
+<h2 class="section-title">What you can actually build with it</h2>
+<p class="section-intro">The micro:bit is not a single-purpose kit. The same board and the same skills span science, art, sport, music, and engineering. That cross-subject range is the reason it is worth learning: one platform, many entry points, no throw-away knowledge.</p>
+<div class="project-grid">
+  <div class="project-card">
+    <div class="project-stripe" style="background:#3db166"></div>
+    <div class="project-body">
+      <div class="project-domain">Robotics</div>
+      <div class="project-name">Line-following robot</div>
+      <div class="project-desc">Add a motor carrier board and IR sensors. The micro:bit reads the line and drives two motors. Full autonomous navigation on a complete kit under $100.</div>
+      <div class="project-tags"><span class="tag">Motors</span><span class="tag">IR sensors</span><span class="tag">Autonomous</span></div>
+    </div>
+  </div>
+  <div class="project-card">
+    <div class="project-stripe" style="background:#2563eb"></div>
+    <div class="project-body">
+      <div class="project-domain">Science</div>
+      <div class="project-name">Wireless weather station</div>
+      <div class="project-desc">Log temperature over time and transmit readings wirelessly to a second micro:bit acting as a base station display. No internet connection required.</div>
+      <div class="project-tags"><span class="tag">Temperature</span><span class="tag">Radio</span><span class="tag">Data logging</span></div>
+    </div>
+  </div>
+  <div class="project-card">
+    <div class="project-stripe" style="background:#db2777"></div>
+    <div class="project-body">
+      <div class="project-domain">Wearables</div>
+      <div class="project-name">Step counter</div>
+      <div class="project-desc">The accelerometer detects footfall patterns. Display step counts on the LED, set daily targets, and vibrate when reached. Worn on a wristband or sewn into a bag.</div>
+      <div class="project-tags"><span class="tag">Accelerometer</span><span class="tag">LED display</span></div>
+    </div>
+  </div>
+  <div class="project-card">
+    <div class="project-stripe" style="background:#d97706"></div>
+    <div class="project-body">
+      <div class="project-domain">Music</div>
+      <div class="project-name">Clap-activated instrument</div>
+      <div class="project-desc">The V2 microphone detects clap patterns. Different rhythms trigger different notes from the on-board speaker. No extra components needed at all.</div>
+      <div class="project-tags"><span class="tag">Microphone</span><span class="tag">Speaker</span><span class="tag">V2</span></div>
+    </div>
+  </div>
+  <div class="project-card">
+    <div class="project-stripe" style="background:#7c3aed"></div>
+    <div class="project-body">
+      <div class="project-domain">Games</div>
+      <div class="project-name">Two-player radio game</div>
+      <div class="project-desc">Two micro:bits communicate over radio. One sends, the other receives and responds. Rock-paper-scissors, quiz buzzers, collaborative scoreboards.</div>
+      <div class="project-tags"><span class="tag">Radio</span><span class="tag">Multi-board</span></div>
+    </div>
+  </div>
+  <div class="project-card">
+    <div class="project-stripe" style="background:#059669"></div>
+    <div class="project-body">
+      <div class="project-domain">Environment</div>
+      <div class="project-name">Plant monitor</div>
+      <div class="project-desc">Connect a capacitive soil moisture sensor via the edge connector. The micro:bit alerts when plants need water with a wilting icon or a buzzer pattern.</div>
+      <div class="project-tags"><span class="tag">Edge pins</span><span class="tag">Analogue input</span></div>
+    </div>
+  </div>
+  <div class="project-card">
+    <div class="project-stripe" style="background:#dc2626"></div>
+    <div class="project-body">
+      <div class="project-domain">Safety</div>
+      <div class="project-name">Crash detector</div>
+      <div class="project-desc">Detects freefall or a hard impact via the accelerometer. Displays an alert and transmits a radio message. Works as a bike safety device or fall-detection aid.</div>
+      <div class="project-tags"><span class="tag">Accelerometer</span><span class="tag">Radio</span></div>
+    </div>
+  </div>
+  <div class="project-card">
+    <div class="project-stripe" style="background:#0891b2"></div>
+    <div class="project-body">
+      <div class="project-domain">Art</div>
+      <div class="project-name">Sound-reactive LED display</div>
+      <div class="project-desc">LED animation responds to ambient sound level or light intensity in real time. No screens, no apps: the board itself becomes the display.</div>
+      <div class="project-tags"><span class="tag">Light sensor</span><span class="tag">LED display</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="s-why">
+<p class="section-label">For teachers</p>
+<h2 class="section-title">Why it works in a classroom</h2>
+<p class="section-intro">The micro:bit was designed with schools in mind, not prototyping labs. The decisions that make it good for classrooms are deliberate, and they matter when managing 25 students at once on mismatched hardware.</p>
+<div class="pitch-grid">
+  <div class="pitch-card">
+    <div class="pitch-num">01</div>
+    <div class="pitch-title">Start on day one, no kit needed</div>
+    <div class="pitch-body">The simulator means a student can write, test, and iterate code using nothing but a browser. Hardware becomes a reward, not a prerequisite. Classes can begin before a single board arrives.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">02</div>
+    <div class="pitch-title">Low cost, genuinely durable</div>
+    <div class="pitch-body">Around $30 AUD per board. The LED display acts as its own debugging tool, making it hard to claim the code is "doing nothing." Students can pocket it, throw it in a bag, and it keeps working.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">03</div>
+    <div class="pitch-title">Two-language progression path</div>
+    <div class="pitch-body">Start with blocks, switch to Python months later on the same board in the same editor. The investment in micro:bit skills transfers directly into real-world programming without a platform change.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">04</div>
+    <div class="pitch-title">Immediate physical feedback</div>
+    <div class="pitch-body">The LED display makes program state visible without any external monitor. Students see instantly whether their code is working, and more importantly, how it is failing.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">05</div>
+    <div class="pitch-title">Cross-curriculum reach</div>
+    <div class="pitch-body">The same board covers Computing, Science, Maths, Music (V2), and Design Technology. One purchase across a department, not a per-subject kit that collects dust after one unit.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">06</div>
+    <div class="pitch-title">Works on every computer</div>
+    <div class="pitch-body">Browser-based. No installation, no admin rights, no software to update. Works on school Chromebooks, old Windows laptops, and iPads. The program upload is a single file drag.</div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="s-robocup">
+<p class="section-label">Real-world context</p>
+<h2 class="section-title">Where it goes next: RoboCup Junior</h2>
+<p class="section-intro">Everything in this workshop maps directly to a real competition. RoboCup Junior Rescue Line gives students a concrete goal that exercises every micro:bit capability at once. The skills are the same; the stakes are real.</p>
+<div class="rcja-banner">
+  <div>
+    <div class="rcja-title">RoboCup Junior Australia: Rescue Line</div>
+    <div class="rcja-sub">An autonomous robot navigates a black line, avoids obstacles, climbs ramps, and rescues a victim from a chemical spill. 120 seconds. Scored on every element it completes.</div>
+  </div>
+  <div class="rcja-badge">
+    <div class="rcja-badge-val">120</div>
+    <div class="rcja-badge-label">seconds per run</div>
+  </div>
+</div>
+
+<table class="map-table">
+  <thead>
+    <tr>
+      <th>micro:bit capability</th>
+      <th>What it does in the competition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>IR tracking sensors (via carrier board)</td>
+      <td>Reads the black line on the white tile; the robot follows it autonomously</td>
+    </tr>
+    <tr>
+      <td>Ultrasonic sensor (via carrier board)</td>
+      <td>Detects obstacles ahead; triggers avoidance and locates the rescue capsule inside the spill</td>
+    </tr>
+    <tr>
+      <td>DC motors (via carrier board)</td>
+      <td>Drives two wheels independently for straight lines, turns, and ramp climbs up to 20°</td>
+    </tr>
+    <tr>
+      <td>Button A + downloaded program</td>
+      <td>The Robot Handler presses a button to start the run. Competition rules require this; no laptops at the field</td>
+    </tr>
+    <tr>
+      <td>LED display</td>
+      <td>Shows the robot's current state during the run; referees and coaches can see what the robot is "thinking"</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="photo-row">
+  <div class="photo-slot" id="photo-motorbit-kit">
+    <!-- Replace with: <img src="assets/photos/motorbit-kit.jpg" alt="Elecfreaks motor:bit kit parts"> -->
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="10" rx="1"/><circle cx="6" cy="17" r="2"/><circle cx="18" cy="17" r="2"/><line x1="6" y1="7" x2="6" y2="4"/><line x1="18" y1="7" x2="18" y2="4"/></svg>
+    <span>Photo: motor:bit kit (parts laid out)</span>
+  </div>
+  <div class="photo-slot" id="photo-motorbit-assembled">
+    <!-- Replace with: <img src="assets/photos/motorbit-assembled.jpg" alt="Assembled motor:bit robot"> -->
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="1"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><rect x="8" y="9" width="8" height="5" rx="0"/></svg>
+    <span>Photo: assembled robot (ready to run)</span>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>The kit:</strong> Elecfreaks motor:bit smart car. Two TT motors, a 2-channel IR tracking module, an ultrasonic sensor, and a carrier board that plugs directly onto the micro:bit edge connector. Under $100 complete.
+</div>
+</section>
+</div>
+
+<section id="s-code">
+<div class="code-ph-icon">
+  <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="8 6 2 12 8 18" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<p class="section-label" style="text-align:center; margin-bottom:8px;">Hands-on</p>
+<p class="code-ph-title">Let's write some code</p>
+<p class="code-ph-body">This is where the facilitator takes over. Open MakeCode, grab your kit, and follow along.</p>
+</section>
+
+<script>
+const tabs     = document.querySelectorAll('.nav-tab');
+const sections = [...document.querySelectorAll('.section'), document.getElementById('s-code')];
+const bar      = document.getElementById('progress');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const el = document.getElementById(tab.dataset.target);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+const tabObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
+    }
+  });
+}, { rootMargin: '-52px 0px -55% 0px', threshold: 0 });
+
+sections.forEach(s => { if (s) tabObs.observe(s); });
+
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+}, { passive: true });
+
+// ── PRESENTATION MODE ─────────────────────────────────────────────
+const overlay     = document.getElementById('pres-overlay');
+const slidesEl    = document.getElementById('pres-slides');
+const counterEl   = document.getElementById('pres-counter');
+const prevBtn     = document.getElementById('pres-prev');
+const nextBtn     = document.getElementById('pres-next');
+
+let presSlides = [];
+let presIdx    = 0;
+
+function buildSlides() {
+  slidesEl.innerHTML = '';
+  presSlides = [];
+
+  const sources = [
+    document.getElementById('hero'),
+    ...document.querySelectorAll('.section'),
+    document.getElementById('s-code'),
+  ].filter(Boolean);
+
+  sources.forEach(src => {
+    const slide = document.createElement('div');
+    slide.className = 'pres-slide';
+    slide.innerHTML = src.innerHTML;
+    slidesEl.appendChild(slide);
+    presSlides.push(slide);
+  });
+}
+
+function showSlide(idx) {
+  presSlides.forEach((s, i) => s.classList.toggle('active', i === idx));
+  presIdx = idx;
+  counterEl.textContent = (idx + 1) + ' / ' + presSlides.length;
+  prevBtn.disabled = idx === 0;
+  nextBtn.disabled = idx === presSlides.length - 1;
+  presSlides[idx].scrollTop = 0;
+}
+
+function presNav(dir) {
+  const next = presIdx + dir;
+  if (next >= 0 && next < presSlides.length) showSlide(next);
+}
+
+function enterPresentation() {
+  buildSlides();
+  showSlide(0);
+  document.body.classList.add('presenting');
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  }
+}
+
+function exitPresentation() {
+  document.body.classList.remove('presenting');
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+}
+
+document.addEventListener('keydown', e => {
+  if (!document.body.classList.contains('presenting')) return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); presNav(1); }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); presNav(-1); }
+  if (e.key === 'Escape') exitPresentation();
+});
+</script>
+</body>
+</html>

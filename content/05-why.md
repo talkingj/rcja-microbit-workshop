@@ -3,39 +3,24 @@ id: s-why
 nav: Why it works
 label: For teachers
 title: Why it works in a classroom
+points:
+  - title: No hardware needed to start
+    body: The browser simulator lets students write and test code before any boards arrive. Classes can begin as soon as students have a laptop.
+
+  - title: Low cost and durable
+    body: Around $30 AUD per board. The LED display shows program state directly, which helps students debug without external tools. The board tolerates being pocketed, dropped, and used across multiple year groups.
+
+  - title: Two-language progression
+    body: Students start with drag-and-drop blocks and can switch to Python later on the same board and in the same editor. No new hardware or platform is required to make that transition.
+
+  - title: Visible program state
+    body: The LED display shows what the program is doing without needing a monitor or serial connection. Students can see whether their code is running correctly and where it is failing.
+
+  - title: Covers multiple subjects
+    body: The same board is applicable across Computing, Science, Maths, Music (V2), and Design Technology. One purchase can serve multiple departments and year levels.
+
+  - title: Works on school computers
+    body: MakeCode runs in a browser with no installation and no admin rights. It works on Chromebooks, older Windows laptops, and iPads. Uploading a program is a file drag onto a USB drive.
 ---
 
-The micro:bit was designed with schools in mind, not prototyping labs. The decisions that make it good for classrooms are deliberate, and they matter when managing 25 students at once on mismatched hardware.
-
-<div class="pitch-grid">
-  <div class="pitch-card">
-    <div class="pitch-num">01</div>
-    <div class="pitch-title">Start on day one, no kit needed</div>
-    <div class="pitch-body">The simulator means a student can write, test, and iterate code using nothing but a browser. Hardware becomes a reward, not a prerequisite. Classes can begin before a single board arrives.</div>
-  </div>
-  <div class="pitch-card">
-    <div class="pitch-num">02</div>
-    <div class="pitch-title">Low cost, genuinely durable</div>
-    <div class="pitch-body">Around $30 AUD per board. The LED display acts as its own debugging tool, making it hard to claim the code is "doing nothing." Students can pocket it, throw it in a bag, and it keeps working.</div>
-  </div>
-  <div class="pitch-card">
-    <div class="pitch-num">03</div>
-    <div class="pitch-title">Two-language progression path</div>
-    <div class="pitch-body">Start with blocks, switch to Python months later on the same board in the same editor. The investment in micro:bit skills transfers directly into real-world programming without a platform change.</div>
-  </div>
-  <div class="pitch-card">
-    <div class="pitch-num">04</div>
-    <div class="pitch-title">Immediate physical feedback</div>
-    <div class="pitch-body">The LED display makes program state visible without any external monitor. Students see instantly whether their code is working, and more importantly, how it is failing.</div>
-  </div>
-  <div class="pitch-card">
-    <div class="pitch-num">05</div>
-    <div class="pitch-title">Cross-curriculum reach</div>
-    <div class="pitch-body">The same board covers Computing, Science, Maths, Music (V2), and Design Technology. One purchase across a department, not a per-subject kit that collects dust after one unit.</div>
-  </div>
-  <div class="pitch-card">
-    <div class="pitch-num">06</div>
-    <div class="pitch-title">Works on every computer</div>
-    <div class="pitch-body">Browser-based. No installation, no admin rights, no software to update. Works on school Chromebooks, old Windows laptops, and iPads. The program upload is a single file drag.</div>
-  </div>
-</div>
+The micro:bit was designed for school use. These are the features that make it practical in a classroom with varied hardware, limited IT support, and students at different levels.

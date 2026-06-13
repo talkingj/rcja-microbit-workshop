@@ -2,21 +2,19 @@
 id: s-hardware
 nav: Hardware
 label: On the board
-title: Everything built in, nothing extra to buy
+title: Built-in sensors and outputs
 ---
 
-Most microcontrollers need external components wired on before they can do anything interesting. The micro:bit ships with sensors and outputs already soldered on. On day one, with nothing but the board and a USB cable, you can detect movement, read temperature, transmit data wirelessly, and display output.
+The micro:bit has sensors and outputs soldered onto the board. With only the board and a USB cable, a student can detect movement, read temperature, transmit data wirelessly, and show output on the LED display — no additional components required.
 
 <div class="photo-row">
-  <div class="photo-slot" id="photo-microbit-front">
-    <!-- Replace with: <img src="assets/photos/microbit-front.jpg" alt="micro:bit V2 front"> -->
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1"/><circle cx="12" cy="8.5" r="1"/><circle cx="15.5" cy="8.5" r="1"/><circle cx="8.5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="15.5" cy="12" r="1"/><line x1="5" y1="17" x2="19" y2="17"/></svg>
-    <span>Photo: micro:bit board (front)</span>
+  <div class="diagram-slot" id="photo-microbit-front">
+    <!-- Replace with a real photo: <img src="assets/photos/microbit-front.jpg" alt="micro:bit V2 front"> -->
+    <img src="assets/microbit-front.svg" alt="micro:bit V2 front — annotated diagram showing LED matrix, buttons, USB connector, touch logo, microphone, and edge connector pads">
   </div>
-  <div class="photo-slot" id="photo-microbit-back">
-    <!-- Replace with: <img src="assets/photos/microbit-back.jpg" alt="micro:bit V2 back with edge connector"> -->
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="3" y1="19" x2="21" y2="19"/><line x1="7" y1="19" x2="7" y2="21"/><line x1="12" y1="19" x2="12" y2="21"/><line x1="17" y1="19" x2="17" y2="21"/></svg>
-    <span>Photo: micro:bit board (edge connector)</span>
+  <div class="diagram-slot" id="photo-microbit-back">
+    <!-- Replace with a real photo: <img src="assets/photos/microbit-back.jpg" alt="micro:bit V2 edge connector"> -->
+    <img src="assets/microbit-edge.svg" alt="micro:bit V2 edge connector — annotated diagram showing gold pads, pin labels P0 P1 P2 3V GND, and V2 notch">
   </div>
 </div>
 

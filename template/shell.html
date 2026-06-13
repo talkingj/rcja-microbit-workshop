@@ -508,27 +508,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 
 /* ── CODE SECTION ─────────────────────────────── */
 #s-code {
-  background: var(--surface);
-  border-top: 2px dashed var(--border);
-  padding: 64px 24px;
-  text-align: center;
   scroll-margin-top: 98px;
-}
-.code-ph-icon {
-  width: 56px; height: 56px;
-  background: var(--navy);
-  margin: 0 auto 20px;
-  display: flex; align-items: center; justify-content: center;
-}
-.code-ph-icon svg { width: 28px; height: 28px; fill: var(--green); stroke: none; }
-.code-ph-title {
-  font-size: 22px; font-weight: 700;
-  color: var(--navy); letter-spacing: -0.02em; margin-bottom: 10px;
-}
-.code-ph-body {
-  font-size: 14px; color: var(--muted);
-  max-width: 46ch; margin: 0 auto;
-  line-height: 1.65;
 }
 
 /* ── CODE REFERENCE (added by facilitator) ────── */
@@ -606,6 +586,92 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
   border: 1px solid var(--border);
 }
 
+/* ── SETUP STEPS ──────────────────────────────── */
+ol.setup-steps {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+ol.setup-steps li {
+  font-size: 14px; color: var(--label);
+  line-height: 1.65; padding: 4px 0;
+}
+ol.setup-steps code {
+  font-family: 'Courier New', monospace;
+  font-size: 12px; background: var(--surface);
+  padding: 1px 5px; border: 1px solid var(--border);
+}
+
+/* ── MAKECODE EMBED ───────────────────────────── */
+.makecode-embed {
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.makecode-header {
+  background: var(--navy);
+  padding: 8px 14px;
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7);
+  display: flex; align-items: center; gap: 8px;
+}
+.makecode-header svg { flex-shrink: 0; color: var(--green); }
+.makecode-open {
+  margin-left: auto;
+  font-size: 11px; color: var(--green);
+  text-decoration: none; font-weight: 600;
+}
+.makecode-open:hover { color: #fff; }
+.makecode-embed iframe {
+  width: 100%; height: 500px;
+  display: block; border: none;
+}
+
+.makecode-placeholder {
+  background: var(--navy);
+  border: 2px dashed var(--navy-mid);
+  padding: 36px 24px;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+  text-align: center; margin-bottom: 24px;
+}
+.mcp-label {
+  font-size: 13px; font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase; letter-spacing: 0.07em;
+}
+.mcp-hint {
+  font-size: 12px; color: rgba(255,255,255,0.3);
+  max-width: 52ch; line-height: 1.6;
+}
+.mcp-hint code {
+  font-family: 'Courier New', monospace;
+  font-size: 11px; color: var(--green);
+  background: rgba(255,255,255,0.05);
+  padding: 1px 5px;
+}
+
+/* ── CODE PLACEHOLDER BLOCK ───────────────────── */
+.code-placeholder-block {
+  background: var(--navy);
+  border: 2px dashed var(--navy-mid);
+  padding: 32px 24px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; text-align: center;
+  margin-bottom: 16px;
+  color: rgba(255,255,255,0.35);
+}
+.code-placeholder-block span {
+  font-size: 13px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.07em;
+}
+.code-placeholder-block svg { color: rgba(255,255,255,0.25); }
+pre.code-hint {
+  font-family: 'Courier New', monospace;
+  font-size: 11px; color: rgba(255,255,255,0.25);
+  line-height: 1.6; margin: 0; white-space: pre-wrap;
+  text-align: left;
+}
+
 /* ── RESPONSIVE ───────────────────────────────── */
 @media (max-width: 640px) {
   .page { padding: 0 16px; }
@@ -641,6 +707,22 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 }
 .photo-slot svg { opacity: 0.3; }
 .photo-slot span { opacity: 0.5; }
+
+/* Diagram slot: holds SVG illustrations (or real photos once available) */
+.diagram-slot {
+  background: var(--navy);
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  min-height: 220px;
+  display: flex; align-items: center; justify-content: center;
+}
+.diagram-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  padding: 12px;
+}
 
 .photo-row {
   display: grid;
@@ -685,8 +767,11 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .hero-body { color: rgba(255,255,255,0.6); font-size: 18px; max-width: 52ch; line-height: 1.6; margin-bottom: 36px; }
 .pres-slide .hero-stats { border-color: rgba(255,255,255,0.12); }
 .pres-slide .hero-stat { border-right-color: rgba(255,255,255,0.12); }
-.pres-slide .hs-val { color: #fff; font-size: 32px; }
+.pres-slide .hs-val { color: #fff; font-size: 28px; }
 .pres-slide .hs-label { color: rgba(255,255,255,0.4); }
+/* Prevent hero stats from wrapping to a second row in presentation */
+.pres-slide .hero-stats { flex-wrap: nowrap; width: auto; }
+.pres-slide .hero-stat { padding: 14px 20px; }
 
 .pres-slide .version-card { border-color: rgba(255,255,255,0.12); }
 .pres-slide .v1-hdr { background: rgba(255,255,255,0.06); }
@@ -728,6 +813,24 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .code-ph-icon { background: rgba(255,255,255,0.08); }
 .pres-slide .code-ph-title { color: #fff; }
 .pres-slide .code-ph-body { color: rgba(255,255,255,0.45); }
+
+/* Diagram slots on dark presentation background */
+.pres-slide .diagram-slot { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
+
+/* Bottom fade on slides that have scrollable overflow */
+.pres-slide::after {
+  content: '';
+  position: sticky;
+  bottom: 0;
+  display: block;
+  height: 52px;
+  margin-top: -52px;
+  background: linear-gradient(transparent, var(--navy));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms;
+}
+.pres-slide.can-scroll::after { opacity: 1; }
 
 .pres-slide .code-block { background: rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.1); }
 .pres-slide .code-filename { background: rgba(0,0,0,0.3); }
@@ -889,7 +992,17 @@ function showSlide(idx) {
   counterEl.textContent = (idx + 1) + ' / ' + presSlides.length;
   prevBtn.disabled = idx === 0;
   nextBtn.disabled = idx === presSlides.length - 1;
-  presSlides[idx].scrollTop = 0;
+  const slide = presSlides[idx];
+  slide.scrollTop = 0;
+  // Show bottom fade if slide content overflows
+  requestAnimationFrame(() => {
+    slide.classList.toggle('can-scroll', slide.scrollHeight > slide.clientHeight + 8);
+  });
+}
+
+function updateScrollFade(slide) {
+  const atBottom = slide.scrollTop + slide.clientHeight >= slide.scrollHeight - 8;
+  slide.classList.toggle('can-scroll', !atBottom && slide.scrollHeight > slide.clientHeight + 8);
 }
 
 function presNav(dir) {
@@ -901,6 +1014,10 @@ function enterPresentation() {
   buildSlides();
   showSlide(0);
   document.body.classList.add('presenting');
+  // Update scroll fade as user scrolls each slide
+  presSlides.forEach(slide => {
+    slide.addEventListener('scroll', () => updateScrollFade(slide), { passive: true });
+  });
   if (document.documentElement.requestFullscreen) {
     document.documentElement.requestFullscreen().catch(() => {});
   }

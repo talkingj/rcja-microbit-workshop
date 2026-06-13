@@ -508,27 +508,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 
 /* ── CODE SECTION ─────────────────────────────── */
 #s-code {
-  background: var(--surface);
-  border-top: 2px dashed var(--border);
-  padding: 64px 24px;
-  text-align: center;
   scroll-margin-top: 98px;
-}
-.code-ph-icon {
-  width: 56px; height: 56px;
-  background: var(--navy);
-  margin: 0 auto 20px;
-  display: flex; align-items: center; justify-content: center;
-}
-.code-ph-icon svg { width: 28px; height: 28px; fill: var(--green); stroke: none; }
-.code-ph-title {
-  font-size: 22px; font-weight: 700;
-  color: var(--navy); letter-spacing: -0.02em; margin-bottom: 10px;
-}
-.code-ph-body {
-  font-size: 14px; color: var(--muted);
-  max-width: 46ch; margin: 0 auto;
-  line-height: 1.65;
 }
 
 /* ── CODE REFERENCE (added by facilitator) ────── */
@@ -606,6 +586,92 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
   border: 1px solid var(--border);
 }
 
+/* ── SETUP STEPS ──────────────────────────────── */
+ol.setup-steps {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+ol.setup-steps li {
+  font-size: 14px; color: var(--label);
+  line-height: 1.65; padding: 4px 0;
+}
+ol.setup-steps code {
+  font-family: 'Courier New', monospace;
+  font-size: 12px; background: var(--surface);
+  padding: 1px 5px; border: 1px solid var(--border);
+}
+
+/* ── MAKECODE EMBED ───────────────────────────── */
+.makecode-embed {
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.makecode-header {
+  background: var(--navy);
+  padding: 8px 14px;
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7);
+  display: flex; align-items: center; gap: 8px;
+}
+.makecode-header svg { flex-shrink: 0; color: var(--green); }
+.makecode-open {
+  margin-left: auto;
+  font-size: 11px; color: var(--green);
+  text-decoration: none; font-weight: 600;
+}
+.makecode-open:hover { color: #fff; }
+.makecode-embed iframe {
+  width: 100%; height: 500px;
+  display: block; border: none;
+}
+
+.makecode-placeholder {
+  background: var(--navy);
+  border: 2px dashed var(--navy-mid);
+  padding: 36px 24px;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+  text-align: center; margin-bottom: 24px;
+}
+.mcp-label {
+  font-size: 13px; font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase; letter-spacing: 0.07em;
+}
+.mcp-hint {
+  font-size: 12px; color: rgba(255,255,255,0.3);
+  max-width: 52ch; line-height: 1.6;
+}
+.mcp-hint code {
+  font-family: 'Courier New', monospace;
+  font-size: 11px; color: var(--green);
+  background: rgba(255,255,255,0.05);
+  padding: 1px 5px;
+}
+
+/* ── CODE PLACEHOLDER BLOCK ───────────────────── */
+.code-placeholder-block {
+  background: var(--navy);
+  border: 2px dashed var(--navy-mid);
+  padding: 32px 24px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; text-align: center;
+  margin-bottom: 16px;
+  color: rgba(255,255,255,0.35);
+}
+.code-placeholder-block span {
+  font-size: 13px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.07em;
+}
+.code-placeholder-block svg { color: rgba(255,255,255,0.25); }
+pre.code-hint {
+  font-family: 'Courier New', monospace;
+  font-size: 11px; color: rgba(255,255,255,0.25);
+  line-height: 1.6; margin: 0; white-space: pre-wrap;
+  text-align: left;
+}
+
 /* ── RESPONSIVE ───────────────────────────────── */
 @media (max-width: 640px) {
   .page { padding: 0 16px; }
@@ -641,6 +707,22 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 }
 .photo-slot svg { opacity: 0.3; }
 .photo-slot span { opacity: 0.5; }
+
+/* Diagram slot: holds SVG illustrations (or real photos once available) */
+.diagram-slot {
+  background: var(--navy);
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  min-height: 220px;
+  display: flex; align-items: center; justify-content: center;
+}
+.diagram-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  padding: 12px;
+}
 
 .photo-row {
   display: grid;
@@ -685,8 +767,11 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .hero-body { color: rgba(255,255,255,0.6); font-size: 18px; max-width: 52ch; line-height: 1.6; margin-bottom: 36px; }
 .pres-slide .hero-stats { border-color: rgba(255,255,255,0.12); }
 .pres-slide .hero-stat { border-right-color: rgba(255,255,255,0.12); }
-.pres-slide .hs-val { color: #fff; font-size: 32px; }
+.pres-slide .hs-val { color: #fff; font-size: 28px; }
 .pres-slide .hs-label { color: rgba(255,255,255,0.4); }
+/* Prevent hero stats from wrapping to a second row in presentation */
+.pres-slide .hero-stats { flex-wrap: nowrap; width: auto; }
+.pres-slide .hero-stat { padding: 14px 20px; }
 
 .pres-slide .version-card { border-color: rgba(255,255,255,0.12); }
 .pres-slide .v1-hdr { background: rgba(255,255,255,0.06); }
@@ -728,6 +813,24 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .code-ph-icon { background: rgba(255,255,255,0.08); }
 .pres-slide .code-ph-title { color: #fff; }
 .pres-slide .code-ph-body { color: rgba(255,255,255,0.45); }
+
+/* Diagram slots on dark presentation background */
+.pres-slide .diagram-slot { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
+
+/* Bottom fade on slides that have scrollable overflow */
+.pres-slide::after {
+  content: '';
+  position: sticky;
+  bottom: 0;
+  display: block;
+  height: 52px;
+  margin-top: -52px;
+  background: linear-gradient(transparent, var(--navy));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms;
+}
+.pres-slide.can-scroll::after { opacity: 1; }
 
 .pres-slide .code-block { background: rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.1); }
 .pres-slide .code-filename { background: rgba(0,0,0,0.3); }
@@ -825,9 +928,9 @@ body.presenting #pres-overlay { display: flex; }
 
 <section id="hero" aria-label="Introduction">
 <div class="hero-inner">
-<p class="kicker">A tiny board that punches above its weight</p>
-<h2>Meet the micro:bit.</h2>
-<p class="hero-body">A credit-card-sized computer built for learning. Sensors, a display, radio, and enough processing power to run real autonomous programs. Used in classrooms across 60+ countries.</p>
+<p class="kicker">BBC micro:bit — classroom computing hardware</p>
+<h2>The micro:bit</h2>
+<p class="hero-body">A credit-card-sized microcontroller with built-in sensors, a 5×5 LED display, wireless radio, and a 25-pin edge connector. Designed for school use. Programmable in drag-and-drop blocks or Python from any browser.</p>
 <div class="hero-stats">
   <div class="hero-stat">
     <div class="hs-val">60+</div>
@@ -853,8 +956,8 @@ body.presenting #pres-overlay { display: flex; }
 <div class="page">
 <section class="section" id="s-what">
 <p class="section-label">Overview</p>
-<h2 class="section-title">A single board that fits in your pocket</h2>
-<p class="section-intro">The micro:bit was created by the BBC and the Micro:bit Educational Foundation, designed specifically for schools: low cost, hard to break, easy to start, and deep enough to grow into. It sits deliberately between a toy and a professional platform.</p>
+<h2 class="section-title">What is the micro:bit</h2>
+<p class="section-intro">The micro:bit was developed by the BBC and the Micro:bit Educational Foundation for use in schools. It is a small, low-cost microcontroller with built-in sensors and outputs. It supports two programming languages in the same browser-based editor, with no software to install.</p>
 <div class="version-compare">
   <div class="version-card">
     <div class="version-hdr v1-hdr">
@@ -895,18 +998,16 @@ body.presenting #pres-overlay { display: flex; }
 
 <section class="section" id="s-hardware">
 <p class="section-label">On the board</p>
-<h2 class="section-title">Everything built in, nothing extra to buy</h2>
-<p class="section-intro">Most microcontrollers need external components wired on before they can do anything interesting. The micro:bit ships with sensors and outputs already soldered on. On day one, with nothing but the board and a USB cable, you can detect movement, read temperature, transmit data wirelessly, and display output.</p>
+<h2 class="section-title">Built-in sensors and outputs</h2>
+<p class="section-intro">The micro:bit has sensors and outputs soldered onto the board. With only the board and a USB cable, a student can detect movement, read temperature, transmit data wirelessly, and show output on the LED display — no additional components required.</p>
 <div class="photo-row">
-  <div class="photo-slot" id="photo-microbit-front">
-    <!-- Replace with: <img src="assets/photos/microbit-front.jpg" alt="micro:bit V2 front"> -->
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1"/><circle cx="12" cy="8.5" r="1"/><circle cx="15.5" cy="8.5" r="1"/><circle cx="8.5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="15.5" cy="12" r="1"/><line x1="5" y1="17" x2="19" y2="17"/></svg>
-    <span>Photo: micro:bit board (front)</span>
+  <div class="diagram-slot" id="photo-microbit-front">
+    <!-- Replace with a real photo: <img src="assets/photos/microbit-front.jpg" alt="micro:bit V2 front"> -->
+    <img src="assets/microbit-front.svg" alt="micro:bit V2 front — annotated diagram showing LED matrix, buttons, USB connector, touch logo, microphone, and edge connector pads">
   </div>
-  <div class="photo-slot" id="photo-microbit-back">
-    <!-- Replace with: <img src="assets/photos/microbit-back.jpg" alt="micro:bit V2 back with edge connector"> -->
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="3" y1="19" x2="21" y2="19"/><line x1="7" y1="19" x2="7" y2="21"/><line x1="12" y1="19" x2="12" y2="21"/><line x1="17" y1="19" x2="17" y2="21"/></svg>
-    <span>Photo: micro:bit board (edge connector)</span>
+  <div class="diagram-slot" id="photo-microbit-back">
+    <!-- Replace with a real photo: <img src="assets/photos/microbit-back.jpg" alt="micro:bit V2 edge connector"> -->
+    <img src="assets/microbit-edge.svg" alt="micro:bit V2 edge connector — annotated diagram showing gold pads, pin labels P0 P1 P2 3V GND, and V2 notch">
   </div>
 </div>
 
@@ -998,15 +1099,15 @@ body.presenting #pres-overlay { display: flex; }
 
 <section class="section" id="s-program">
 <p class="section-label">How you code it</p>
-<h2 class="section-title">Two languages, one editor, no installation</h2>
-<p class="section-intro">Programming happens in a browser. Nothing to install. The same editor supports drag-and-drop blocks and text-based Python, and switches between them at any time. A built-in simulator means students can test their code before hardware is even in the room.</p>
+<h2 class="section-title">Programming the micro:bit</h2>
+<p class="section-intro">Programming is done through a browser at makecode.microbit.org. No software installation is required. The editor supports drag-and-drop blocks and text-based Python in the same interface, and includes a simulator so students can test their programs before connecting hardware.</p>
 <div class="sim-callout">
   <div class="sim-icon">
     <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
   </div>
   <div>
-    <div class="sim-title">The simulator: your biggest classroom advantage</div>
-    <div class="sim-body">MakeCode runs a full micro:bit simulation in the browser. Students test button presses, shake events, LED output, and sensor readings without touching hardware. Entire lessons can run on nothing but a laptop.</div>
+    <div class="sim-title">The browser simulator</div>
+    <div class="sim-body">MakeCode includes a micro:bit simulator that runs in the browser. Students can test button presses, shake events, LED output, and sensor readings without connecting hardware. Lessons can proceed before any boards arrive.</div>
     <a class="sim-link" href="https://makecode.microbit.org" target="_blank" rel="noopener">Open MakeCode editor</a>
   </div>
 </div>
@@ -1033,7 +1134,7 @@ body.presenting #pres-overlay { display: flex; }
       <span class="lang-level level-advanced">Step up</span>
     </div>
     <div class="lang-body">
-      Real Python, running on the board. The same language used in GCSE, VCE, and undergraduate computing. Students who outgrow blocks switch here without learning a new platform or rebuying hardware.
+      Standard Python running on the board. The same language used in GCSE, VCE, and undergraduate computing courses. Students can move from blocks to Python on the same board, in the same editor, without additional cost.
       <ul class="lang-pros">
         <li>Transferable skill: Python is the most-used language globally</li>
         <li>Access to lower-level hardware control and timing</li>
@@ -1045,7 +1146,7 @@ body.presenting #pres-overlay { display: flex; }
 </div>
 
 <div class="callout">
-  <strong>Download is one drag.</strong> Clicking "Download" produces a .hex file. Drag it onto the MICROBIT USB drive and the program flashes instantly. No drivers, no software, no cable protocol. Works on Windows, Mac, and Chromebook.
+  <strong>Downloading to the board:</strong> clicking "Download" produces a .hex file. Drag it onto the MICROBIT USB drive that appears when the board is connected and the program loads automatically. No drivers or additional software needed. Works on Windows, Mac, and Chromebook.
 </div>
 </section>
 
@@ -1053,124 +1154,20 @@ body.presenting #pres-overlay { display: flex; }
 <p class="section-label">Versatility</p>
 <h2 class="section-title">What you can actually build with it</h2>
 <p class="section-intro">The micro:bit is not a single-purpose kit. The same board and the same skills span science, art, sport, music, and engineering. That cross-subject range is the reason it is worth learning: one platform, many entry points, no throw-away knowledge.</p>
-<div class="project-grid">
-  <div class="project-card">
-    <div class="project-stripe" style="background:#3db166"></div>
-    <div class="project-body">
-      <div class="project-domain">Robotics</div>
-      <div class="project-name">Line-following robot</div>
-      <div class="project-desc">Add a motor carrier board and IR sensors. The micro:bit reads the line and drives two motors. Full autonomous navigation on a complete kit under $100.</div>
-      <div class="project-tags"><span class="tag">Motors</span><span class="tag">IR sensors</span><span class="tag">Autonomous</span></div>
-    </div>
-  </div>
-  <div class="project-card">
-    <div class="project-stripe" style="background:#2563eb"></div>
-    <div class="project-body">
-      <div class="project-domain">Science</div>
-      <div class="project-name">Wireless weather station</div>
-      <div class="project-desc">Log temperature over time and transmit readings wirelessly to a second micro:bit acting as a base station display. No internet connection required.</div>
-      <div class="project-tags"><span class="tag">Temperature</span><span class="tag">Radio</span><span class="tag">Data logging</span></div>
-    </div>
-  </div>
-  <div class="project-card">
-    <div class="project-stripe" style="background:#db2777"></div>
-    <div class="project-body">
-      <div class="project-domain">Wearables</div>
-      <div class="project-name">Step counter</div>
-      <div class="project-desc">The accelerometer detects footfall patterns. Display step counts on the LED, set daily targets, and vibrate when reached. Worn on a wristband or sewn into a bag.</div>
-      <div class="project-tags"><span class="tag">Accelerometer</span><span class="tag">LED display</span></div>
-    </div>
-  </div>
-  <div class="project-card">
-    <div class="project-stripe" style="background:#d97706"></div>
-    <div class="project-body">
-      <div class="project-domain">Music</div>
-      <div class="project-name">Clap-activated instrument</div>
-      <div class="project-desc">The V2 microphone detects clap patterns. Different rhythms trigger different notes from the on-board speaker. No extra components needed at all.</div>
-      <div class="project-tags"><span class="tag">Microphone</span><span class="tag">Speaker</span><span class="tag">V2</span></div>
-    </div>
-  </div>
-  <div class="project-card">
-    <div class="project-stripe" style="background:#7c3aed"></div>
-    <div class="project-body">
-      <div class="project-domain">Games</div>
-      <div class="project-name">Two-player radio game</div>
-      <div class="project-desc">Two micro:bits communicate over radio. One sends, the other receives and responds. Rock-paper-scissors, quiz buzzers, collaborative scoreboards.</div>
-      <div class="project-tags"><span class="tag">Radio</span><span class="tag">Multi-board</span></div>
-    </div>
-  </div>
-  <div class="project-card">
-    <div class="project-stripe" style="background:#059669"></div>
-    <div class="project-body">
-      <div class="project-domain">Environment</div>
-      <div class="project-name">Plant monitor</div>
-      <div class="project-desc">Connect a capacitive soil moisture sensor via the edge connector. The micro:bit alerts when plants need water with a wilting icon or a buzzer pattern.</div>
-      <div class="project-tags"><span class="tag">Edge pins</span><span class="tag">Analogue input</span></div>
-    </div>
-  </div>
-  <div class="project-card">
-    <div class="project-stripe" style="background:#dc2626"></div>
-    <div class="project-body">
-      <div class="project-domain">Safety</div>
-      <div class="project-name">Crash detector</div>
-      <div class="project-desc">Detects freefall or a hard impact via the accelerometer. Displays an alert and transmits a radio message. Works as a bike safety device or fall-detection aid.</div>
-      <div class="project-tags"><span class="tag">Accelerometer</span><span class="tag">Radio</span></div>
-    </div>
-  </div>
-  <div class="project-card">
-    <div class="project-stripe" style="background:#0891b2"></div>
-    <div class="project-body">
-      <div class="project-domain">Art</div>
-      <div class="project-name">Sound-reactive LED display</div>
-      <div class="project-desc">LED animation responds to ambient sound level or light intensity in real time. No screens, no apps: the board itself becomes the display.</div>
-      <div class="project-tags"><span class="tag">Light sensor</span><span class="tag">LED display</span></div>
-    </div>
-  </div>
-</div>
+<div class="project-grid"><div class="project-card"><div class="project-stripe" style="background:#3db166"></div><div class="project-body"><div class="project-domain">Robotics</div><div class="project-name">Line-following robot</div><div class="project-desc">Add a motor carrier board and IR sensors. The micro:bit reads the line and drives two motors independently for full autonomous navigation.</div><div class="project-tags"><span class="tag">Motors</span><span class="tag">IR sensors</span><span class="tag">Autonomous</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#2563eb"></div><div class="project-body"><div class="project-domain">Science</div><div class="project-name">Wireless weather station</div><div class="project-desc">Log temperature over time and transmit readings wirelessly to a second micro:bit acting as a base station display. No internet connection required.</div><div class="project-tags"><span class="tag">Temperature</span><span class="tag">Radio</span><span class="tag">Data logging</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#db2777"></div><div class="project-body"><div class="project-domain">Wearables</div><div class="project-name">Step counter</div><div class="project-desc">The accelerometer detects footfall patterns. Display step counts on the LED, set daily targets, and vibrate when reached. Worn on a wristband or sewn into a bag.</div><div class="project-tags"><span class="tag">Accelerometer</span><span class="tag">LED display</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#d97706"></div><div class="project-body"><div class="project-domain">Music</div><div class="project-name">Clap-activated instrument</div><div class="project-desc">The V2 microphone detects clap patterns. Different rhythms trigger different notes from the on-board speaker. No extra components needed at all.</div><div class="project-tags"><span class="tag">Microphone</span><span class="tag">Speaker</span><span class="tag">V2</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#7c3aed"></div><div class="project-body"><div class="project-domain">Games</div><div class="project-name">Two-player radio game</div><div class="project-desc">Two micro:bits communicate over radio. One sends, the other receives and responds. Rock-paper-scissors, quiz buzzers, collaborative scoreboards.</div><div class="project-tags"><span class="tag">Radio</span><span class="tag">Multi-board</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#059669"></div><div class="project-body"><div class="project-domain">Environment</div><div class="project-name">Plant monitor</div><div class="project-desc">Connect a capacitive soil moisture sensor via the edge connector. The micro:bit alerts when plants need water with a wilting icon or a buzzer pattern.</div><div class="project-tags"><span class="tag">Edge pins</span><span class="tag">Analogue input</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#dc2626"></div><div class="project-body"><div class="project-domain">Safety</div><div class="project-name">Crash detector</div><div class="project-desc">Detects freefall or a hard impact via the accelerometer. Displays an alert and transmits a radio message. Works as a bike safety device or fall-detection aid.</div><div class="project-tags"><span class="tag">Accelerometer</span><span class="tag">Radio</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#0891b2"></div><div class="project-body"><div class="project-domain">Art</div><div class="project-name">Sound-reactive LED display</div><div class="project-desc">LED animation responds to ambient sound level or light intensity in real time. No screens, no apps — the board itself becomes the display.</div><div class="project-tags"><span class="tag">Light sensor</span><span class="tag">LED display</span></div></div></div></div>
 </section>
 
 <section class="section" id="s-why">
 <p class="section-label">For teachers</p>
 <h2 class="section-title">Why it works in a classroom</h2>
-<p class="section-intro">The micro:bit was designed with schools in mind, not prototyping labs. The decisions that make it good for classrooms are deliberate, and they matter when managing 25 students at once on mismatched hardware.</p>
-<div class="pitch-grid">
-  <div class="pitch-card">
-    <div class="pitch-num">01</div>
-    <div class="pitch-title">Start on day one, no kit needed</div>
-    <div class="pitch-body">The simulator means a student can write, test, and iterate code using nothing but a browser. Hardware becomes a reward, not a prerequisite. Classes can begin before a single board arrives.</div>
-  </div>
-  <div class="pitch-card">
-    <div class="pitch-num">02</div>
-    <div class="pitch-title">Low cost, genuinely durable</div>
-    <div class="pitch-body">Around $30 AUD per board. The LED display acts as its own debugging tool, making it hard to claim the code is "doing nothing." Students can pocket it, throw it in a bag, and it keeps working.</div>
-  </div>
-  <div class="pitch-card">
-    <div class="pitch-num">03</div>
-    <div class="pitch-title">Two-language progression path</div>
-    <div class="pitch-body">Start with blocks, switch to Python months later on the same board in the same editor. The investment in micro:bit skills transfers directly into real-world programming without a platform change.</div>
-  </div>
-  <div class="pitch-card">
-    <div class="pitch-num">04</div>
-    <div class="pitch-title">Immediate physical feedback</div>
-    <div class="pitch-body">The LED display makes program state visible without any external monitor. Students see instantly whether their code is working, and more importantly, how it is failing.</div>
-  </div>
-  <div class="pitch-card">
-    <div class="pitch-num">05</div>
-    <div class="pitch-title">Cross-curriculum reach</div>
-    <div class="pitch-body">The same board covers Computing, Science, Maths, Music (V2), and Design Technology. One purchase across a department, not a per-subject kit that collects dust after one unit.</div>
-  </div>
-  <div class="pitch-card">
-    <div class="pitch-num">06</div>
-    <div class="pitch-title">Works on every computer</div>
-    <div class="pitch-body">Browser-based. No installation, no admin rights, no software to update. Works on school Chromebooks, old Windows laptops, and iPads. The program upload is a single file drag.</div>
-  </div>
-</div>
+<p class="section-intro">The micro:bit was designed for school use. These are the features that make it practical in a classroom with varied hardware, limited IT support, and students at different levels.</p>
+<div class="pitch-grid"><div class="pitch-card"><div class="pitch-num">01</div><div class="pitch-title">No hardware needed to start</div><div class="pitch-body">The browser simulator lets students write and test code before any boards arrive. Classes can begin as soon as students have a laptop.</div></div><div class="pitch-card"><div class="pitch-num">02</div><div class="pitch-title">Low cost and durable</div><div class="pitch-body">Around $30 AUD per board. The LED display shows program state directly, which helps students debug without external tools. The board tolerates being pocketed, dropped, and used across multiple year groups.</div></div><div class="pitch-card"><div class="pitch-num">03</div><div class="pitch-title">Two-language progression</div><div class="pitch-body">Students start with drag-and-drop blocks and can switch to Python later on the same board and in the same editor. No new hardware or platform is required to make that transition.</div></div><div class="pitch-card"><div class="pitch-num">04</div><div class="pitch-title">Visible program state</div><div class="pitch-body">The LED display shows what the program is doing without needing a monitor or serial connection. Students can see whether their code is running correctly and where it is failing.</div></div><div class="pitch-card"><div class="pitch-num">05</div><div class="pitch-title">Covers multiple subjects</div><div class="pitch-body">The same board is applicable across Computing, Science, Maths, Music (V2), and Design Technology. One purchase can serve multiple departments and year levels.</div></div><div class="pitch-card"><div class="pitch-num">06</div><div class="pitch-title">Works on school computers</div><div class="pitch-body">MakeCode runs in a browser with no installation and no admin rights. It works on Chromebooks, older Windows laptops, and iPads. Uploading a program is a file drag onto a USB drive.</div></div></div>
 </section>
 
 <section class="section" id="s-robocup">
 <p class="section-label">Real-world context</p>
-<h2 class="section-title">Where it goes next: RoboCup Junior</h2>
-<p class="section-intro">Everything in this workshop maps directly to a real competition. RoboCup Junior Rescue Line gives students a concrete goal that exercises every micro:bit capability at once. The skills are the same; the stakes are real.</p>
+<h2 class="section-title">RoboCup Junior Rescue Line</h2>
+<p class="section-intro">The skills covered in this workshop apply directly to RoboCup Junior Rescue Line. The competition gives students a concrete goal that uses line following, sensor reading, and motor control together in a timed autonomous run.</p>
 <div class="rcja-banner">
   <div>
     <div class="rcja-title">RoboCup Junior Australia: Rescue Line</div>
@@ -1214,32 +1211,128 @@ body.presenting #pres-overlay { display: flex; }
 </table>
 
 <div class="photo-row">
-  <div class="photo-slot" id="photo-motorbit-kit">
-    <!-- Replace with: <img src="assets/photos/motorbit-kit.jpg" alt="Elecfreaks motor:bit kit parts"> -->
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="10" rx="1"/><circle cx="6" cy="17" r="2"/><circle cx="18" cy="17" r="2"/><line x1="6" y1="7" x2="6" y2="4"/><line x1="18" y1="7" x2="18" y2="4"/></svg>
-    <span>Photo: motor:bit kit (parts laid out)</span>
+  <div class="diagram-slot" id="photo-motorbit-kit">
+    <!-- Replace with a real photo: <img src="assets/photos/motorbit-kit.jpg" alt="Elecfreaks motor:bit kit parts"> -->
+    <img src="assets/motorbit-parts.svg" alt="motor:bit kit parts — diagram showing micro:bit, motor:bit carrier board, TT motors, IR tracking sensor, ultrasonic sensor, battery pack, wheels, and castor">
   </div>
-  <div class="photo-slot" id="photo-motorbit-assembled">
-    <!-- Replace with: <img src="assets/photos/motorbit-assembled.jpg" alt="Assembled motor:bit robot"> -->
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="1"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><rect x="8" y="9" width="8" height="5" rx="0"/></svg>
-    <span>Photo: assembled robot (ready to run)</span>
+  <div class="diagram-slot" id="photo-motorbit-assembled">
+    <!-- Replace with a real photo: <img src="assets/photos/motorbit-assembled.jpg" alt="Assembled motor:bit robot"> -->
+    <img src="assets/motorbit-robot.svg" alt="assembled motor:bit robot — top-down diagram showing ultrasonic sensor at front, IR sensors, micro:bit, motor:bit board, battery pack, and two drive wheels">
   </div>
 </div>
 
 <div class="callout">
-  <strong>The kit:</strong> Elecfreaks motor:bit smart car. Two TT motors, a 2-channel IR tracking module, an ultrasonic sensor, and a carrier board that plugs directly onto the micro:bit edge connector. Under $100 complete.
+  <strong>The kit:</strong> Individual components — a micro:bit, an Elecfreaks motor:bit carrier board, two TT motors, a 2-channel IR tracking module, an ultrasonic sensor, and a 4×AA battery pack. The carrier board plugs directly onto the micro:bit edge connector.
+</div>
+</section>
+
+<section class="section" id="s-code">
+<p class="section-label">Coding reference</p>
+<h2 class="section-title">Setting up and writing your first programs</h2>
+<p class="section-intro">A reference to keep open during the live coding session. Setup steps, wiring, program structure, and the three programs that make up a Rescue Line robot — each with an embedded MakeCode project you can open, run, and remix directly.</p>
+<div class="code-ref">
+
+<div class="code-ref-section">
+<h3>Step 1: Open MakeCode and add extensions</h3>
+
+<ol class="setup-steps">
+  <li>Go to <a href="https://makecode.microbit.org" target="_blank" rel="noopener">makecode.microbit.org</a> and click <strong>New Project</strong>.</li>
+  <li>Click the <strong>gear icon</strong> (top right) then <strong>Extensions</strong>.</li>
+  <li>Search for <code>motorbit</code> and add it — this gives you motor control blocks.</li>
+  <li>Search for <code>sonarbit</code> and add it — this gives you the ultrasonic sensor block.</li>
+  <li>You should now see <strong>motorbit</strong> and <strong>sonarbit</strong> categories in the block palette.</li>
+</ol>
+
+<div class="callout">
+  <strong>Sharing a project:</strong> once you have working blocks, click <strong>Share</strong> in the top menu. Copy the URL it gives you (looks like <code>https://makecode.microbit.org/S12345-abcde</code>). Paste that URL as <code>makecode_url:</code> in the matching section of <code>content/07-code.md</code> and it will embed live on this page.
+</div>
+</div>
+
+<div class="code-ref-section">
+<h3>Pin and wiring reference</h3>
+
+<table class="pin-table">
+  <thead>
+    <tr><th>Connection</th><th>Pin</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Left motor</td><td><code>M1</code></td><td>TT yellow motor — left wheel</td></tr>
+    <tr><td>Right motor</td><td><code>M2</code></td><td>TT yellow motor — right wheel</td></tr>
+    <tr><td>Left IR sensor (S1)</td><td><code>P4</code></td><td>Digital. <strong>0 = on the line</strong>, 1 = white background</td></tr>
+    <tr><td>Right IR sensor (S2)</td><td><code>P3</code></td><td>Digital. <strong>0 = on the line</strong>, 1 = white background</td></tr>
+    <tr><td>Ultrasonic sensor</td><td>Free GVS port</td><td>Set in MakeCode to match physical wiring</td></tr>
+    <tr><td>Buzzer</td><td><code>P0</code></td><td>On-board — no wiring needed</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Sensor logic note:</strong> the IR sensors return <strong>0</strong> when they see the black line and <strong>1</strong> when they see white. This is the opposite of what you might expect. Use the <em>set pull up</em> block on P3 and P4 inside your <em>on start</em> block.
+</div>
+</div>
+
+<div class="code-ref-section">
+<h3>Program structure: what goes where</h3>
+
+<table class="pin-table">
+  <thead>
+    <tr><th>Block</th><th>When it runs</th><th>Use it for</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>on start</code></td><td>Once, when the board powers on</td><td>Set pin pull-ups, show a ready icon on the LED</td></tr>
+    <tr><td><code>forever</code></td><td>Continuously in a loop</td><td>Read sensors, decide direction, drive motors</td></tr>
+    <tr><td><code>on button A pressed</code></td><td>When the handler presses Button A</td><td>Start the run — required by competition rules</td></tr>
+    <tr><td><code>on button B pressed</code></td><td>When Button B is pressed</td><td>Emergency stop or toggle calibration mode</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="code-ref-section">
+<h3>The autonomy rule: two things to remember</h3>
+
+<div class="callout">
+  <strong>Rule 3.2.1 — Button start:</strong> the program must be downloaded to the robot before the run. The Robot Handler starts it by pressing a button on the board. No laptop, no remote, no phone.
+</div>
+
+<div class="callout">
+  <strong>Rule 3.2.2 — No wireless:</strong> Bluetooth and radio must be off during a run. MakeCode blocks mode does not add radio by default, so you are fine as long as you do not add a radio block.
+</div>
+</div>
+
+</div>
+
+<!-- Part 1 — Line following -->
+<div class="code-ref">
+<div class="code-ref-section">
+<h3>Part 1: Line following</h3>
+<p>Read the two IR sensors and steer the robot to stay on the black line. This is the core loop that runs for the whole course.</p>
+
+<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project — Line following</div><div class="mcp-hint">Create your line-following MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
+</div>
+</div>
+
+<!-- Part 2 — Obstacle avoidance -->
+<div class="code-ref">
+<div class="code-ref-section">
+<h3>Part 2: Obstacle avoidance</h3>
+<p>Use the ultrasonic sensor to detect an obstacle ahead, drive around it, and reacquire the line within 30 cm.</p>
+
+<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project — Obstacle avoidance</div><div class="mcp-hint">Create your obstacle avoidance MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
+</div>
+</div>
+
+<!-- Part 3 — Push rescue -->
+<div class="code-ref">
+<div class="code-ref-section">
+<h3>Part 3: Push rescue</h3>
+<p>Detect the silver capsule inside the chemical spill zone and push it clear. Worth 50 points — the single highest-value action in the scoring.</p>
+
+<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project — Push rescue</div><div class="mcp-hint">Create your push rescue MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
+</div>
 </div>
 </section>
 </div>
 
-<section id="s-code">
-<div class="code-ph-icon">
-  <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="8 6 2 12 8 18" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-</div>
-<p class="section-label" style="text-align:center; margin-bottom:8px;">Hands-on</p>
-<p class="code-ph-title">Let's write some code</p>
-<p class="code-ph-body">This is where the facilitator takes over. Open MakeCode, grab your kit, and follow along.</p>
-</section>
+
 
 <script>
 const tabs     = document.querySelectorAll('.nav-tab');
@@ -1304,7 +1397,17 @@ function showSlide(idx) {
   counterEl.textContent = (idx + 1) + ' / ' + presSlides.length;
   prevBtn.disabled = idx === 0;
   nextBtn.disabled = idx === presSlides.length - 1;
-  presSlides[idx].scrollTop = 0;
+  const slide = presSlides[idx];
+  slide.scrollTop = 0;
+  // Show bottom fade if slide content overflows
+  requestAnimationFrame(() => {
+    slide.classList.toggle('can-scroll', slide.scrollHeight > slide.clientHeight + 8);
+  });
+}
+
+function updateScrollFade(slide) {
+  const atBottom = slide.scrollTop + slide.clientHeight >= slide.scrollHeight - 8;
+  slide.classList.toggle('can-scroll', !atBottom && slide.scrollHeight > slide.clientHeight + 8);
 }
 
 function presNav(dir) {
@@ -1316,6 +1419,10 @@ function enterPresentation() {
   buildSlides();
   showSlide(0);
   document.body.classList.add('presenting');
+  // Update scroll fade as user scrolls each slide
+  presSlides.forEach(slide => {
+    slide.addEventListener('scroll', () => updateScrollFade(slide), { passive: true });
+  });
   if (document.documentElement.requestFullscreen) {
     document.documentElement.requestFullscreen().catch(() => {});
   }

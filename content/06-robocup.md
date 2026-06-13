@@ -2,10 +2,10 @@
 id: s-robocup
 nav: RoboCup
 label: Real-world context
-title: "Where it goes next: RoboCup Junior"
+title: "RoboCup Junior Rescue Line"
 ---
 
-Everything in this workshop maps directly to a real competition. RoboCup Junior Rescue Line gives students a concrete goal that exercises every micro:bit capability at once. The skills are the same; the stakes are real.
+The skills covered in this workshop apply directly to RoboCup Junior Rescue Line. The competition gives students a concrete goal that uses line following, sensor reading, and motor control together in a timed autonomous run.
 
 <div class="rcja-banner">
   <div>
@@ -50,18 +50,16 @@ Everything in this workshop maps directly to a real competition. RoboCup Junior 
 </table>
 
 <div class="photo-row">
-  <div class="photo-slot" id="photo-motorbit-kit">
-    <!-- Replace with: <img src="assets/photos/motorbit-kit.jpg" alt="Elecfreaks motor:bit kit parts"> -->
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="10" rx="1"/><circle cx="6" cy="17" r="2"/><circle cx="18" cy="17" r="2"/><line x1="6" y1="7" x2="6" y2="4"/><line x1="18" y1="7" x2="18" y2="4"/></svg>
-    <span>Photo: motor:bit kit (parts laid out)</span>
+  <div class="diagram-slot" id="photo-motorbit-kit">
+    <!-- Replace with a real photo: <img src="assets/photos/motorbit-kit.jpg" alt="Elecfreaks motor:bit kit parts"> -->
+    <img src="assets/motorbit-parts.svg" alt="motor:bit kit parts — diagram showing micro:bit, motor:bit carrier board, TT motors, IR tracking sensor, ultrasonic sensor, battery pack, wheels, and castor">
   </div>
-  <div class="photo-slot" id="photo-motorbit-assembled">
-    <!-- Replace with: <img src="assets/photos/motorbit-assembled.jpg" alt="Assembled motor:bit robot"> -->
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="1"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><rect x="8" y="9" width="8" height="5" rx="0"/></svg>
-    <span>Photo: assembled robot (ready to run)</span>
+  <div class="diagram-slot" id="photo-motorbit-assembled">
+    <!-- Replace with a real photo: <img src="assets/photos/motorbit-assembled.jpg" alt="Assembled motor:bit robot"> -->
+    <img src="assets/motorbit-robot.svg" alt="assembled motor:bit robot — top-down diagram showing ultrasonic sensor at front, IR sensors, micro:bit, motor:bit board, battery pack, and two drive wheels">
   </div>
 </div>
 
 <div class="callout">
-  <strong>The kit:</strong> Elecfreaks motor:bit smart car. Two TT motors, a 2-channel IR tracking module, an ultrasonic sensor, and a carrier board that plugs directly onto the micro:bit edge connector. Under $100 complete.
+  <strong>The kit:</strong> Individual components — a micro:bit, an Elecfreaks motor:bit carrier board, two TT motors, a 2-channel IR tracking module, an ultrasonic sensor, and a 4×AA battery pack. The carrier board plugs directly onto the micro:bit edge connector.
 </div>

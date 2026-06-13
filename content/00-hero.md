@@ -2,9 +2,9 @@
 type: hero
 ---
 
-<p class="kicker">A tiny board that punches above its weight</p>
-<h2>Meet the micro:bit.</h2>
-<p class="hero-body">A credit-card-sized computer built for learning. Sensors, a display, radio, and enough processing power to run real autonomous programs. Used in classrooms across 60+ countries.</p>
+<p class="kicker">BBC micro:bit — classroom computing hardware</p>
+<h2>The micro:bit</h2>
+<p class="hero-body">A credit-card-sized microcontroller with built-in sensors, a 5×5 LED display, wireless radio, and a 25-pin edge connector. Designed for school use. Programmable in drag-and-drop blocks or Python from any browser.</p>
 <div class="hero-stats">
   <div class="hero-stat">
     <div class="hs-val">60+</div>

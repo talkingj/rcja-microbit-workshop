@@ -2,10 +2,10 @@
 id: s-what
 nav: What is it
 label: Overview
-title: A single board that fits in your pocket
+title: What is the micro:bit
 ---
 
-The micro:bit was created by the BBC and the Micro:bit Educational Foundation, designed specifically for schools: low cost, hard to break, easy to start, and deep enough to grow into. It sits deliberately between a toy and a professional platform.
+The micro:bit was developed by the BBC and the Micro:bit Educational Foundation for use in schools. It is a small, low-cost microcontroller with built-in sensors and outputs. It supports two programming languages in the same browser-based editor, with no software to install.
 
 <div class="version-compare">
   <div class="version-card">

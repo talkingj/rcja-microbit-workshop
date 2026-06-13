@@ -1,0 +1,68 @@
+<svg viewBox="0 0 280 260" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, sans-serif">
+
+  <!-- Top-down view label -->
+  <text x="140" y="12" text-anchor="middle" font-size="8.5" fill="#3db166" font-weight="700">TOP-DOWN VIEW</text>
+
+  <!-- ── Chassis ── -->
+  <rect x="60" y="30" width="160" height="190" rx="6" fill="#263a5e" stroke="#3db166" stroke-width="2"/>
+
+  <!-- Front indicator arrow -->
+  <text x="140" y="27" text-anchor="middle" font-size="8" fill="#3db166">▲ FRONT</text>
+
+  <!-- ── Ultrasonic sensor (front) ── -->
+  <rect x="90" y="34" width="100" height="22" rx="3" fill="#1b2945" stroke="#86efac" stroke-width="1.5"/>
+  <circle cx="115" cy="45" r="8" fill="#111" stroke="#86efac" stroke-width="1.5"/>
+  <circle cx="165" cy="45" r="8" fill="#111" stroke="#86efac" stroke-width="1.5"/>
+  <circle cx="115" cy="45" r="4" fill="#86efac" opacity="0.4"/>
+  <circle cx="165" cy="45" r="4" fill="#86efac" opacity="0.4"/>
+  <text x="140" y="67" text-anchor="middle" font-size="7.5" fill="#86efac">ultrasonic sensor</text>
+
+  <!-- ── IR tracking sensors (below ultrasonic) ── -->
+  <rect x="80" y="76" width="120" height="14" rx="2" fill="#1b2945" stroke="#3db166" stroke-width="1"/>
+  <circle cx="105" cy="83" r="5" fill="#111" stroke="#3db166" stroke-width="1"/>
+  <circle cx="175" cy="83" r="5" fill="#111" stroke="#3db166" stroke-width="1"/>
+  <circle cx="105" cy="83" r="2.5" fill="#cc2200"/>
+  <circle cx="175" cy="83" r="2.5" fill="#cc2200"/>
+  <text x="140" y="98" text-anchor="middle" font-size="7.5" fill="#86efac">IR line sensors  ·  P4 (L)  P3 (R)</text>
+
+  <!-- ── motor:bit carrier board ── -->
+  <rect x="75" y="108" width="130" height="60" rx="3" fill="#1b2945" stroke="#3db166" stroke-width="1.5"/>
+  <text x="140" y="124" text-anchor="middle" font-size="8" fill="#3db166" font-weight="700">motor:bit</text>
+  <text x="140" y="136" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.4)">TB6612 driver</text>
+  <text x="140" y="148" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.4)">M1 (left)  ·  M2 (right)</text>
+  <text x="140" y="160" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.4)">on-board buzzer P0</text>
+
+  <!-- ── micro:bit plugged in (top of carrier) ── -->
+  <rect x="98" y="108" width="84" height="44" rx="3" fill="#1a3a1a" stroke="#3db166" stroke-width="1"/>
+  <!-- Mini LED grid -->
+  <g fill="#cc2200">
+    <rect x="115" y="116" width="3" height="3"/><rect x="120" y="116" width="3" height="3"/><rect x="125" y="116" width="3" height="3"/><rect x="130" y="116" width="3" height="3"/><rect x="135" y="116" width="3" height="3"/>
+    <rect x="115" y="121" width="3" height="3"/><rect x="120" y="121" width="3" height="3"/><rect x="125" y="121" width="3" height="3"/><rect x="130" y="121" width="3" height="3"/><rect x="135" y="121" width="3" height="3"/>
+    <rect x="115" y="126" width="3" height="3"/><rect x="120" y="126" width="3" height="3"/><rect x="125" y="126" width="3" height="3"/><rect x="130" y="126" width="3" height="3"/><rect x="135" y="126" width="3" height="3"/>
+  </g>
+  <text x="140" y="143" text-anchor="middle" font-size="7" fill="#3db166">micro:bit</text>
+
+  <!-- ── Battery pack ── -->
+  <rect x="85" y="180" width="110" height="32" rx="3" fill="#1a1a2a" stroke="#888" stroke-width="1"/>
+  <text x="140" y="194" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,0.6)">4×AA battery pack</text>
+  <text x="140" y="205" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.35)">~6V · powers motors</text>
+
+  <!-- ── Left wheel ── -->
+  <rect x="34" y="110" width="28" height="70" rx="8" fill="#333" stroke="#888" stroke-width="2"/>
+  <rect x="38" y="120" width="20" height="50" rx="5" fill="#555"/>
+  <text x="48" y="195" text-anchor="middle" font-size="7.5" fill="#fff">M1</text>
+
+  <!-- ── Right wheel ── -->
+  <rect x="218" y="110" width="28" height="70" rx="8" fill="#333" stroke="#888" stroke-width="2"/>
+  <rect x="222" y="120" width="20" height="50" rx="5" fill="#555"/>
+  <text x="232" y="195" text-anchor="middle" font-size="7.5" fill="#fff">M2</text>
+
+  <!-- ── Castor (rear) ── -->
+  <circle cx="140" cy="216" r="10" fill="#333" stroke="#888" stroke-width="1.5"/>
+  <circle cx="140" cy="216" r="5" fill="#555"/>
+  <text x="140" y="235" text-anchor="middle" font-size="7.5" fill="#fff">castor</text>
+
+  <!-- Dimension note -->
+  <text x="140" y="252" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.35)">Elecfreaks motor:bit smart car</text>
+
+</svg>

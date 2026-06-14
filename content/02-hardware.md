@@ -16,8 +16,6 @@ The micro:bit has sensors and outputs soldered onto the board. With only the boa
   </div>
 </div>
 
-<!-- SLIDE_BREAK -->
-
 <div class="hw-grid">
 
   <div class="hw-card">

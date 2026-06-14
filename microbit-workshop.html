@@ -360,6 +360,18 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 
 .project-stripe { height: 5px; }
 
+.project-img {
+  height: 160px;
+  background: var(--surface);
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-lt);
+}
+.project-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .project-body { padding: 16px; }
 
 .project-domain {
@@ -834,6 +846,7 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .sim-callout { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
 
 .pres-slide .project-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
+.pres-slide .project-img { background: rgba(255,255,255,0.06); border-bottom-color: rgba(255,255,255,0.08); }
 .pres-slide .project-name { color: #fff; }
 .pres-slide .project-desc { color: rgba(255,255,255,0.5); }
 .pres-slide .project-domain { color: rgba(255,255,255,0.35); }
@@ -857,9 +870,16 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .code-ph-body { color: rgba(255,255,255,0.45); }
 
 /* Diagram slots on dark presentation background */
-.pres-slide .diagram-slot { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); max-height: 220px; min-height: 0; }
-.pres-slide .diagram-slot img { max-height: 196px; padding: 8px; object-fit: contain; }
-.pres-slide .photo-row { margin-bottom: 20px; }
+.pres-slide .diagram-slot { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); max-height: 140px; min-height: 0; }
+.pres-slide .diagram-slot img { max-height: 116px; padding: 6px; object-fit: contain; }
+.pres-slide .photo-row { margin-bottom: 12px; }
+/* Tighter hw-grid in presentation so 9 cards + images fit on one slide */
+.pres-slide .hw-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1px; }
+.pres-slide .hw-card { padding: 10px 12px; }
+.pres-slide .hw-icon { margin-bottom: 4px; }
+.pres-slide .hw-name { font-size: 13px; margin-bottom: 4px; }
+.pres-slide .hw-desc { font-size: 11px; line-height: 1.45; margin-bottom: 6px; }
+.pres-slide .hw-tag { font-size: 9px; padding: 2px 5px; }
 
 /* Continuation header for split slides */
 .pres-cont-header {
@@ -1002,11 +1022,11 @@ body.presenting #pres-overlay { display: flex; }
 
 <nav id="nav-bar" aria-label="Sections">
   <div id="nav-inner">
-    <button class="nav-tab active" data-target="s-what">What is it</button>
+    <button class="nav-tab active" data-target="s-session">About this session</button>
+    <button class="nav-tab" data-target="s-what">What is it</button>
     <button class="nav-tab" data-target="s-hardware">Hardware</button>
     <button class="nav-tab" data-target="s-program">Programming</button>
     <button class="nav-tab" data-target="s-projects">What you can attach</button>
-    <button class="nav-tab" data-target="s-why">Workshop plan</button>
     <button class="nav-tab" data-target="s-robocup">RoboCup Junior</button>
     <button class="nav-tab" data-target="s-code">Coding</button>
   </div>
@@ -1040,6 +1060,32 @@ body.presenting #pres-overlay { display: flex; }
 
 
 <div class="page">
+<section class="section" id="s-session">
+<p class="section-label">Session overview</p>
+<h2 class="section-title">About this session</h2>
+<p class="section-intro">A 2-hour hands-on workshop. The first half covers what the micro:bit is and what it can do. The second half is live coding on the assembled robot. No rescue line track is required — all activities work with the kit components and a browser.</p>
+<table class="pin-table timing-table">
+  <thead>
+    <tr><th>Topic</th><th>Time</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Introduction</td><td>10 min</td><td>What is the micro:bit, where it is used, cost and availability</td></tr>
+    <tr><td>Hardware tour</td><td>10 min</td><td>Walk through the built-in sensors and what the edge connector gives access to</td></tr>
+    <tr><td>Activity 1: LED display</td><td>15 min</td><td>First MakeCode program. Show text and icons. Test in the simulator, then download to the board.</td></tr>
+    <tr><td>Activity 2: Button events</td><td>15 min</td><td>Button A and B trigger different LED outputs. Introduces event-driven programming.</td></tr>
+    <tr><td>Activity 3: Motor control</td><td>20 min</td><td>Drive the robot forward, backward, and turn using button presses. Requires the motor:bit board and motors.</td></tr>
+    <tr><td>Activity 4: Reading sensors</td><td>20 min</td><td>Read the IR sensor values and display them on the LED. No line needed. Participants see 0 vs 1 in real time.</td></tr>
+    <tr><td>RoboCup Junior context</td><td>15 min</td><td>Show how the sensor readings connect to a real competition. Demo or video of a Rescue Line run.</td></tr>
+    <tr><td>Free build time</td><td>10 min</td><td>Participants extend their programs. Activity 5 (simple if/then reaction) available as a stretch task.</td></tr>
+    <tr><td>Questions</td><td>5 min</td><td></td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Activity 5 (stretch):</strong> simple sensor-driven decisions. If the left IR sensor reads 0, steer left. If the right reads 0, steer right. Both read 0, go forward. This is the foundation of line following and can be tested with a strip of black tape on white paper rather than a full track.
+</div>
+</section>
+
 <section class="section" id="s-what">
 <p class="section-label">Overview</p>
 <h2 class="section-title">What is the micro:bit</h2>
@@ -1094,8 +1140,6 @@ body.presenting #pres-overlay { display: flex; }
     <img src="https://cdn.sanity.io/images/ajwvhvgo/production/e87a84e4547c396feba8e2f59f72cc3fdd332a65-800x646.png?q=80&fit=max&auto=format" alt="micro:bit V2 back — annotated diagram showing edge connector pads, pin labels, and V2 notch">
   </div>
 </div>
-
-<!-- SLIDE_BREAK -->
 
 <div class="hw-grid">
 
@@ -1235,6 +1279,8 @@ body.presenting #pres-overlay { display: flex; }
   <strong>Downloading to the board:</strong> clicking "Download" produces a .hex file. Drag it onto the MICROBIT USB drive that appears when the board is connected and the program loads automatically. No drivers or additional software needed. Works on Windows, Mac, and Chromebook.
 </div>
 
+<!-- SLIDE_BREAK -->
+
 <div class="makecode-embed">
   <div class="makecode-header">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
@@ -1252,32 +1298,7 @@ body.presenting #pres-overlay { display: flex; }
 <p class="section-label">Accessories</p>
 <h2 class="section-title">Extending the micro:bit</h2>
 <p class="section-intro">The micro:bit's 25-pin edge connector gives access to a large ecosystem of add-ons. The accessories below connect via that connector, either directly with crocodile clips or through a carrier board. No soldering is required for any of them.</p>
-<div class="project-grid"><div class="project-card"><div class="project-stripe" style="background:#3db166"></div><div class="project-body"><div class="project-domain">Motors</div><div class="project-name">Motor carrier board</div><div class="project-desc">The motor:bit board plugs directly onto the edge connector and adds two DC motor outputs, 12 GVS sensor ports, and a battery connector. No soldering required.</div><div class="project-tags"><span class="tag">DC motors</span><span class="tag">GVS ports</span><span class="tag">Robot base</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#2563eb"></div><div class="project-body"><div class="project-domain">Sensing</div><div class="project-name">IR tracking sensor</div><div class="project-desc">A two-channel sensor that reads black and white surfaces. Returns 0 on black, 1 on white. Connects to GVS ports. The core sensor for line following.</div><div class="project-tags"><span class="tag">Line detection</span><span class="tag">Digital output</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#7c3aed"></div><div class="project-body"><div class="project-domain">Sensing</div><div class="project-name">Ultrasonic distance sensor</div><div class="project-desc">Measures distance to an object ahead by sending and receiving a sound pulse. Range 2 cm to 400 cm. Used for obstacle detection, object location, and proximity alerts.</div><div class="project-tags"><span class="tag">Distance</span><span class="tag">HC-SR04 compatible</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#059669"></div><div class="project-body"><div class="project-domain">Sensing</div><div class="project-name">Soil moisture sensor</div><div class="project-desc">Reads moisture levels from soil via the analogue edge connector pins. Connects directly to the large gold pads with crocodile clips. Common in science and environment projects.</div><div class="project-tags"><span class="tag">Analogue input</span><span class="tag">Science</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#db2777"></div><div class="project-body"><div class="project-domain">Output</div><div class="project-name">NeoPixel LED strip</div><div class="project-desc">Individually addressable RGB LEDs, chainable to any length. Controlled over a single GVS data line. Used in art, wearables, status indicators, and light-reactive projects.</div><div class="project-tags"><span class="tag">RGB LEDs</span><span class="tag">Chainable</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#d97706"></div><div class="project-body"><div class="project-domain">Output</div><div class="project-name">OLED screen</div><div class="project-desc">A 128x64 pixel screen connected over I2C. Displays text, numbers, and graphics beyond the 5x5 LED matrix. Common in data logging and science projects.</div><div class="project-tags"><span class="tag">I2C</span><span class="tag">128x64 pixels</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#0891b2"></div><div class="project-body"><div class="project-domain">Control</div><div class="project-name">Servo motor</div><div class="project-desc">Precise angular movement (0 to 180 degrees) via a single GVS port. Used for steering, robotic arms, and camera mounts. Controlled with a PWM block in MakeCode.</div><div class="project-tags"><span class="tag">PWM</span><span class="tag">Precise movement</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#dc2626"></div><div class="project-body"><div class="project-domain">Gaming</div><div class="project-name">MakeCode Arcade shield</div><div class="project-desc">Adds a colour screen, directional buttons, and action buttons. Turns the micro:bit into a handheld game console. Games are written separately in MakeCode Arcade.</div><div class="project-tags"><span class="tag">Colour display</span><span class="tag">Game input</span></div></div></div></div>
-</section>
-
-<section class="section" id="s-why">
-<p class="section-label">2-hour session</p>
-<h2 class="section-title">Workshop timing guide</h2>
-<p class="section-intro">A suggested run order for a 2-hour session. Times are approximate. The coding activities work without a rescue line track. Everything up to Activity 4 runs entirely in the browser simulator.</p>
-<table class="pin-table timing-table">
-  <thead>
-    <tr><th>Time</th><th>Topic</th><th>Notes</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>0:00–0:10</td><td>Introduction</td><td>What is the micro:bit, where it is used, cost and availability</td></tr>
-    <tr><td>0:10–0:20</td><td>Hardware tour</td><td>Walk through the built-in sensors and what the edge connector gives access to</td></tr>
-    <tr><td>0:20–0:35</td><td>Activity 1: LED display</td><td>First MakeCode program. Show text and icons. Test in the simulator, then download to the board.</td></tr>
-    <tr><td>0:35–0:50</td><td>Activity 2: Button events</td><td>Button A and B trigger different LED outputs. Introduces event-driven programming.</td></tr>
-    <tr><td>0:50–1:10</td><td>Activity 3: Motor control</td><td>Drive the robot forward, backward, and turn using button presses. Requires the motor:bit board and motors.</td></tr>
-    <tr><td>1:10–1:30</td><td>Activity 4: Reading sensors</td><td>Read the IR sensor values and display them on the LED. No line needed. Participants see 0 vs 1 in real time.</td></tr>
-    <tr><td>1:30–1:45</td><td>RoboCup Junior context</td><td>Show how the sensor readings connect to a real competition. Demo or video of a Rescue Line run.</td></tr>
-    <tr><td>1:45–2:00</td><td>Free time and questions</td><td>Participants extend their programs. Activity 5 (simple if/then reaction) available as a stretch task.</td></tr>
-  </tbody>
-</table>
-
-<div class="callout">
-  <strong>Activity 5 (stretch):</strong> simple sensor-driven decisions. If the left IR sensor reads 0, steer left. If the right reads 0, steer right. Both read 0, go forward. This is the foundation of line following and can be tested with a strip of black tape on white paper rather than a full track.
-</div>
+<div class="project-grid"><div class="project-card"><div class="project-stripe" style="background:#3db166"></div><div class="project-img"><img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/expansion-board/images/6zRKrvw.jpg" alt="Motor carrier board" loading="lazy"></div><div class="project-body"><div class="project-domain">Motors</div><div class="project-name">Motor carrier board</div><div class="project-desc">The motor:bit board plugs directly onto the edge connector and adds two DC motor outputs, 12 GVS sensor ports, and a battery connector. No soldering required.</div><div class="project-tags"><span class="tag">DC motors</span><span class="tag">GVS ports</span><span class="tag">Robot base</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#2563eb"></div><div class="project-img"><img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/sensor/octopus-sensors/sensor/images/u76NzbX.png" alt="IR tracking sensor" loading="lazy"></div><div class="project-body"><div class="project-domain">Sensing</div><div class="project-name">IR tracking sensor</div><div class="project-desc">A two-channel sensor that reads black and white surfaces. Returns 0 on black, 1 on white. Connects to GVS ports. The core sensor for line following.</div><div class="project-tags"><span class="tag">Line detection</span><span class="tag">Digital output</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#7c3aed"></div><div class="project-img"><img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/sensor/octopus-sensors/sensor/images/04089_01.png" alt="Ultrasonic distance sensor" loading="lazy"></div><div class="project-body"><div class="project-domain">Sensing</div><div class="project-name">Ultrasonic distance sensor</div><div class="project-desc">Measures distance to an object ahead by sending and receiving a sound pulse. Range 2 cm to 400 cm. Used for obstacle detection, object location, and proximity alerts.</div><div class="project-tags"><span class="tag">Distance</span><span class="tag">HC-SR04 compatible</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#059669"></div><div class="project-body"><div class="project-domain">Sensing</div><div class="project-name">Soil moisture sensor</div><div class="project-desc">Reads moisture levels from soil via the analogue edge connector pins. Connects directly to the large gold pads with crocodile clips. Common in science and environment projects.</div><div class="project-tags"><span class="tag">Analogue input</span><span class="tag">Science</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#db2777"></div><div class="project-body"><div class="project-domain">Output</div><div class="project-name">NeoPixel LED strip</div><div class="project-desc">Individually addressable RGB LEDs, chainable to any length. Controlled over a single GVS data line. Used in art, wearables, status indicators, and light-reactive projects.</div><div class="project-tags"><span class="tag">RGB LEDs</span><span class="tag">Chainable</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#d97706"></div><div class="project-img"><img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/sensor/planet-x-sensors/images/05016_01.png" alt="OLED screen" loading="lazy"></div><div class="project-body"><div class="project-domain">Output</div><div class="project-name">OLED screen</div><div class="project-desc">A 128x64 pixel screen connected over I2C. Displays text, numbers, and graphics beyond the 5x5 LED matrix. Common in data logging and science projects.</div><div class="project-tags"><span class="tag">I2C</span><span class="tag">128x64 pixels</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#0891b2"></div><div class="project-body"><div class="project-domain">Control</div><div class="project-name">Servo motor</div><div class="project-desc">Precise angular movement (0 to 180 degrees) via a single GVS port. Used for steering, robotic arms, and camera mounts. Controlled with a PWM block in MakeCode.</div><div class="project-tags"><span class="tag">PWM</span><span class="tag">Precise movement</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#dc2626"></div><div class="project-img"><img src="https://kitronik.co.uk/wp-content/uploads/2025/07/56116_large-kitronik-arcade-bbc-micro-bit-makecode_bfdff151-0831-4c62-88bb-c8335304a8ff.jpg" alt="MakeCode Arcade shield" loading="lazy"></div><div class="project-body"><div class="project-domain">Gaming</div><div class="project-name">MakeCode Arcade shield</div><div class="project-desc">Adds a colour screen, directional buttons, and action buttons. Turns the micro:bit into a handheld game console. Games are written separately in MakeCode Arcade.</div><div class="project-tags"><span class="tag">Colour display</span><span class="tag">Game input</span></div></div></div></div>
 </section>
 
 <section class="section" id="s-robocup">

@@ -113,11 +113,15 @@ def render_projects(projects):
         domain = html.escape(str(p.get('domain', '')))
         desc   = html.escape(str(p.get('desc', '')))
         color  = html.escape(str(p.get('color', '#3db166')))
+        img    = str(p.get('img', ''))
         tags   = p.get('tags', [])
         tag_html = ''.join(f'<span class="tag">{html.escape(str(t))}</span>' for t in tags)
+        img_html = (f'<div class="project-img"><img src="{html.escape(img)}" alt="{name}" loading="lazy"></div>'
+                    if img else '')
         cards.append(
             f'<div class="project-card">'
             f'<div class="project-stripe" style="background:{color}"></div>'
+            f'{img_html}'
             f'<div class="project-body">'
             f'<div class="project-domain">{domain}</div>'
             f'<div class="project-name">{name}</div>'

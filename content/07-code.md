@@ -7,6 +7,10 @@ title: Setting up and writing your first programs
 
 A reference to keep open during the live coding session. Setup steps, wiring, program structure, and the three programs that make up a Rescue Line robot — each with an embedded MakeCode project you can open, run, and remix directly.
 
+<div class="callout">
+  <strong>Embedding an existing MakeCode project:</strong> open your project at <a href="https://makecode.microbit.org" target="_blank" rel="noopener">makecode.microbit.org</a>, click <strong>Share</strong> in the top menu, then copy the URL (it looks like <code>https://makecode.microbit.org/S12345-abcde</code>). Open <code>content/07-code.md</code> in a text editor, find the matching <code>&lt;!-- MAKECODE_EMBED --&gt;</code> block, and paste the URL as <code>makecode_url: https://makecode.microbit.org/S...</code>. Rebuild the page and the project will appear as a live embedded editor.
+</div>
+
 <div class="code-ref">
 
 <div class="code-ref-section">

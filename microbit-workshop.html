@@ -731,6 +731,38 @@ pre.code-hint {
   margin-bottom: 32px;
 }
 
+/* ── ACTIVITY CARDS (RoboCup section) ────────── */
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+.activity-card {
+  background: var(--white);
+  padding: 22px 20px;
+}
+.activity-num {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--green); margin-bottom: 8px;
+}
+.activity-title {
+  font-size: 15px; font-weight: 700;
+  color: var(--navy); margin-bottom: 4px;
+}
+.activity-cap {
+  font-size: 11px; color: var(--muted);
+  margin-bottom: 10px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.activity-desc {
+  font-size: 13px; color: var(--label);
+  line-height: 1.6;
+}
+
 /* ── PRESENTATION OVERLAY ─────────────────────── */
 #pres-overlay {
   display: none;
@@ -838,6 +870,33 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .pin-table td { border-color: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); }
 .pres-slide .code-ref h3 { color: #fff; }
 
+/* General text overrides — catch all prose paragraphs, headings, list items */
+.pres-slide p { color: rgba(255,255,255,0.6); }
+.pres-slide h3 { color: #fff; }
+.pres-slide li { color: rgba(255,255,255,0.6); }
+.pres-slide th { color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
+.pres-slide a { color: var(--green); }
+
+/* Sim callout */
+.pres-slide .sim-title { color: #fff; }
+.pres-slide .sim-body { color: rgba(255,255,255,0.55); }
+.pres-slide .sim-link { color: var(--green); }
+
+/* Language compare */
+.pres-slide .lang-hdr { background: rgba(255,255,255,0.06); border-bottom-color: rgba(255,255,255,0.1); }
+.pres-slide .lang-name { color: #fff; }
+
+/* Activity cards */
+.pres-slide .activity-grid { gap: 1px; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.08); }
+.pres-slide .activity-card { background: var(--navy); }
+.pres-slide .activity-num { color: var(--green); }
+.pres-slide .activity-title { color: #fff; }
+.pres-slide .activity-cap { color: rgba(255,255,255,0.35); }
+.pres-slide .activity-desc { color: rgba(255,255,255,0.5); }
+
+/* Setup steps in coding section */
+.pres-slide .setup-steps li { color: rgba(255,255,255,0.6); border-bottom-color: rgba(255,255,255,0.06); }
+
 /* ── PRESENTATION NAV BAR ─────────────────────── */
 #pres-nav {
   height: 56px;
@@ -921,7 +980,7 @@ body.presenting #pres-overlay { display: flex; }
     <button class="nav-tab" data-target="s-program">Programming</button>
     <button class="nav-tab" data-target="s-projects">What you can build</button>
     <button class="nav-tab" data-target="s-why">Why it works</button>
-    <button class="nav-tab" data-target="s-robocup">RoboCup</button>
+    <button class="nav-tab" data-target="s-robocup">RoboCup Junior</button>
     <button class="nav-tab" data-target="s-code">Coding</button>
   </div>
 </nav>
@@ -1002,12 +1061,10 @@ body.presenting #pres-overlay { display: flex; }
 <p class="section-intro">The micro:bit has sensors and outputs soldered onto the board. With only the board and a USB cable, a student can detect movement, read temperature, transmit data wirelessly, and show output on the LED display — no additional components required.</p>
 <div class="photo-row">
   <div class="diagram-slot" id="photo-microbit-front">
-    <!-- Replace with a real photo: <img src="assets/photos/microbit-front.jpg" alt="micro:bit V2 front"> -->
-    <img src="assets/microbit-front.svg" alt="micro:bit V2 front — annotated diagram showing LED matrix, buttons, USB connector, touch logo, microphone, and edge connector pads">
+    <img src="https://cdn.sanity.io/images/ajwvhvgo/production/97d0aae4483c6acae040ee34512ae1459073455d-800x653.png?q=80&fit=max&auto=format" alt="micro:bit V2 front — annotated diagram showing LED matrix, buttons, USB connector, touch logo, microphone, and edge connector pads">
   </div>
   <div class="diagram-slot" id="photo-microbit-back">
-    <!-- Replace with a real photo: <img src="assets/photos/microbit-back.jpg" alt="micro:bit V2 edge connector"> -->
-    <img src="assets/microbit-edge.svg" alt="micro:bit V2 edge connector — annotated diagram showing gold pads, pin labels P0 P1 P2 3V GND, and V2 notch">
+    <img src="https://cdn.sanity.io/images/ajwvhvgo/production/e87a84e4547c396feba8e2f59f72cc3fdd332a65-800x646.png?q=80&fit=max&auto=format" alt="micro:bit V2 back — annotated diagram showing edge connector pads, pin labels, and V2 notch">
   </div>
 </div>
 
@@ -1179,45 +1236,52 @@ body.presenting #pres-overlay { display: flex; }
   </div>
 </div>
 
-<table class="map-table">
-  <thead>
-    <tr>
-      <th>micro:bit capability</th>
-      <th>What it does in the competition</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>IR tracking sensors (via carrier board)</td>
-      <td>Reads the black line on the white tile; the robot follows it autonomously</td>
-    </tr>
-    <tr>
-      <td>Ultrasonic sensor (via carrier board)</td>
-      <td>Detects obstacles ahead; triggers avoidance and locates the rescue capsule inside the spill</td>
-    </tr>
-    <tr>
-      <td>DC motors (via carrier board)</td>
-      <td>Drives two wheels independently for straight lines, turns, and ramp climbs up to 20°</td>
-    </tr>
-    <tr>
-      <td>Button A + downloaded program</td>
-      <td>The Robot Handler presses a button to start the run. Competition rules require this; no laptops at the field</td>
-    </tr>
-    <tr>
-      <td>LED display</td>
-      <td>Shows the robot's current state during the run; referees and coaches can see what the robot is "thinking"</td>
-    </tr>
-  </tbody>
-</table>
+<p>Each micro:bit capability from this workshop becomes a hands-on activity when building a competition robot. The activities below match what students build in the coding session.</p>
+<div class="activity-grid">
+
+  <div class="activity-card">
+    <div class="activity-num">Activity 1</div>
+    <div class="activity-title">Line following</div>
+    <div class="activity-cap">IR tracking sensors via carrier board · P3 and P4</div>
+    <div class="activity-desc">Two IR sensors read the black line on the white tile. When one sensor leaves the line the robot steers back. This is the core loop that runs for the whole course.</div>
+  </div>
+
+  <div class="activity-card">
+    <div class="activity-num">Activity 2</div>
+    <div class="activity-title">Obstacle avoidance</div>
+    <div class="activity-cap">Ultrasonic sensor via carrier board</div>
+    <div class="activity-desc">The ultrasonic sensor measures distance ahead. When an obstacle is detected the robot drives around it and reacquires the line within 30 cm.</div>
+  </div>
+
+  <div class="activity-card">
+    <div class="activity-num">Activity 3</div>
+    <div class="activity-title">Push rescue</div>
+    <div class="activity-cap">Ultrasonic sensor · DC motors via carrier board</div>
+    <div class="activity-desc">The robot detects the silver capsule inside the chemical spill zone using the ultrasonic sensor, then drives forward to push it clear. Worth 50 points — the highest single scoring action.</div>
+  </div>
+
+  <div class="activity-card">
+    <div class="activity-num">Activity 4</div>
+    <div class="activity-title">Autonomous start</div>
+    <div class="activity-cap">Button A · downloaded program</div>
+    <div class="activity-desc">Competition rules require the robot to start from a button press on the board. The Robot Handler presses Button A to begin the run. No laptops, phones, or remote controls at the field.</div>
+  </div>
+
+  <div class="activity-card">
+    <div class="activity-num">Activity 5</div>
+    <div class="activity-title">Status display</div>
+    <div class="activity-cap">5×5 LED display</div>
+    <div class="activity-desc">The LED display shows the robot's current state during the run. Referees and coaches can see what mode the robot is in — following, avoiding, rescuing — without stopping it.</div>
+  </div>
+
+</div>
 
 <div class="photo-row">
   <div class="diagram-slot" id="photo-motorbit-kit">
-    <!-- Replace with a real photo: <img src="assets/photos/motorbit-kit.jpg" alt="Elecfreaks motor:bit kit parts"> -->
-    <img src="assets/motorbit-parts.svg" alt="motor:bit kit parts — diagram showing micro:bit, motor:bit carrier board, TT motors, IR tracking sensor, ultrasonic sensor, battery pack, wheels, and castor">
+    <img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/expansion-board/images/6zRKrvw.jpg" alt="Elecfreaks motor:bit carrier board">
   </div>
   <div class="diagram-slot" id="photo-motorbit-assembled">
-    <!-- Replace with a real photo: <img src="assets/photos/motorbit-assembled.jpg" alt="Assembled motor:bit robot"> -->
-    <img src="assets/motorbit-robot.svg" alt="assembled motor:bit robot — top-down diagram showing ultrasonic sensor at front, IR sensors, micro:bit, motor:bit board, battery pack, and two drive wheels">
+    <img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/expansion-board/images/5ayGCgd.png" alt="micro:bit inserted into the motor:bit carrier board">
   </div>
 </div>
 
@@ -1230,6 +1294,10 @@ body.presenting #pres-overlay { display: flex; }
 <p class="section-label">Coding reference</p>
 <h2 class="section-title">Setting up and writing your first programs</h2>
 <p class="section-intro">A reference to keep open during the live coding session. Setup steps, wiring, program structure, and the three programs that make up a Rescue Line robot — each with an embedded MakeCode project you can open, run, and remix directly.</p>
+<div class="callout">
+  <strong>Embedding an existing MakeCode project:</strong> open your project at <a href="https://makecode.microbit.org" target="_blank" rel="noopener">makecode.microbit.org</a>, click <strong>Share</strong> in the top menu, then copy the URL (it looks like <code>https://makecode.microbit.org/S12345-abcde</code>). Open <code>content/07-code.md</code> in a text editor, find the matching <code>&lt;!-- MAKECODE_EMBED --&gt;</code> block, and paste the URL as <code>makecode_url: https://makecode.microbit.org/S...</code>. Rebuild the page and the project will appear as a live embedded editor.
+</div>
+
 <div class="code-ref">
 
 <div class="code-ref-section">
@@ -1336,7 +1404,7 @@ body.presenting #pres-overlay { display: flex; }
 
 <script>
 const tabs     = document.querySelectorAll('.nav-tab');
-const sections = [...document.querySelectorAll('.section'), document.getElementById('s-code')];
+const sections = [...document.querySelectorAll('.section')];
 const bar      = document.getElementById('progress');
 
 tabs.forEach(tab => {
@@ -1379,7 +1447,6 @@ function buildSlides() {
   const sources = [
     document.getElementById('hero'),
     ...document.querySelectorAll('.section'),
-    document.getElementById('s-code'),
   ].filter(Boolean);
 
   sources.forEach(src => {

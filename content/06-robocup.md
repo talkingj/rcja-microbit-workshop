@@ -1,8 +1,8 @@
 ---
 id: s-robocup
-nav: RoboCup
+nav: RoboCup Junior
 label: Real-world context
-title: "RoboCup Junior Rescue Line"
+title: RoboCup Junior Rescue Line
 ---
 
 The skills covered in this workshop apply directly to RoboCup Junior Rescue Line. The competition gives students a concrete goal that uses line following, sensor reading, and motor control together in a timed autonomous run.
@@ -18,45 +18,53 @@ The skills covered in this workshop apply directly to RoboCup Junior Rescue Line
   </div>
 </div>
 
-<table class="map-table">
-  <thead>
-    <tr>
-      <th>micro:bit capability</th>
-      <th>What it does in the competition</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>IR tracking sensors (via carrier board)</td>
-      <td>Reads the black line on the white tile; the robot follows it autonomously</td>
-    </tr>
-    <tr>
-      <td>Ultrasonic sensor (via carrier board)</td>
-      <td>Detects obstacles ahead; triggers avoidance and locates the rescue capsule inside the spill</td>
-    </tr>
-    <tr>
-      <td>DC motors (via carrier board)</td>
-      <td>Drives two wheels independently for straight lines, turns, and ramp climbs up to 20°</td>
-    </tr>
-    <tr>
-      <td>Button A + downloaded program</td>
-      <td>The Robot Handler presses a button to start the run. Competition rules require this; no laptops at the field</td>
-    </tr>
-    <tr>
-      <td>LED display</td>
-      <td>Shows the robot's current state during the run; referees and coaches can see what the robot is "thinking"</td>
-    </tr>
-  </tbody>
-</table>
+Each micro:bit capability from this workshop becomes a hands-on activity when building a competition robot. The activities below match what students build in the coding session.
+
+<div class="activity-grid">
+
+  <div class="activity-card">
+    <div class="activity-num">Activity 1</div>
+    <div class="activity-title">Line following</div>
+    <div class="activity-cap">IR tracking sensors via carrier board · P3 and P4</div>
+    <div class="activity-desc">Two IR sensors read the black line on the white tile. When one sensor leaves the line the robot steers back. This is the core loop that runs for the whole course.</div>
+  </div>
+
+  <div class="activity-card">
+    <div class="activity-num">Activity 2</div>
+    <div class="activity-title">Obstacle avoidance</div>
+    <div class="activity-cap">Ultrasonic sensor via carrier board</div>
+    <div class="activity-desc">The ultrasonic sensor measures distance ahead. When an obstacle is detected the robot drives around it and reacquires the line within 30 cm.</div>
+  </div>
+
+  <div class="activity-card">
+    <div class="activity-num">Activity 3</div>
+    <div class="activity-title">Push rescue</div>
+    <div class="activity-cap">Ultrasonic sensor · DC motors via carrier board</div>
+    <div class="activity-desc">The robot detects the silver capsule inside the chemical spill zone using the ultrasonic sensor, then drives forward to push it clear. Worth 50 points — the highest single scoring action.</div>
+  </div>
+
+  <div class="activity-card">
+    <div class="activity-num">Activity 4</div>
+    <div class="activity-title">Autonomous start</div>
+    <div class="activity-cap">Button A · downloaded program</div>
+    <div class="activity-desc">Competition rules require the robot to start from a button press on the board. The Robot Handler presses Button A to begin the run. No laptops, phones, or remote controls at the field.</div>
+  </div>
+
+  <div class="activity-card">
+    <div class="activity-num">Activity 5</div>
+    <div class="activity-title">Status display</div>
+    <div class="activity-cap">5×5 LED display</div>
+    <div class="activity-desc">The LED display shows the robot's current state during the run. Referees and coaches can see what mode the robot is in — following, avoiding, rescuing — without stopping it.</div>
+  </div>
+
+</div>
 
 <div class="photo-row">
   <div class="diagram-slot" id="photo-motorbit-kit">
-    <!-- Replace with a real photo: <img src="assets/photos/motorbit-kit.jpg" alt="Elecfreaks motor:bit kit parts"> -->
-    <img src="assets/motorbit-parts.svg" alt="motor:bit kit parts — diagram showing micro:bit, motor:bit carrier board, TT motors, IR tracking sensor, ultrasonic sensor, battery pack, wheels, and castor">
+    <img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/expansion-board/images/6zRKrvw.jpg" alt="Elecfreaks motor:bit carrier board">
   </div>
   <div class="diagram-slot" id="photo-motorbit-assembled">
-    <!-- Replace with a real photo: <img src="assets/photos/motorbit-assembled.jpg" alt="Assembled motor:bit robot"> -->
-    <img src="assets/motorbit-robot.svg" alt="assembled motor:bit robot — top-down diagram showing ultrasonic sensor at front, IR sensors, micro:bit, motor:bit board, battery pack, and two drive wheels">
+    <img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/expansion-board/images/5ayGCgd.png" alt="micro:bit inserted into the motor:bit carrier board">
   </div>
 </div>
 

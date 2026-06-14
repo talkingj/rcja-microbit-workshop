@@ -9,12 +9,10 @@ The micro:bit has sensors and outputs soldered onto the board. With only the boa
 
 <div class="photo-row">
   <div class="diagram-slot" id="photo-microbit-front">
-    <!-- Replace with a real photo: <img src="assets/photos/microbit-front.jpg" alt="micro:bit V2 front"> -->
-    <img src="assets/microbit-front.svg" alt="micro:bit V2 front — annotated diagram showing LED matrix, buttons, USB connector, touch logo, microphone, and edge connector pads">
+    <img src="https://cdn.sanity.io/images/ajwvhvgo/production/97d0aae4483c6acae040ee34512ae1459073455d-800x653.png?q=80&fit=max&auto=format" alt="micro:bit V2 front — annotated diagram showing LED matrix, buttons, USB connector, touch logo, microphone, and edge connector pads">
   </div>
   <div class="diagram-slot" id="photo-microbit-back">
-    <!-- Replace with a real photo: <img src="assets/photos/microbit-back.jpg" alt="micro:bit V2 edge connector"> -->
-    <img src="assets/microbit-edge.svg" alt="micro:bit V2 edge connector — annotated diagram showing gold pads, pin labels P0 P1 P2 3V GND, and V2 notch">
+    <img src="https://cdn.sanity.io/images/ajwvhvgo/production/e87a84e4547c396feba8e2f59f72cc3fdd332a65-800x646.png?q=80&fit=max&auto=format" alt="micro:bit V2 back — annotated diagram showing edge connector pads, pin labels, and V2 notch">
   </div>
 </div>
 

@@ -731,6 +731,38 @@ pre.code-hint {
   margin-bottom: 32px;
 }
 
+/* ── ACTIVITY CARDS (RoboCup section) ────────── */
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+.activity-card {
+  background: var(--white);
+  padding: 22px 20px;
+}
+.activity-num {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--green); margin-bottom: 8px;
+}
+.activity-title {
+  font-size: 15px; font-weight: 700;
+  color: var(--navy); margin-bottom: 4px;
+}
+.activity-cap {
+  font-size: 11px; color: var(--muted);
+  margin-bottom: 10px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.activity-desc {
+  font-size: 13px; color: var(--label);
+  line-height: 1.6;
+}
+
 /* ── PRESENTATION OVERLAY ─────────────────────── */
 #pres-overlay {
   display: none;
@@ -838,6 +870,33 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .pin-table td { border-color: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); }
 .pres-slide .code-ref h3 { color: #fff; }
 
+/* General text overrides — catch all prose paragraphs, headings, list items */
+.pres-slide p { color: rgba(255,255,255,0.6); }
+.pres-slide h3 { color: #fff; }
+.pres-slide li { color: rgba(255,255,255,0.6); }
+.pres-slide th { color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
+.pres-slide a { color: var(--green); }
+
+/* Sim callout */
+.pres-slide .sim-title { color: #fff; }
+.pres-slide .sim-body { color: rgba(255,255,255,0.55); }
+.pres-slide .sim-link { color: var(--green); }
+
+/* Language compare */
+.pres-slide .lang-hdr { background: rgba(255,255,255,0.06); border-bottom-color: rgba(255,255,255,0.1); }
+.pres-slide .lang-name { color: #fff; }
+
+/* Activity cards */
+.pres-slide .activity-grid { gap: 1px; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.08); }
+.pres-slide .activity-card { background: var(--navy); }
+.pres-slide .activity-num { color: var(--green); }
+.pres-slide .activity-title { color: #fff; }
+.pres-slide .activity-cap { color: rgba(255,255,255,0.35); }
+.pres-slide .activity-desc { color: rgba(255,255,255,0.5); }
+
+/* Setup steps in coding section */
+.pres-slide .setup-steps li { color: rgba(255,255,255,0.6); border-bottom-color: rgba(255,255,255,0.06); }
+
 /* ── PRESENTATION NAV BAR ─────────────────────── */
 #pres-nav {
   height: 56px;
@@ -931,7 +990,7 @@ body.presenting #pres-overlay { display: flex; }
 
 <script>
 const tabs     = document.querySelectorAll('.nav-tab');
-const sections = [...document.querySelectorAll('.section'), document.getElementById('s-code')];
+const sections = [...document.querySelectorAll('.section')];
 const bar      = document.getElementById('progress');
 
 tabs.forEach(tab => {
@@ -974,7 +1033,6 @@ function buildSlides() {
   const sources = [
     document.getElementById('hero'),
     ...document.querySelectorAll('.section'),
-    document.getElementById('s-code'),
   ].filter(Boolean);
 
   sources.forEach(src => {

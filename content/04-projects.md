@@ -1,56 +1,56 @@
 ---
 id: s-projects
-nav: What you can build
-label: Versatility
-title: What you can actually build with it
+nav: What you can attach
+label: Accessories
+title: Extending the micro:bit
 projects:
-  - domain: Robotics
-    name: Line-following robot
-    desc: Add a motor carrier board and IR sensors. The micro:bit reads the line and drives two motors independently for full autonomous navigation.
+  - domain: Motors
+    name: Motor carrier board
+    desc: The motor:bit board plugs directly onto the edge connector and adds two DC motor outputs, 12 GVS sensor ports, and a battery connector. No soldering required.
     color: "#3db166"
-    tags: [Motors, IR sensors, Autonomous]
+    tags: [DC motors, GVS ports, Robot base]
 
-  - domain: Science
-    name: Wireless weather station
-    desc: Log temperature over time and transmit readings wirelessly to a second micro:bit acting as a base station display. No internet connection required.
+  - domain: Sensing
+    name: IR tracking sensor
+    desc: A two-channel sensor that reads black and white surfaces. Returns 0 on black, 1 on white. Connects to GVS ports. The core sensor for line following.
     color: "#2563eb"
-    tags: [Temperature, Radio, Data logging]
+    tags: [Line detection, Digital output]
 
-  - domain: Wearables
-    name: Step counter
-    desc: The accelerometer detects footfall patterns. Display step counts on the LED, set daily targets, and vibrate when reached. Worn on a wristband or sewn into a bag.
-    color: "#db2777"
-    tags: [Accelerometer, LED display]
-
-  - domain: Music
-    name: Clap-activated instrument
-    desc: The V2 microphone detects clap patterns. Different rhythms trigger different notes from the on-board speaker. No extra components needed at all.
-    color: "#d97706"
-    tags: [Microphone, Speaker, V2]
-
-  - domain: Games
-    name: Two-player radio game
-    desc: Two micro:bits communicate over radio. One sends, the other receives and responds. Rock-paper-scissors, quiz buzzers, collaborative scoreboards.
+  - domain: Sensing
+    name: Ultrasonic distance sensor
+    desc: Measures distance to an object ahead by sending and receiving a sound pulse. Range 2 cm to 400 cm. Used for obstacle detection, object location, and proximity alerts.
     color: "#7c3aed"
-    tags: [Radio, Multi-board]
+    tags: [Distance, HC-SR04 compatible]
 
-  - domain: Environment
-    name: Plant monitor
-    desc: Connect a capacitive soil moisture sensor via the edge connector. The micro:bit alerts when plants need water with a wilting icon or a buzzer pattern.
+  - domain: Sensing
+    name: Soil moisture sensor
+    desc: Reads moisture levels from soil via the analogue edge connector pins. Connects directly to the large gold pads with crocodile clips. Common in science and environment projects.
     color: "#059669"
-    tags: [Edge pins, Analogue input]
+    tags: [Analogue input, Science]
 
-  - domain: Safety
-    name: Crash detector
-    desc: Detects freefall or a hard impact via the accelerometer. Displays an alert and transmits a radio message. Works as a bike safety device or fall-detection aid.
-    color: "#dc2626"
-    tags: [Accelerometer, Radio]
+  - domain: Output
+    name: NeoPixel LED strip
+    desc: Individually addressable RGB LEDs, chainable to any length. Controlled over a single GVS data line. Used in art, wearables, status indicators, and light-reactive projects.
+    color: "#db2777"
+    tags: [RGB LEDs, Chainable]
 
-  - domain: Art
-    name: Sound-reactive LED display
-    desc: LED animation responds to ambient sound level or light intensity in real time. No screens, no apps — the board itself becomes the display.
+  - domain: Output
+    name: OLED screen
+    desc: A 128x64 pixel screen connected over I2C. Displays text, numbers, and graphics beyond the 5x5 LED matrix. Common in data logging and science projects.
+    color: "#d97706"
+    tags: [I2C, 128x64 pixels]
+
+  - domain: Control
+    name: Servo motor
+    desc: Precise angular movement (0 to 180 degrees) via a single GVS port. Used for steering, robotic arms, and camera mounts. Controlled with a PWM block in MakeCode.
     color: "#0891b2"
-    tags: [Light sensor, LED display]
+    tags: [PWM, Precise movement]
+
+  - domain: Gaming
+    name: MakeCode Arcade shield
+    desc: Adds a colour screen, directional buttons, and action buttons. Turns the micro:bit into a handheld game console. Games are written separately in MakeCode Arcade.
+    color: "#dc2626"
+    tags: [Colour display, Game input]
 ---
 
-The micro:bit is not a single-purpose kit. The same board and the same skills span science, art, sport, music, and engineering. That cross-subject range is the reason it is worth learning: one platform, many entry points, no throw-away knowledge.
+The micro:bit's 25-pin edge connector gives access to a large ecosystem of add-ons. The accessories below connect via that connector, either directly with crocodile clips or through a carrier board. No soldering is required for any of them.

@@ -40,7 +40,7 @@ Each micro:bit capability from this workshop becomes a hands-on activity when bu
     <div class="activity-num">Activity 3</div>
     <div class="activity-title">Push rescue</div>
     <div class="activity-cap">Ultrasonic sensor · DC motors via carrier board</div>
-    <div class="activity-desc">The robot detects the silver capsule inside the chemical spill zone using the ultrasonic sensor, then drives forward to push it clear. Worth 50 points — the highest single scoring action.</div>
+    <div class="activity-desc">The robot detects the silver capsule inside the chemical spill zone using the ultrasonic sensor, then drives forward to push it clear. Worth 50 points: the highest single scoring action.</div>
   </div>
 
   <div class="activity-card">
@@ -54,10 +54,12 @@ Each micro:bit capability from this workshop becomes a hands-on activity when bu
     <div class="activity-num">Activity 5</div>
     <div class="activity-title">Status display</div>
     <div class="activity-cap">5×5 LED display</div>
-    <div class="activity-desc">The LED display shows the robot's current state during the run. Referees and coaches can see what mode the robot is in — following, avoiding, rescuing — without stopping it.</div>
+    <div class="activity-desc">The LED display shows the robot's current state during the run. Referees and coaches can see what mode the robot is in (following, avoiding, rescuing) without stopping it.</div>
   </div>
 
 </div>
+
+<!-- SLIDE_BREAK -->
 
 <div class="photo-row">
   <div class="diagram-slot" id="photo-motorbit-kit">
@@ -69,5 +71,5 @@ Each micro:bit capability from this workshop becomes a hands-on activity when bu
 </div>
 
 <div class="callout">
-  <strong>The kit:</strong> Individual components — a micro:bit, an Elecfreaks motor:bit carrier board, two TT motors, a 2-channel IR tracking module, an ultrasonic sensor, and a 4×AA battery pack. The carrier board plugs directly onto the micro:bit edge connector.
+  <strong>The kit:</strong> Individual components: a micro:bit, an Elecfreaks motor:bit carrier board, two TT motors, a 2-channel IR tracking module, an ultrasonic sensor, and a 4×AA battery pack. The carrier board plugs directly onto the micro:bit edge connector.
 </div>

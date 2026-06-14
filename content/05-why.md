@@ -1,26 +1,28 @@
 ---
 id: s-why
-nav: Why it works
-label: For teachers
-title: Why it works in a classroom
-points:
-  - title: No hardware needed to start
-    body: The browser simulator lets students write and test code before any boards arrive. Classes can begin as soon as students have a laptop.
-
-  - title: Low cost and durable
-    body: Around $30 AUD per board. The LED display shows program state directly, which helps students debug without external tools. The board tolerates being pocketed, dropped, and used across multiple year groups.
-
-  - title: Two-language progression
-    body: Students start with drag-and-drop blocks and can switch to Python later on the same board and in the same editor. No new hardware or platform is required to make that transition.
-
-  - title: Visible program state
-    body: The LED display shows what the program is doing without needing a monitor or serial connection. Students can see whether their code is running correctly and where it is failing.
-
-  - title: Covers multiple subjects
-    body: The same board is applicable across Computing, Science, Maths, Music (V2), and Design Technology. One purchase can serve multiple departments and year levels.
-
-  - title: Works on school computers
-    body: MakeCode runs in a browser with no installation and no admin rights. It works on Chromebooks, older Windows laptops, and iPads. Uploading a program is a file drag onto a USB drive.
+nav: Workshop plan
+label: 2-hour session
+title: Workshop timing guide
 ---
 
-The micro:bit was designed for school use. These are the features that make it practical in a classroom with varied hardware, limited IT support, and students at different levels.
+A suggested run order for a 2-hour session. Times are approximate. The coding activities work without a rescue line track. Everything up to Activity 4 runs entirely in the browser simulator.
+
+<table class="pin-table timing-table">
+  <thead>
+    <tr><th>Time</th><th>Topic</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>0:00–0:10</td><td>Introduction</td><td>What is the micro:bit, where it is used, cost and availability</td></tr>
+    <tr><td>0:10–0:20</td><td>Hardware tour</td><td>Walk through the built-in sensors and what the edge connector gives access to</td></tr>
+    <tr><td>0:20–0:35</td><td>Activity 1: LED display</td><td>First MakeCode program. Show text and icons. Test in the simulator, then download to the board.</td></tr>
+    <tr><td>0:35–0:50</td><td>Activity 2: Button events</td><td>Button A and B trigger different LED outputs. Introduces event-driven programming.</td></tr>
+    <tr><td>0:50–1:10</td><td>Activity 3: Motor control</td><td>Drive the robot forward, backward, and turn using button presses. Requires the motor:bit board and motors.</td></tr>
+    <tr><td>1:10–1:30</td><td>Activity 4: Reading sensors</td><td>Read the IR sensor values and display them on the LED. No line needed. Participants see 0 vs 1 in real time.</td></tr>
+    <tr><td>1:30–1:45</td><td>RoboCup Junior context</td><td>Show how the sensor readings connect to a real competition. Demo or video of a Rescue Line run.</td></tr>
+    <tr><td>1:45–2:00</td><td>Free time and questions</td><td>Participants extend their programs. Activity 5 (simple if/then reaction) available as a stretch task.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Activity 5 (stretch):</strong> simple sensor-driven decisions. If the left IR sensor reads 0, steer left. If the right reads 0, steer right. Both read 0, go forward. This is the foundation of line following and can be tested with a strip of black tape on white paper rather than a full track.
+</div>

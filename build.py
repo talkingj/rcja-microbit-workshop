@@ -272,7 +272,7 @@ def resolve_embeds(body, _source_file=''):
             return (
                 f'<div class="makecode-placeholder">'
                 f'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>'
-                f'<div class="mcp-label">MakeCode project — {html.escape(title)}</div>'
+                f'<div class="mcp-label">MakeCode project: {html.escape(title)}</div>'
                 f'<div class="mcp-hint">{html.escape(hint) if hint else "Share a MakeCode project and add the URL as <code>makecode_url: https://makecode.microbit.org/S...</code>"}</div>'
                 f'</div>'
             )

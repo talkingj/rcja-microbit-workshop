@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>micro:bit — What it is and why it works</title>
+<title>micro:bit: What it is and why it works</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -731,6 +731,16 @@ pre.code-hint {
   margin-bottom: 32px;
 }
 
+/* ── TIMING TABLE ────────────────────────────── */
+.timing-table td:first-child {
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+.pres-slide .timing-table td:first-child { color: var(--green); }
+.pres-slide .timing-table td { color: rgba(255,255,255,0.6); }
+
 /* ── ACTIVITY CARDS (RoboCup section) ────────── */
 .activity-grid {
   display: grid;
@@ -847,7 +857,24 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .code-ph-body { color: rgba(255,255,255,0.45); }
 
 /* Diagram slots on dark presentation background */
-.pres-slide .diagram-slot { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
+.pres-slide .diagram-slot { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); max-height: 220px; min-height: 0; }
+.pres-slide .diagram-slot img { max-height: 196px; padding: 8px; object-fit: contain; }
+.pres-slide .photo-row { margin-bottom: 20px; }
+
+/* Continuation header for split slides */
+.pres-cont-header {
+  display: flex; align-items: baseline; gap: 12px;
+  margin-bottom: 28px; padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.pres-cont-header .section-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--green);
+}
+.pres-cont-title {
+  font-size: 16px; font-weight: 700;
+  color: rgba(255,255,255,0.35);
+}
 
 /* Bottom fade on slides that have scrollable overflow */
 .pres-slide::after {
@@ -978,8 +1005,8 @@ body.presenting #pres-overlay { display: flex; }
     <button class="nav-tab active" data-target="s-what">What is it</button>
     <button class="nav-tab" data-target="s-hardware">Hardware</button>
     <button class="nav-tab" data-target="s-program">Programming</button>
-    <button class="nav-tab" data-target="s-projects">What you can build</button>
-    <button class="nav-tab" data-target="s-why">Why it works</button>
+    <button class="nav-tab" data-target="s-projects">What you can attach</button>
+    <button class="nav-tab" data-target="s-why">Workshop plan</button>
     <button class="nav-tab" data-target="s-robocup">RoboCup Junior</button>
     <button class="nav-tab" data-target="s-code">Coding</button>
   </div>
@@ -987,7 +1014,7 @@ body.presenting #pres-overlay { display: flex; }
 
 <section id="hero" aria-label="Introduction">
 <div class="hero-inner">
-<p class="kicker">BBC micro:bit — classroom computing hardware</p>
+<p class="kicker">BBC micro:bit: classroom computing hardware</p>
 <h2>The micro:bit</h2>
 <p class="hero-body">A credit-card-sized microcontroller with built-in sensors, a 5×5 LED display, wireless radio, and a 25-pin edge connector. Designed for school use. Programmable in drag-and-drop blocks or Python from any browser.</p>
 <div class="hero-stats">
@@ -1058,7 +1085,7 @@ body.presenting #pres-overlay { display: flex; }
 <section class="section" id="s-hardware">
 <p class="section-label">On the board</p>
 <h2 class="section-title">Built-in sensors and outputs</h2>
-<p class="section-intro">The micro:bit has sensors and outputs soldered onto the board. With only the board and a USB cable, a student can detect movement, read temperature, transmit data wirelessly, and show output on the LED display — no additional components required.</p>
+<p class="section-intro">The micro:bit has sensors and outputs soldered onto the board. With only the board and a USB cable, a student can detect movement, read temperature, transmit data wirelessly, and show output on the LED display. No additional components are required.</p>
 <div class="photo-row">
   <div class="diagram-slot" id="photo-microbit-front">
     <img src="https://cdn.sanity.io/images/ajwvhvgo/production/97d0aae4483c6acae040ee34512ae1459073455d-800x653.png?q=80&fit=max&auto=format" alt="micro:bit V2 front — annotated diagram showing LED matrix, buttons, USB connector, touch logo, microphone, and edge connector pads">
@@ -1067,6 +1094,8 @@ body.presenting #pres-overlay { display: flex; }
     <img src="https://cdn.sanity.io/images/ajwvhvgo/production/e87a84e4547c396feba8e2f59f72cc3fdd332a65-800x646.png?q=80&fit=max&auto=format" alt="micro:bit V2 back — annotated diagram showing edge connector pads, pin labels, and V2 notch">
   </div>
 </div>
+
+<!-- SLIDE_BREAK -->
 
 <div class="hw-grid">
 
@@ -1205,20 +1234,50 @@ body.presenting #pres-overlay { display: flex; }
 <div class="callout">
   <strong>Downloading to the board:</strong> clicking "Download" produces a .hex file. Drag it onto the MICROBIT USB drive that appears when the board is connected and the program loads automatically. No drivers or additional software needed. Works on Windows, Mac, and Chromebook.
 </div>
+
+<div class="makecode-embed">
+  <div class="makecode-header">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    MakeCode editor
+    <a href="https://makecode.microbit.org" target="_blank" rel="noopener" class="makecode-open">Open full screen ↗</a>
+  </div>
+  <iframe src="https://makecode.microbit.org/#editor"
+    frameborder="0"
+    sandbox="allow-popups allow-forms allow-scripts allow-same-origin"
+    allowfullscreen></iframe>
+</div>
 </section>
 
 <section class="section" id="s-projects">
-<p class="section-label">Versatility</p>
-<h2 class="section-title">What you can actually build with it</h2>
-<p class="section-intro">The micro:bit is not a single-purpose kit. The same board and the same skills span science, art, sport, music, and engineering. That cross-subject range is the reason it is worth learning: one platform, many entry points, no throw-away knowledge.</p>
-<div class="project-grid"><div class="project-card"><div class="project-stripe" style="background:#3db166"></div><div class="project-body"><div class="project-domain">Robotics</div><div class="project-name">Line-following robot</div><div class="project-desc">Add a motor carrier board and IR sensors. The micro:bit reads the line and drives two motors independently for full autonomous navigation.</div><div class="project-tags"><span class="tag">Motors</span><span class="tag">IR sensors</span><span class="tag">Autonomous</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#2563eb"></div><div class="project-body"><div class="project-domain">Science</div><div class="project-name">Wireless weather station</div><div class="project-desc">Log temperature over time and transmit readings wirelessly to a second micro:bit acting as a base station display. No internet connection required.</div><div class="project-tags"><span class="tag">Temperature</span><span class="tag">Radio</span><span class="tag">Data logging</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#db2777"></div><div class="project-body"><div class="project-domain">Wearables</div><div class="project-name">Step counter</div><div class="project-desc">The accelerometer detects footfall patterns. Display step counts on the LED, set daily targets, and vibrate when reached. Worn on a wristband or sewn into a bag.</div><div class="project-tags"><span class="tag">Accelerometer</span><span class="tag">LED display</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#d97706"></div><div class="project-body"><div class="project-domain">Music</div><div class="project-name">Clap-activated instrument</div><div class="project-desc">The V2 microphone detects clap patterns. Different rhythms trigger different notes from the on-board speaker. No extra components needed at all.</div><div class="project-tags"><span class="tag">Microphone</span><span class="tag">Speaker</span><span class="tag">V2</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#7c3aed"></div><div class="project-body"><div class="project-domain">Games</div><div class="project-name">Two-player radio game</div><div class="project-desc">Two micro:bits communicate over radio. One sends, the other receives and responds. Rock-paper-scissors, quiz buzzers, collaborative scoreboards.</div><div class="project-tags"><span class="tag">Radio</span><span class="tag">Multi-board</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#059669"></div><div class="project-body"><div class="project-domain">Environment</div><div class="project-name">Plant monitor</div><div class="project-desc">Connect a capacitive soil moisture sensor via the edge connector. The micro:bit alerts when plants need water with a wilting icon or a buzzer pattern.</div><div class="project-tags"><span class="tag">Edge pins</span><span class="tag">Analogue input</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#dc2626"></div><div class="project-body"><div class="project-domain">Safety</div><div class="project-name">Crash detector</div><div class="project-desc">Detects freefall or a hard impact via the accelerometer. Displays an alert and transmits a radio message. Works as a bike safety device or fall-detection aid.</div><div class="project-tags"><span class="tag">Accelerometer</span><span class="tag">Radio</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#0891b2"></div><div class="project-body"><div class="project-domain">Art</div><div class="project-name">Sound-reactive LED display</div><div class="project-desc">LED animation responds to ambient sound level or light intensity in real time. No screens, no apps — the board itself becomes the display.</div><div class="project-tags"><span class="tag">Light sensor</span><span class="tag">LED display</span></div></div></div></div>
+<p class="section-label">Accessories</p>
+<h2 class="section-title">Extending the micro:bit</h2>
+<p class="section-intro">The micro:bit's 25-pin edge connector gives access to a large ecosystem of add-ons. The accessories below connect via that connector, either directly with crocodile clips or through a carrier board. No soldering is required for any of them.</p>
+<div class="project-grid"><div class="project-card"><div class="project-stripe" style="background:#3db166"></div><div class="project-body"><div class="project-domain">Motors</div><div class="project-name">Motor carrier board</div><div class="project-desc">The motor:bit board plugs directly onto the edge connector and adds two DC motor outputs, 12 GVS sensor ports, and a battery connector. No soldering required.</div><div class="project-tags"><span class="tag">DC motors</span><span class="tag">GVS ports</span><span class="tag">Robot base</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#2563eb"></div><div class="project-body"><div class="project-domain">Sensing</div><div class="project-name">IR tracking sensor</div><div class="project-desc">A two-channel sensor that reads black and white surfaces. Returns 0 on black, 1 on white. Connects to GVS ports. The core sensor for line following.</div><div class="project-tags"><span class="tag">Line detection</span><span class="tag">Digital output</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#7c3aed"></div><div class="project-body"><div class="project-domain">Sensing</div><div class="project-name">Ultrasonic distance sensor</div><div class="project-desc">Measures distance to an object ahead by sending and receiving a sound pulse. Range 2 cm to 400 cm. Used for obstacle detection, object location, and proximity alerts.</div><div class="project-tags"><span class="tag">Distance</span><span class="tag">HC-SR04 compatible</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#059669"></div><div class="project-body"><div class="project-domain">Sensing</div><div class="project-name">Soil moisture sensor</div><div class="project-desc">Reads moisture levels from soil via the analogue edge connector pins. Connects directly to the large gold pads with crocodile clips. Common in science and environment projects.</div><div class="project-tags"><span class="tag">Analogue input</span><span class="tag">Science</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#db2777"></div><div class="project-body"><div class="project-domain">Output</div><div class="project-name">NeoPixel LED strip</div><div class="project-desc">Individually addressable RGB LEDs, chainable to any length. Controlled over a single GVS data line. Used in art, wearables, status indicators, and light-reactive projects.</div><div class="project-tags"><span class="tag">RGB LEDs</span><span class="tag">Chainable</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#d97706"></div><div class="project-body"><div class="project-domain">Output</div><div class="project-name">OLED screen</div><div class="project-desc">A 128x64 pixel screen connected over I2C. Displays text, numbers, and graphics beyond the 5x5 LED matrix. Common in data logging and science projects.</div><div class="project-tags"><span class="tag">I2C</span><span class="tag">128x64 pixels</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#0891b2"></div><div class="project-body"><div class="project-domain">Control</div><div class="project-name">Servo motor</div><div class="project-desc">Precise angular movement (0 to 180 degrees) via a single GVS port. Used for steering, robotic arms, and camera mounts. Controlled with a PWM block in MakeCode.</div><div class="project-tags"><span class="tag">PWM</span><span class="tag">Precise movement</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#dc2626"></div><div class="project-body"><div class="project-domain">Gaming</div><div class="project-name">MakeCode Arcade shield</div><div class="project-desc">Adds a colour screen, directional buttons, and action buttons. Turns the micro:bit into a handheld game console. Games are written separately in MakeCode Arcade.</div><div class="project-tags"><span class="tag">Colour display</span><span class="tag">Game input</span></div></div></div></div>
 </section>
 
 <section class="section" id="s-why">
-<p class="section-label">For teachers</p>
-<h2 class="section-title">Why it works in a classroom</h2>
-<p class="section-intro">The micro:bit was designed for school use. These are the features that make it practical in a classroom with varied hardware, limited IT support, and students at different levels.</p>
-<div class="pitch-grid"><div class="pitch-card"><div class="pitch-num">01</div><div class="pitch-title">No hardware needed to start</div><div class="pitch-body">The browser simulator lets students write and test code before any boards arrive. Classes can begin as soon as students have a laptop.</div></div><div class="pitch-card"><div class="pitch-num">02</div><div class="pitch-title">Low cost and durable</div><div class="pitch-body">Around $30 AUD per board. The LED display shows program state directly, which helps students debug without external tools. The board tolerates being pocketed, dropped, and used across multiple year groups.</div></div><div class="pitch-card"><div class="pitch-num">03</div><div class="pitch-title">Two-language progression</div><div class="pitch-body">Students start with drag-and-drop blocks and can switch to Python later on the same board and in the same editor. No new hardware or platform is required to make that transition.</div></div><div class="pitch-card"><div class="pitch-num">04</div><div class="pitch-title">Visible program state</div><div class="pitch-body">The LED display shows what the program is doing without needing a monitor or serial connection. Students can see whether their code is running correctly and where it is failing.</div></div><div class="pitch-card"><div class="pitch-num">05</div><div class="pitch-title">Covers multiple subjects</div><div class="pitch-body">The same board is applicable across Computing, Science, Maths, Music (V2), and Design Technology. One purchase can serve multiple departments and year levels.</div></div><div class="pitch-card"><div class="pitch-num">06</div><div class="pitch-title">Works on school computers</div><div class="pitch-body">MakeCode runs in a browser with no installation and no admin rights. It works on Chromebooks, older Windows laptops, and iPads. Uploading a program is a file drag onto a USB drive.</div></div></div>
+<p class="section-label">2-hour session</p>
+<h2 class="section-title">Workshop timing guide</h2>
+<p class="section-intro">A suggested run order for a 2-hour session. Times are approximate. The coding activities work without a rescue line track. Everything up to Activity 4 runs entirely in the browser simulator.</p>
+<table class="pin-table timing-table">
+  <thead>
+    <tr><th>Time</th><th>Topic</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>0:00–0:10</td><td>Introduction</td><td>What is the micro:bit, where it is used, cost and availability</td></tr>
+    <tr><td>0:10–0:20</td><td>Hardware tour</td><td>Walk through the built-in sensors and what the edge connector gives access to</td></tr>
+    <tr><td>0:20–0:35</td><td>Activity 1: LED display</td><td>First MakeCode program. Show text and icons. Test in the simulator, then download to the board.</td></tr>
+    <tr><td>0:35–0:50</td><td>Activity 2: Button events</td><td>Button A and B trigger different LED outputs. Introduces event-driven programming.</td></tr>
+    <tr><td>0:50–1:10</td><td>Activity 3: Motor control</td><td>Drive the robot forward, backward, and turn using button presses. Requires the motor:bit board and motors.</td></tr>
+    <tr><td>1:10–1:30</td><td>Activity 4: Reading sensors</td><td>Read the IR sensor values and display them on the LED. No line needed. Participants see 0 vs 1 in real time.</td></tr>
+    <tr><td>1:30–1:45</td><td>RoboCup Junior context</td><td>Show how the sensor readings connect to a real competition. Demo or video of a Rescue Line run.</td></tr>
+    <tr><td>1:45–2:00</td><td>Free time and questions</td><td>Participants extend their programs. Activity 5 (simple if/then reaction) available as a stretch task.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Activity 5 (stretch):</strong> simple sensor-driven decisions. If the left IR sensor reads 0, steer left. If the right reads 0, steer right. Both read 0, go forward. This is the foundation of line following and can be tested with a strip of black tape on white paper rather than a full track.
+</div>
 </section>
 
 <section class="section" id="s-robocup">
@@ -1257,7 +1316,7 @@ body.presenting #pres-overlay { display: flex; }
     <div class="activity-num">Activity 3</div>
     <div class="activity-title">Push rescue</div>
     <div class="activity-cap">Ultrasonic sensor · DC motors via carrier board</div>
-    <div class="activity-desc">The robot detects the silver capsule inside the chemical spill zone using the ultrasonic sensor, then drives forward to push it clear. Worth 50 points — the highest single scoring action.</div>
+    <div class="activity-desc">The robot detects the silver capsule inside the chemical spill zone using the ultrasonic sensor, then drives forward to push it clear. Worth 50 points: the highest single scoring action.</div>
   </div>
 
   <div class="activity-card">
@@ -1271,10 +1330,12 @@ body.presenting #pres-overlay { display: flex; }
     <div class="activity-num">Activity 5</div>
     <div class="activity-title">Status display</div>
     <div class="activity-cap">5×5 LED display</div>
-    <div class="activity-desc">The LED display shows the robot's current state during the run. Referees and coaches can see what mode the robot is in — following, avoiding, rescuing — without stopping it.</div>
+    <div class="activity-desc">The LED display shows the robot's current state during the run. Referees and coaches can see what mode the robot is in (following, avoiding, rescuing) without stopping it.</div>
   </div>
 
 </div>
+
+<!-- SLIDE_BREAK -->
 
 <div class="photo-row">
   <div class="diagram-slot" id="photo-motorbit-kit">
@@ -1286,115 +1347,114 @@ body.presenting #pres-overlay { display: flex; }
 </div>
 
 <div class="callout">
-  <strong>The kit:</strong> Individual components — a micro:bit, an Elecfreaks motor:bit carrier board, two TT motors, a 2-channel IR tracking module, an ultrasonic sensor, and a 4×AA battery pack. The carrier board plugs directly onto the micro:bit edge connector.
+  <strong>The kit:</strong> Individual components: a micro:bit, an Elecfreaks motor:bit carrier board, two TT motors, a 2-channel IR tracking module, an ultrasonic sensor, and a 4×AA battery pack. The carrier board plugs directly onto the micro:bit edge connector.
 </div>
 </section>
 
 <section class="section" id="s-code">
-<p class="section-label">Coding reference</p>
-<h2 class="section-title">Setting up and writing your first programs</h2>
-<p class="section-intro">A reference to keep open during the live coding session. Setup steps, wiring, program structure, and the three programs that make up a Rescue Line robot — each with an embedded MakeCode project you can open, run, and remix directly.</p>
+<p class="section-label">Coding activities</p>
+<h2 class="section-title">Activities: simple to complex</h2>
+<p class="section-intro">Five activities in order of complexity. Activities 1 and 2 need only the micro:bit and a browser. Activity 3 needs the assembled robot. Activities 4 and 5 need the IR sensors attached. No rescue line track is required.</p>
 <div class="callout">
-  <strong>Embedding an existing MakeCode project:</strong> open your project at <a href="https://makecode.microbit.org" target="_blank" rel="noopener">makecode.microbit.org</a>, click <strong>Share</strong> in the top menu, then copy the URL (it looks like <code>https://makecode.microbit.org/S12345-abcde</code>). Open <code>content/07-code.md</code> in a text editor, find the matching <code>&lt;!-- MAKECODE_EMBED --&gt;</code> block, and paste the URL as <code>makecode_url: https://makecode.microbit.org/S...</code>. Rebuild the page and the project will appear as a live embedded editor.
+  <strong>Adding your MakeCode project to this page:</strong> open your project at <a href="https://makecode.microbit.org" target="_blank" rel="noopener">makecode.microbit.org</a>, click <strong>Share</strong>, copy the URL (looks like <code>https://makecode.microbit.org/S12345-abcde</code>), then paste it as <code>makecode_url:</code> in the matching block in <code>content/07-code.md</code> and rebuild.
 </div>
 
 <div class="code-ref">
-
 <div class="code-ref-section">
-<h3>Step 1: Open MakeCode and add extensions</h3>
-
+<h3>Setup: extensions you need</h3>
 <ol class="setup-steps">
   <li>Go to <a href="https://makecode.microbit.org" target="_blank" rel="noopener">makecode.microbit.org</a> and click <strong>New Project</strong>.</li>
   <li>Click the <strong>gear icon</strong> (top right) then <strong>Extensions</strong>.</li>
-  <li>Search for <code>motorbit</code> and add it — this gives you motor control blocks.</li>
-  <li>Search for <code>sonarbit</code> and add it — this gives you the ultrasonic sensor block.</li>
-  <li>You should now see <strong>motorbit</strong> and <strong>sonarbit</strong> categories in the block palette.</li>
+  <li>Search for <code>motorbit</code> and add it (motor control blocks).</li>
+  <li>Search for <code>sonarbit</code> and add it (ultrasonic sensor block).</li>
 </ol>
-
-<div class="callout">
-  <strong>Sharing a project:</strong> once you have working blocks, click <strong>Share</strong> in the top menu. Copy the URL it gives you (looks like <code>https://makecode.microbit.org/S12345-abcde</code>). Paste that URL as <code>makecode_url:</code> in the matching section of <code>content/07-code.md</code> and it will embed live on this page.
-</div>
 </div>
 
 <div class="code-ref-section">
-<h3>Pin and wiring reference</h3>
-
+<h3>Wiring reference</h3>
 <table class="pin-table">
   <thead>
-    <tr><th>Connection</th><th>Pin</th><th>Notes</th></tr>
+    <tr><th>Connection</th><th>Port</th><th>Notes</th></tr>
   </thead>
   <tbody>
-    <tr><td>Left motor</td><td><code>M1</code></td><td>TT yellow motor — left wheel</td></tr>
-    <tr><td>Right motor</td><td><code>M2</code></td><td>TT yellow motor — right wheel</td></tr>
-    <tr><td>Left IR sensor (S1)</td><td><code>P4</code></td><td>Digital. <strong>0 = on the line</strong>, 1 = white background</td></tr>
-    <tr><td>Right IR sensor (S2)</td><td><code>P3</code></td><td>Digital. <strong>0 = on the line</strong>, 1 = white background</td></tr>
-    <tr><td>Ultrasonic sensor</td><td>Free GVS port</td><td>Set in MakeCode to match physical wiring</td></tr>
-    <tr><td>Buzzer</td><td><code>P0</code></td><td>On-board — no wiring needed</td></tr>
+    <tr><td>Left motor</td><td><code>M1</code></td><td>TT motor, left wheel</td></tr>
+    <tr><td>Right motor</td><td><code>M2</code></td><td>TT motor, right wheel</td></tr>
+    <tr><td>Left IR sensor</td><td><code>P4</code></td><td>0 = black, 1 = white</td></tr>
+    <tr><td>Right IR sensor</td><td><code>P3</code></td><td>0 = black, 1 = white</td></tr>
+    <tr><td>Ultrasonic sensor</td><td>Free GVS port</td><td>Match pin in MakeCode</td></tr>
   </tbody>
 </table>
-
 <div class="callout">
-  <strong>Sensor logic note:</strong> the IR sensors return <strong>0</strong> when they see the black line and <strong>1</strong> when they see white. This is the opposite of what you might expect. Use the <em>set pull up</em> block on P3 and P4 inside your <em>on start</em> block.
+  <strong>Sensor logic:</strong> the IR sensors return 0 on black and 1 on white. Set a pull-up on P3 and P4 inside your <em>on start</em> block.
 </div>
-</div>
-
-<div class="code-ref-section">
-<h3>Program structure: what goes where</h3>
-
-<table class="pin-table">
-  <thead>
-    <tr><th>Block</th><th>When it runs</th><th>Use it for</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>on start</code></td><td>Once, when the board powers on</td><td>Set pin pull-ups, show a ready icon on the LED</td></tr>
-    <tr><td><code>forever</code></td><td>Continuously in a loop</td><td>Read sensors, decide direction, drive motors</td></tr>
-    <tr><td><code>on button A pressed</code></td><td>When the handler presses Button A</td><td>Start the run — required by competition rules</td></tr>
-    <tr><td><code>on button B pressed</code></td><td>When Button B is pressed</td><td>Emergency stop or toggle calibration mode</td></tr>
-  </tbody>
-</table>
-</div>
-
-<div class="code-ref-section">
-<h3>The autonomy rule: two things to remember</h3>
-
-<div class="callout">
-  <strong>Rule 3.2.1 — Button start:</strong> the program must be downloaded to the robot before the run. The Robot Handler starts it by pressing a button on the board. No laptop, no remote, no phone.
-</div>
-
-<div class="callout">
-  <strong>Rule 3.2.2 — No wireless:</strong> Bluetooth and radio must be off during a run. MakeCode blocks mode does not add radio by default, so you are fine as long as you do not add a radio block.
 </div>
 </div>
 
-</div>
+<!-- SLIDE_BREAK -->
 
-<!-- Part 1 — Line following -->
+<!-- Activity 1 -->
 <div class="code-ref">
 <div class="code-ref-section">
-<h3>Part 1: Line following</h3>
-<p>Read the two IR sensors and steer the robot to stay on the black line. This is the core loop that runs for the whole course.</p>
+<h3>Activity 1: LED display</h3>
+<p>Board and browser only. No hardware needed beyond the micro:bit. Write a program that shows text and icons on the 5x5 LED display. Test it in the simulator before downloading.</p>
+<p><strong>Goal:</strong> on start, show a heart icon. When button A is pressed, scroll the text "READY". When button B is pressed, show a tick icon.</p>
 
-<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project — Line following</div><div class="mcp-hint">Create your line-following MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
+<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project: Activity 1 - LED display</div><div class="mcp-hint">Create your Activity 1 MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
 </div>
 </div>
 
-<!-- Part 2 — Obstacle avoidance -->
+<!-- SLIDE_BREAK -->
+
+<!-- Activity 2 -->
 <div class="code-ref">
 <div class="code-ref-section">
-<h3>Part 2: Obstacle avoidance</h3>
-<p>Use the ultrasonic sensor to detect an obstacle ahead, drive around it, and reacquire the line within 30 cm.</p>
+<h3>Activity 2: Button events</h3>
+<p>Board only. Introduces event-driven programming. Each button does something different, and the program waits for input rather than running continuously.</p>
+<p><strong>Goal:</strong> button A shows an arrow pointing forward. Button B shows a square (stop). Both buttons together show a cross (emergency stop). On start, show a dot to indicate the program is running.</p>
 
-<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project — Obstacle avoidance</div><div class="mcp-hint">Create your obstacle avoidance MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
+<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project: Activity 2 - Button events</div><div class="mcp-hint">Create your Activity 2 MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
 </div>
 </div>
 
-<!-- Part 3 — Push rescue -->
+<!-- SLIDE_BREAK -->
+
+<!-- Activity 3 -->
 <div class="code-ref">
 <div class="code-ref-section">
-<h3>Part 3: Push rescue</h3>
-<p>Detect the silver capsule inside the chemical spill zone and push it clear. Worth 50 points — the single highest-value action in the scoring.</p>
+<h3>Activity 3: Motor control</h3>
+<p>Assembled robot required (motor:bit + motors + battery). No sensors needed. Button presses drive the wheels directly. This confirms the robot is wired correctly before adding sensors.</p>
+<p><strong>Goal:</strong> button A drives both motors forward for 1 second then stops. Button B drives one motor forward and one backward (spin on the spot). On start, show a ready icon.</p>
 
-<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project — Push rescue</div><div class="mcp-hint">Create your push rescue MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
+<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project: Activity 3 - Motor control</div><div class="mcp-hint">Create your Activity 3 MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
+</div>
+</div>
+
+<!-- SLIDE_BREAK -->
+
+<!-- Activity 4 -->
+<div class="code-ref">
+<div class="code-ref-section">
+<h3>Activity 4: Reading sensors</h3>
+<p>IR sensors must be connected (P3 and P4). No track needed. Read the sensor values and show them on the LED display. Hold the sensor over white paper, then over a dark surface, and watch the display change.</p>
+<p><strong>Goal:</strong> in the forever loop, read P3 and P4. If both return 1 (white), show a blank display. If either returns 0 (black detected), show a dot. This confirms the sensors are working before any driving logic is added.</p>
+
+<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project: Activity 4 - Reading sensors</div><div class="mcp-hint">Create your Activity 4 MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
+</div>
+</div>
+
+<!-- SLIDE_BREAK -->
+
+<!-- Activity 5 -->
+<div class="code-ref">
+<div class="code-ref-section">
+<h3>Activity 5: Simple decisions (stretch)</h3>
+<p>Full robot required. A strip of black electrical tape on white paper is enough to test with. Write an if/else block that steers based on sensor readings. This is the foundation of line following.</p>
+<p><strong>Goal:</strong> in the forever loop: if both sensors read white, drive forward. If the left sensor reads black (0), steer left. If the right sensor reads black (0), steer right. Start the program with button A.</p>
+<div class="callout">
+  <strong>No track?</strong> Use a 5 cm wide strip of black electrical tape on an A3 sheet of white paper. Students can hold it by hand and move it under the sensor while the robot is stationary, watching the steering change in the motor output.
+</div>
+
+<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project: Activity 5 - Simple decisions</div><div class="mcp-hint">Create your Activity 5 MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
 </div>
 </div>
 </section>
@@ -1450,11 +1510,23 @@ function buildSlides() {
   ].filter(Boolean);
 
   sources.forEach(src => {
-    const slide = document.createElement('div');
-    slide.className = 'pres-slide';
-    slide.innerHTML = src.innerHTML;
-    slidesEl.appendChild(slide);
-    presSlides.push(slide);
+    const parts = src.innerHTML.split(/<!--\s*SLIDE_BREAK\s*-->/i);
+
+    // Build a quiet continuation header from this section's label + title
+    const labelEl = src.querySelector('.section-label');
+    const titleEl = src.querySelector('.section-title');
+    let contHeader = '<div class="pres-cont-header">';
+    if (labelEl) contHeader += `<span class="section-label">${labelEl.textContent}</span>`;
+    if (titleEl) contHeader += `<span class="pres-cont-title">${titleEl.textContent}</span>`;
+    contHeader += '</div>';
+
+    parts.forEach((part, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'pres-slide';
+      slide.innerHTML = i === 0 ? part : contHeader + part;
+      slidesEl.appendChild(slide);
+      presSlides.push(slide);
+    });
   });
 }
 

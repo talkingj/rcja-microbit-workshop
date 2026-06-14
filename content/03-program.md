@@ -54,3 +54,15 @@ Programming is done through a browser at makecode.microbit.org. No software inst
 <div class="callout">
   <strong>Downloading to the board:</strong> clicking "Download" produces a .hex file. Drag it onto the MICROBIT USB drive that appears when the board is connected and the program loads automatically. No drivers or additional software needed. Works on Windows, Mac, and Chromebook.
 </div>
+
+<div class="makecode-embed">
+  <div class="makecode-header">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    MakeCode editor
+    <a href="https://makecode.microbit.org" target="_blank" rel="noopener" class="makecode-open">Open full screen ↗</a>
+  </div>
+  <iframe src="https://makecode.microbit.org/#editor"
+    frameborder="0"
+    sandbox="allow-popups allow-forms allow-scripts allow-same-origin"
+    allowfullscreen></iframe>
+</div>

@@ -5,7 +5,7 @@ label: On the board
 title: Built-in sensors and outputs
 ---
 
-The micro:bit has sensors and outputs soldered onto the board. With only the board and a USB cable, a student can detect movement, read temperature, transmit data wirelessly, and show output on the LED display — no additional components required.
+The micro:bit has sensors and outputs soldered onto the board. With only the board and a USB cable, a student can detect movement, read temperature, transmit data wirelessly, and show output on the LED display. No additional components are required.
 
 <div class="photo-row">
   <div class="diagram-slot" id="photo-microbit-front">
@@ -15,6 +15,8 @@ The micro:bit has sensors and outputs soldered onto the board. With only the boa
     <img src="https://cdn.sanity.io/images/ajwvhvgo/production/e87a84e4547c396feba8e2f59f72cc3fdd332a65-800x646.png?q=80&fit=max&auto=format" alt="micro:bit V2 back — annotated diagram showing edge connector pads, pin labels, and V2 notch">
   </div>
 </div>
+
+<!-- SLIDE_BREAK -->
 
 <div class="hw-grid">
 

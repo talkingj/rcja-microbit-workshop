@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>micro:bit — What it is and why it works</title>
+<title>micro:bit: What it is and why it works</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -731,6 +731,16 @@ pre.code-hint {
   margin-bottom: 32px;
 }
 
+/* ── TIMING TABLE ────────────────────────────── */
+.timing-table td:first-child {
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+.pres-slide .timing-table td:first-child { color: var(--green); }
+.pres-slide .timing-table td { color: rgba(255,255,255,0.6); }
+
 /* ── ACTIVITY CARDS (RoboCup section) ────────── */
 .activity-grid {
   display: grid;
@@ -847,7 +857,24 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .code-ph-body { color: rgba(255,255,255,0.45); }
 
 /* Diagram slots on dark presentation background */
-.pres-slide .diagram-slot { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
+.pres-slide .diagram-slot { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); max-height: 220px; min-height: 0; }
+.pres-slide .diagram-slot img { max-height: 196px; padding: 8px; object-fit: contain; }
+.pres-slide .photo-row { margin-bottom: 20px; }
+
+/* Continuation header for split slides */
+.pres-cont-header {
+  display: flex; align-items: baseline; gap: 12px;
+  margin-bottom: 28px; padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.pres-cont-header .section-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--green);
+}
+.pres-cont-title {
+  font-size: 16px; font-weight: 700;
+  color: rgba(255,255,255,0.35);
+}
 
 /* Bottom fade on slides that have scrollable overflow */
 .pres-slide::after {
@@ -1036,11 +1063,23 @@ function buildSlides() {
   ].filter(Boolean);
 
   sources.forEach(src => {
-    const slide = document.createElement('div');
-    slide.className = 'pres-slide';
-    slide.innerHTML = src.innerHTML;
-    slidesEl.appendChild(slide);
-    presSlides.push(slide);
+    const parts = src.innerHTML.split(/<!--\s*SLIDE_BREAK\s*-->/i);
+
+    // Build a quiet continuation header from this section's label + title
+    const labelEl = src.querySelector('.section-label');
+    const titleEl = src.querySelector('.section-title');
+    let contHeader = '<div class="pres-cont-header">';
+    if (labelEl) contHeader += `<span class="section-label">${labelEl.textContent}</span>`;
+    if (titleEl) contHeader += `<span class="pres-cont-title">${titleEl.textContent}</span>`;
+    contHeader += '</div>';
+
+    parts.forEach((part, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'pres-slide';
+      slide.innerHTML = i === 0 ? part : contHeader + part;
+      slidesEl.appendChild(slide);
+      presSlides.push(slide);
+    });
   });
 }
 

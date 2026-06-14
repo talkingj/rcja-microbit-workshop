@@ -633,9 +633,24 @@ ol.setup-steps code {
 }
 .makecode-open:hover { color: #fff; }
 .makecode-embed iframe {
-  width: 100%; height: 500px;
+  width: 100%; height: 660px;
   display: block; border: none;
 }
+.makecode-launch {
+  display: flex; align-items: center; gap: 20px;
+  background: var(--navy);
+  border: 1.5px solid var(--border);
+  padding: 24px 28px;
+  text-decoration: none;
+  margin-bottom: 24px;
+  transition: border-color 0.15s, background 0.15s;
+}
+.makecode-launch:hover { border-color: var(--green); background: #0f1e2f; }
+.makecode-launch-icon { color: var(--green); flex-shrink: 0; }
+.makecode-launch-body { flex: 1; }
+.makecode-launch-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.makecode-launch-sub { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+.makecode-launch-arrow { font-size: 22px; color: var(--green); flex-shrink: 0; }
 
 .makecode-placeholder {
   background: var(--navy);
@@ -1004,19 +1019,19 @@ body.presenting #pres-overlay { display: flex; }
   <span class="top-pill">Workshop</span>
 </header>
 
-<div id="pres-overlay" role="dialog" aria-label="Presentation mode">
+<div id="pres-overlay" role="dialog" aria-modal="true" aria-label="Presentation mode">
   <div id="pres-slides"></div>
   <div id="pres-nav">
-    <button class="pres-btn" id="pres-prev" onclick="presNav(-1)" disabled>
+    <button class="pres-btn" id="pres-prev" aria-label="Previous slide" onclick="presNav(-1)" disabled>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
       Prev
     </button>
     <span id="pres-counter">1 / 8</span>
-    <button class="pres-btn" id="pres-next" onclick="presNav(1)">
+    <button class="pres-btn" id="pres-next" aria-label="Next slide" onclick="presNav(1)">
       Next
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
     </button>
-    <button class="pres-exit" onclick="exitPresentation()">&#x2715; Exit</button>
+    <button class="pres-exit" aria-label="Exit presentation" onclick="exitPresentation()">&#x2715; Exit</button>
   </div>
 </div>
 
@@ -1051,7 +1066,11 @@ const tabObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       const id = e.target.id;
-      tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
+      tabs.forEach(t => {
+        const isActive = t.dataset.target === id;
+        t.classList.toggle('active', isActive);
+        t.setAttribute('aria-current', isActive ? 'true' : 'false');
+      });
     }
   });
 }, { rootMargin: '-52px 0px -55% 0px', threshold: 0 });

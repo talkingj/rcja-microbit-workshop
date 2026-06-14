@@ -1,7 +1,7 @@
 ---
 id: s-projects
 nav: What you can attach
-label: Accessories
+label:
 title: Extending the micro:bit
 projects:
   - domain: Motors

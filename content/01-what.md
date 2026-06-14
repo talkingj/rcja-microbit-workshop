@@ -1,7 +1,7 @@
 ---
 id: s-what
 nav: What is it
-label: Overview
+label:
 title: What is the micro:bit
 ---
 

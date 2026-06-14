@@ -5,7 +5,7 @@ label: Session overview
 title: About this session
 ---
 
-A 2-hour hands-on workshop. The first half covers what the micro:bit is and what it can do. The second half is live coding on the assembled robot. No rescue line track is required — all activities work with the kit components and a browser.
+A 2-hour hands-on workshop. The first half covers what the micro:bit is and what it can do. The second half is live coding on the assembled robot. No rescue line track is required. All activities work with the kit components and a browser.
 
 <table class="pin-table timing-table">
   <thead>
@@ -23,6 +23,8 @@ A 2-hour hands-on workshop. The first half covers what the micro:bit is and what
     <tr><td>Questions</td><td>5 min</td><td></td></tr>
   </tbody>
 </table>
+
+<!-- SLIDE_BREAK -->
 
 <div class="callout">
   <strong>Activity 5 (stretch):</strong> simple sensor-driven decisions. If the left IR sensor reads 0, steer left. If the right reads 0, steer right. Both read 0, go forward. This is the foundation of line following and can be tested with a strip of black tape on white paper rather than a full track.

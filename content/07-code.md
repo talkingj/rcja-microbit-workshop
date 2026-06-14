@@ -1,7 +1,7 @@
 ---
 id: s-code
 nav: Coding
-label: Coding activities
+label:
 title: "Activities: simple to complex"
 ---
 
@@ -21,7 +21,11 @@ Five activities in order of complexity. Activities 1 and 2 need only the micro:b
   <li>Search for <code>sonarbit</code> and add it (ultrasonic sensor block).</li>
 </ol>
 </div>
+</div>
 
+<!-- SLIDE_BREAK -->
+
+<div class="code-ref">
 <div class="code-ref-section">
 <h3>Wiring reference</h3>
 <table class="pin-table">

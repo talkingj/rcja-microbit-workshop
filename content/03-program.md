@@ -57,13 +57,15 @@ Programming is done through a browser at makecode.microbit.org. No software inst
 
 <!-- SLIDE_BREAK -->
 
-<div><a class="makecode-launch" href="https://makecode.microbit.org" target="_blank" rel="noopener">
-  <div class="makecode-launch-icon">
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+<div class="makecode-embed">
+  <div class="makecode-header">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    MakeCode editor
+    <a href="https://makecode.microbit.org" target="_blank" rel="noopener" class="makecode-open">Open full screen ↗</a>
   </div>
-  <div class="makecode-launch-body">
-    <div class="makecode-launch-title">Open MakeCode editor</div>
-    <div class="makecode-launch-sub">Opens makecode.microbit.org in a new tab. Sign in to save projects to your account. Your recent projects appear on the home screen.</div>
-  </div>
-  <div class="makecode-launch-arrow">↗</div>
-</a></div>
+  <iframe src="https://makecode.microbit.org/"
+    frameborder="0"
+    sandbox="allow-popups allow-forms allow-scripts allow-same-origin allow-downloads allow-modals allow-pointer-lock"
+    allow="autoplay; clipboard-read; clipboard-write"
+    allowfullscreen></iframe>
+</div>

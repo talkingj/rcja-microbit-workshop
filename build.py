@@ -73,11 +73,29 @@ def md_to_html(text):
     if not text.strip():
         return ''
     if HAS_MARKDOWN and _markdown is not None:
-        return _markdown.markdown(
+        result = _markdown.markdown(
             text,
             extensions=['tables', 'fenced_code', 'attr_list'],
             output_format='html',
         )
+        # Auto-apply pin-table class to all tables (plain <table> first)
+        result = result.replace('<table>', '<table class="pin-table">')
+        # Tables already given a class via attr_list (e.g. timing-table) get pin-table prepended
+        result = re.sub(
+            r'<table class="([^"]+)">',
+            lambda m: f'<table class="pin-table {m.group(1)}">',
+            result,
+        )
+        # Auto-apply setup-steps class to all ordered lists
+        result = result.replace('<ol>', '<ol class="setup-steps">')
+        # Convert blockquotes to callout divs
+        result = re.sub(
+            r'<blockquote>\s*<p>(.*?)</p>\s*</blockquote>',
+            r'<div class="callout">\1</div>',
+            result,
+            flags=re.DOTALL,
+        )
+        return result
     # Minimal fallback
     lines = text.split('\n')
     out, buf = [], []
@@ -101,6 +119,156 @@ def md_to_html(text):
             buf.append(stripped)
     flush()
     return '\n'.join(out)
+
+
+# ── SVG icon lookup ───────────────────────────────────────────────────────────
+
+ICONS = {
+    'led-matrix':     ('<rect x="3" y="3" width="18" height="18"/>'
+                       '<circle cx="8.5" cy="8.5" r="1.5" fill="#3db166" stroke="none"/>'
+                       '<circle cx="12" cy="8.5" r="1.5" fill="#3db166" stroke="none"/>'
+                       '<circle cx="15.5" cy="8.5" r="1.5" fill="#3db166" stroke="none"/>'
+                       '<circle cx="8.5" cy="12" r="1.5" fill="#3db166" stroke="none"/>'
+                       '<circle cx="12" cy="12" r="1.5" fill="#3db166" stroke="none"/>'
+                       '<circle cx="15.5" cy="12" r="1.5" fill="#3db166" stroke="none"/>'
+                       '<circle cx="8.5" cy="15.5" r="1.5" fill="#3db166" stroke="none"/>'
+                       '<circle cx="12" cy="15.5" r="1.5" fill="#3db166" stroke="none"/>'
+                       '<circle cx="15.5" cy="15.5" r="1.5" fill="#3db166" stroke="none"/>'),
+    'buttons':         '<circle cx="7" cy="12" r="3"/><circle cx="17" cy="12" r="3"/>',
+    'accelerometer':   ('<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83'
+                        'M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>'
+                        '<circle cx="12" cy="12" r="3"/>'),
+    'compass':         ('<circle cx="12" cy="12" r="3"/>'
+                        '<path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42'
+                        'M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>'),
+    'temperature':     '<path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>',
+    'radio':           '<path d="M1 6l5 6-5 6M23 6l-5 6 5 6M8 12h8"/>',
+    'microphone':      ('<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>'
+                        '<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>'
+                        '<line x1="12" y1="19" x2="12" y2="23"/>'
+                        '<line x1="8" y1="23" x2="16" y2="23"/>'),
+    'speaker':         ('<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>'
+                        '<path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>'),
+    'edge-connector':  ('<rect x="2" y="14" width="20" height="6" rx="0"/>'
+                        '<path d="M6 14V8M12 14V4M18 14V10"/>'),
+    'microbit':        '<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 9h18"/>',
+    'motorbit':        '<rect x="2" y="7" width="20" height="10" rx="1"/><path d="M6 7V5M10 7V5M14 7V5M18 7V5"/>',
+    'motor':           '<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>',
+    'ir-sensor':       '<rect x="4" y="8" width="16" height="8" rx="1"/><circle cx="9" cy="12" r="2"/><circle cx="15" cy="12" r="2"/>',
+    'ultrasonic':      '<rect x="3" y="8" width="18" height="8" rx="1"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/>',
+    'battery':         '<rect x="3" y="9" width="18" height="10" rx="1"/><path d="M7 9V7a2 2 0 0 1 4 0v2M13 9V7a2 2 0 0 1 4 0v2"/>',
+}
+
+
+def _icon_svg(key):
+    paths = ICONS.get(key, '')
+    if not paths:
+        return ''
+    return (
+        f'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" '
+        f'stroke="#3db166" stroke-width="2" stroke-linecap="round">'
+        f'{paths}</svg>'
+    )
+
+
+def _parse_yaml(text):
+    """Parse YAML text; return dict or list. Falls back to empty dict on error."""
+    if HAS_YAML and _yaml is not None:
+        try:
+            return _yaml.safe_load(text) or {}
+        except Exception:
+            return {}
+    return {}
+
+
+# ── Shortcode renderers ───────────────────────────────────────────────────────
+
+def render_hw_cards(yaml_text):
+    """Render <!-- HW_CARDS --> shortcode: YAML list of {name, icon, desc, tag?}."""
+    items = _parse_yaml(yaml_text)
+    if not isinstance(items, list):
+        return ''
+    cards = []
+    for item in items:
+        name = html.escape(str(item.get('name', '')))
+        desc = html.escape(str(item.get('desc', '')))
+        tag  = item.get('tag', '')
+        icon = _icon_svg(str(item.get('icon', '')))
+        tag_html = f'<span class="hw-tag">{html.escape(str(tag))}</span>' if tag else ''
+        cards.append(
+            f'<div class="hw-card">'
+            f'<div class="hw-icon">{icon}</div>'
+            f'<div class="hw-name">{name}</div>'
+            f'<div class="hw-desc">{desc}</div>'
+            f'{tag_html}'
+            f'</div>'
+        )
+    return f'<div class="hw-grid">{"".join(cards)}</div>'
+
+
+def render_activity_cards(yaml_text):
+    """Render <!-- ACTIVITY_CARDS --> shortcode: YAML list of {title, cap, desc, num?}."""
+    items = _parse_yaml(yaml_text)
+    if not isinstance(items, list):
+        return ''
+    cards = []
+    for item in items:
+        title = html.escape(str(item.get('title', '')))
+        cap   = html.escape(str(item.get('cap', '')))
+        desc  = html.escape(str(item.get('desc', '')))
+        num   = item.get('num', '')
+        num_html = f'<div class="activity-num">{html.escape(str(num))}</div>' if num else ''
+        cards.append(
+            f'<div class="activity-card">'
+            f'{num_html}'
+            f'<div class="activity-title">{title}</div>'
+            f'<div class="activity-cap">{cap}</div>'
+            f'<div class="activity-desc">{desc}</div>'
+            f'</div>'
+        )
+    return f'<div class="activity-grid">{"".join(cards)}</div>'
+
+
+def render_rcja_banner(yaml_text):
+    """Render <!-- RCJA_BANNER --> shortcode."""
+    data = _parse_yaml(yaml_text)
+    if not isinstance(data, dict):
+        data = {}
+    title       = html.escape(str(data.get('title', 'RoboCup Junior Australia')))
+    sub         = html.escape(str(data.get('sub', '')))
+    count       = html.escape(str(data.get('count', '')))
+    count_label = html.escape(str(data.get('count_label', '')))
+    return (
+        f'<div class="rcja-banner">'
+        f'<div>'
+        f'<div class="rcja-title">{title}</div>'
+        f'<div class="rcja-sub">{sub}</div>'
+        f'</div>'
+        f'<div class="rcja-badge">'
+        f'<div class="rcja-badge-val">{count}</div>'
+        f'<div class="rcja-badge-label">{count_label}</div>'
+        f'</div>'
+        f'</div>'
+    )
+
+
+def render_photo_row(yaml_text):
+    """Render <!-- PHOTO_ROW --> shortcode: YAML list of {url, alt, id?}."""
+    items = _parse_yaml(yaml_text)
+    if not isinstance(items, list):
+        return ''
+    slots = []
+    for item in items:
+        url     = html.escape(str(item.get('url', '')))
+        alt     = html.escape(str(item.get('alt', '')))
+        slot_id = item.get('id', '')
+        id_attr = f' id="{html.escape(str(slot_id))}"' if slot_id else ''
+        slots.append(
+            f'<div class="diagram-slot"{id_attr}>'
+            f'<img src="{url}" alt="{alt}" loading="lazy">'
+            f'</div>'
+        )
+    return f'<div class="photo-row">{"".join(slots)}</div>'
 
 
 # ── Card / grid renderers (called when YAML data is present) ──────────────────
@@ -255,6 +423,31 @@ def simple_highlight(src):
 
 def resolve_embeds(body, _source_file=''):
     """Replace EMBED and MAKECODE_EMBED comment markers with rendered HTML."""
+    # <!-- HW_CARDS\n...yaml...\n-->
+    body = re.sub(
+        r'<!--\s*HW_CARDS\s*\n(.*?)\n-->',
+        lambda m: render_hw_cards(m.group(1).strip()),
+        body, flags=re.DOTALL,
+    )
+    # <!-- ACTIVITY_CARDS\n...yaml...\n-->
+    body = re.sub(
+        r'<!--\s*ACTIVITY_CARDS\s*\n(.*?)\n-->',
+        lambda m: render_activity_cards(m.group(1).strip()),
+        body, flags=re.DOTALL,
+    )
+    # <!-- RCJA_BANNER\n...yaml...\n-->
+    body = re.sub(
+        r'<!--\s*RCJA_BANNER\s*\n(.*?)\n-->',
+        lambda m: render_rcja_banner(m.group(1).strip()),
+        body, flags=re.DOTALL,
+    )
+    # <!-- PHOTO_ROW\n...yaml...\n-->
+    body = re.sub(
+        r'<!--\s*PHOTO_ROW\s*\n(.*?)\n-->',
+        lambda m: render_photo_row(m.group(1).strip()),
+        body, flags=re.DOTALL,
+    )
+
     # <!-- EMBED: code/foo.py -->
     def replace_embed(match):
         ref = match.group(1).strip()

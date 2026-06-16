@@ -5,17 +5,17 @@ label: Session overview
 title: About this session
 ---
 
-A 2-hour hands-on workshop. The first half covers what the micro:bit is and what it can do. The second half is live coding on the assembled robot. No rescue line track is required. All activities work with the kit components and a browser.
+A hands-on workshop building toward a working line following robot. The first half covers what the micro:bit is and how to program it. The second half is live coding on the assembled robot, finishing with a facilitator-led line follow demo.
 
 | Topic | Time | Notes |
 |---|---|---|
 | Introduction | 10 min | What is the micro:bit, where it is used, cost and availability |
-| Hardware tour | 10 min | Walk through the built-in sensors and what the edge connector gives access to |
-| Activity 1: LED display | 15 min | First MakeCode program. Show text and icons. Test in the simulator, then download to the board. |
-| Activity 2: Button events | 15 min | Button A and B trigger different LED outputs. Introduces event-driven programming. |
-| Activity 3: Motor control | 20 min | Drive the robot forward, backward, and turn using button presses. Requires the motor:bit board and motors. |
-| Activity 4: Reading sensors | 20 min | Read the IR sensor values and display them on the LED. No line needed. Participants see 0 vs 1 in real time. |
-| RoboCup Junior context | 15 min | Show how the sensor readings connect to a real competition. Demo or video of a Rescue Line run. |
-| Free build time | 10 min | Participants extend their programs. Activity 5 (simple if/then reaction) available as a stretch task. |
-| Questions | 5 min | |
+| Hardware tour | 10 min | Built-in sensors, edge connector, kit components |
+| Activity 1: LED display | 10 min | First MakeCode program. Get comfortable with the editor and simulator. |
+| Activity 2: Button events | 10 min | Event-driven programming. Start/stop patterns used in competition. |
+| Activity 3: Motor control | 15 min | Drive the robot with button presses. Confirms wiring before adding sensors. |
+| Activity 4: Reading IR sensors | 15 min | Read sensor values on the LED display. Understand 0 vs 1 before writing steering logic. |
+| RoboCup Junior context | 10 min | How these skills connect to competition. What a Rescue Line run looks like. |
+| Live demo: line following | 20 min | Facilitator codes a working line follower live. Participants follow along or extend. |
+| Questions | 10 min | |
 { .timing-table }

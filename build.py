@@ -34,7 +34,7 @@ ROOT     = Path(__file__).parent
 CONTENT  = ROOT / 'content'
 CODE_DIR = ROOT / 'code'
 TEMPLATE = ROOT / 'template' / 'shell.html'
-OUTPUT   = ROOT / 'microbit-workshop.html'
+OUTPUT   = ROOT / 'index.html'
 
 
 # ── Front matter parser ───────────────────────────────────────────────────────
@@ -157,6 +157,16 @@ ICONS = {
     'ir-sensor':       '<rect x="4" y="8" width="16" height="8" rx="1"/><circle cx="9" cy="12" r="2"/><circle cx="15" cy="12" r="2"/>',
     'ultrasonic':      '<rect x="3" y="8" width="18" height="8" rx="1"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/>',
     'battery':         '<rect x="3" y="9" width="18" height="10" rx="1"/><path d="M7 9V7a2 2 0 0 1 4 0v2M13 9V7a2 2 0 0 1 4 0v2"/>',
+    'spike-hub':       '<rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M4 9h2M18 9h2M4 15h2M18 15h2"/>',
+    'color-sensor':    '<circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="#3db166" stroke="none"/><path d="M12 2v4M12 18v4"/>',
+    'soccer-ball':     '<circle cx="12" cy="12" r="9"/><path d="M12 3v4M7 5.5l2 3.5M17 5.5l-2 3.5M4 13l3.5-1M20 13l-3.5-1M8 21l1-3.5M16 21l-1-3.5"/>',
+    'field':           '<rect x="2" y="5" width="20" height="14" rx="1"/><line x1="12" y1="5" x2="12" y2="19"/><circle cx="12" cy="12" r="3"/>',
+    'whistle':         '<circle cx="9" cy="14" r="5"/><path d="M13 11l7-5M14 10l4 2"/>',
+    'trophy':          '<path d="M6 9V2h12v7a6 6 0 0 1-12 0zM6 4H3v3a3 3 0 0 0 3 3M18 4h3v3a3 3 0 0 0-3 3M9 17h6M12 15v2M8 21h8"/>',
+    'wall':            '<rect x="2" y="6" width="20" height="12" rx="0"/><line x1="8" y1="6" x2="8" y2="12"/><line x1="16" y1="6" x2="16" y2="12"/><line x1="12" y1="12" x2="12" y2="18"/>',
+    'goal':            '<path d="M4 20V6h16v14"/><path d="M4 6l4 4h8l4-4"/><line x1="8" y1="10" x2="8" y2="20"/><line x1="16" y1="10" x2="16" y2="20"/>',
+    'lines':           '<line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/><line x1="4" y1="6" x2="4" y2="18"/><line x1="20" y1="6" x2="20" y2="18"/><circle cx="12" cy="12" r="2"/>',
+    'neutral-point':   '<circle cx="12" cy="12" r="3"/><circle cx="5" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>',
 }
 
 

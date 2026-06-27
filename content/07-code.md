@@ -5,7 +5,7 @@ label:
 title: "Activities: simple to complex"
 ---
 
-Five activities in order of complexity. Activities 1 and 2 need only the micro:bit and a browser. Activity 3 needs the assembled robot. Activities 4 and 5 need the IR sensors attached. No rescue line track is required.
+Four activities in order of complexity, finishing with a live line-following demo. Activities 1 and 2 need only the micro:bit and a browser. Activity 3 needs the assembled robot. Activity 4 needs the IR sensors attached. No rescue line track is required.
 
 > **Adding your MakeCode project to this page:** open your project at [makecode.microbit.org](https://makecode.microbit.org), click **Share**, copy the URL (looks like `https://makecode.microbit.org/S12345-abcde`), then paste it as `makecode_url:` in the matching block in `content/07-code.md` and rebuild.
 
@@ -88,16 +88,10 @@ hint: Create your Activity 4 MakeCode project, click Share, and paste the URL ab
 
 <!-- SLIDE_BREAK -->
 
-### Activity 5: Simple decisions (stretch)
+### Live demo: line following
 
-Full robot required. A strip of black electrical tape on white paper is enough to test with. Write an if/else block that steers based on sensor readings. This is the foundation of line following.
+Yeah just the basics because I'll show them how to do a line follow code.
 
-**Goal:** in the forever loop: if both sensors read white, drive forward. If the left sensor reads black (0), steer left. If the right sensor reads black (0), steer right. Start the program with button A.
+Watch how the sensor readings from Activity 4 connect to steering decisions. The if/else logic is straightforward once you've seen the sensor values live: if both read white, drive forward; if either reads black, steer toward it.
 
-> **No track?** Use a 5 cm wide strip of black electrical tape on an A3 sheet of white paper. Students can hold it by hand and move it under the sensor while the robot is stationary, watching the steering change in the motor output.
-
-<!-- MAKECODE_EMBED
-title: Activity 5 - Simple decisions
-makecode_url:
-hint: Create your Activity 5 MakeCode project, click Share, and paste the URL above as makecode_url:
--->
+> This is a facilitator-led demo. Participants watch and ask questions — no coding required.

@@ -16,6 +16,5 @@ A 2-hour hands-on workshop. The first half covers what the micro:bit is and what
 | Activity 3: Motor control | 20 min | Drive the robot forward, backward, and turn using button presses. Requires the motor:bit board and motors. |
 | Activity 4: Reading sensors | 20 min | Read the IR sensor values and display them on the LED. No line needed. Participants see 0 vs 1 in real time. |
 | RoboCup Junior context | 15 min | Show how the sensor readings connect to a real competition. Demo or video of a Rescue Line run. |
-| Free build time | 10 min | Participants extend their programs. Activity 5 (simple if/then reaction) available as a stretch task. |
+| Free build time | 10 min | Participants extend their programs or explore the live demo code. |
 | Questions | 5 min | |
-{ .timing-table }

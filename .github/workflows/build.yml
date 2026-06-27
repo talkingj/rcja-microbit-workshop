@@ -26,10 +26,10 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install markdown
+        run: pip install markdown ezdxf
 
       - name: Build HTML
-        run: python build.py && cp microbit-workshop.html index.html
+        run: python build.py
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

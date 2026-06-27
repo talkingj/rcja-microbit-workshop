@@ -1652,11 +1652,10 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') exitPresentation();
 });
 </script>
-<script type="importmap">{"imports":{"three":"./resources/vendor/three/three.module.js","three/addons/":"./resources/vendor/three/addons/"}}</script>
 <script type="module">
-import * as THREE from 'three';
-import { STLLoader } from 'three/addons/loaders/STLLoader.js';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import * as THREE from './resources/vendor/three/three.module.js';
+import { STLLoader } from './resources/vendor/three/addons/loaders/STLLoader.js';
+import { OrbitControls } from './resources/vendor/three/addons/controls/OrbitControls.js';
 
 function initSTLViewer(container) {
   if (container.dataset.stlInit) return;

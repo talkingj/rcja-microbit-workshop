@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>micro:bit: What it is and why it works</title>
+<title>Getting Started in RCJA Soccer</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1112,12 +1112,12 @@ body.presenting #pres-overlay { display: flex; }
 <div id="progress"></div>
 
 <header id="top-bar">
-  <h1>micro:bit</h1>
+  <h1>RCJA Soccer</h1>
   <button id="btn-present" onclick="enterPresentation()">
     <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
     Present
   </button>
-  <span class="top-pill">Workshop</span>
+  <span class="top-pill">Getting Started</span>
 </header>
 
 <div id="pres-overlay" role="dialog" aria-modal="true" aria-label="Presentation mode">
@@ -1138,6 +1138,7 @@ body.presenting #pres-overlay { display: flex; }
 
 <nav id="nav-bar" aria-label="Sections">
   <div id="nav-inner">
+<<<<<<< HEAD:microbit-workshop.html
     <button class="nav-tab active" data-target="s-session">About this session</button>
     <button class="nav-tab" data-target="s-what">What is it</button>
     <button class="nav-tab" data-target="s-hardware">Hardware</button>
@@ -1147,30 +1148,39 @@ body.presenting #pres-overlay { display: flex; }
     <button class="nav-tab" data-target="s-robocup">RoboCup Junior</button>
     <button class="nav-tab" data-target="s-code">Coding</button>
     <button class="nav-tab" data-target="s-resources">Resources</button>
+=======
+    <button class="nav-tab active" data-target="s-overview">Overview</button>
+    <button class="nav-tab" data-target="s-field">The Field</button>
+    <button class="nav-tab" data-target="s-rules">Game Rules</button>
+    <button class="nav-tab" data-target="s-robot">Your Robot</button>
+    <button class="nav-tab" data-target="s-building">Building</button>
+    <button class="nav-tab" data-target="s-programming">Programming</button>
+    <button class="nav-tab" data-target="s-competition">Comp Day</button>
+>>>>>>> 95f65719588f9a9023d6ff30d851bdf3eadaf542:index.html
   </div>
 </nav>
 
 <section id="hero" aria-label="Introduction">
 <div class="hero-inner">
-<p class="kicker">BBC micro:bit: classroom computing hardware</p>
-<h2>The micro:bit</h2>
-<p class="hero-body">A credit-card-sized microcontroller with built-in sensors, a 5×5 LED display, wireless radio, and a 25-pin edge connector. Designed for school use. Programmable in drag-and-drop blocks or Python from any browser.</p>
+<p class="kicker">RoboCup Junior Australia &middot; Soccer Challenge 2026</p>
+<h2>Getting Started in RCJA Soccer</h2>
+<p class="hero-body">Build autonomous LEGO robots that find an infrared ball and score goals. This guide covers everything you need to know to get started in the Simple Simon and Standard Soccer leagues.</p>
 <div class="hero-stats">
   <div class="hero-stat">
-    <div class="hs-val">60+</div>
-    <div class="hs-label">countries using it</div>
-  </div>
-  <div class="hero-stat">
-    <div class="hs-val">~$30</div>
-    <div class="hs-label">AUD per board</div>
-  </div>
-  <div class="hero-stat">
     <div class="hs-val">2</div>
-    <div class="hs-label">languages: blocks + Python</div>
+    <div class="hs-label">robots per team</div>
   </div>
   <div class="hero-stat">
-    <div class="hs-val">0</div>
-    <div class="hs-label">hardware needed to start</div>
+    <div class="hs-val">2 &times; 5 min</div>
+    <div class="hs-label">halves per game</div>
+  </div>
+  <div class="hero-stat">
+    <div class="hs-val">1 kg</div>
+    <div class="hs-label">max robot weight</div>
+  </div>
+  <div class="hero-stat">
+    <div class="hs-val">220 mm</div>
+    <div class="hs-label">max diameter &amp; height</div>
   </div>
 </div>
 </div>
@@ -1178,312 +1188,369 @@ body.presenting #pres-overlay { display: flex; }
 
 
 <div class="page">
-<section class="section" id="s-session">
-<p class="section-label">Session overview</p>
-<h2 class="section-title">About this session</h2>
-<p class="section-intro">A hands-on workshop building toward a working line following robot. The first half covers what the micro:bit is and how to program it. The second half is live coding on the assembled robot, finishing with a facilitator-led line follow demo.</p>
-<table class="pin-table pin-table">
-<thead>
-<tr>
-<th>Topic</th>
-<th>Time</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Introduction</td>
-<td>10 min</td>
-<td>What is the micro:bit, where it is used, cost and availability</td>
-</tr>
-<tr>
-<td>Hardware tour</td>
-<td>10 min</td>
-<td>Built-in sensors, edge connector, kit components</td>
-</tr>
-<tr>
-<td>Activity 1: LED display</td>
-<td>10 min</td>
-<td>First MakeCode program. Get comfortable with the editor and simulator.</td>
-</tr>
-<tr>
-<td>Activity 2: Button events</td>
-<td>10 min</td>
-<td>Event-driven programming. Start/stop patterns used in competition.</td>
-</tr>
-<tr>
-<td>Activity 3: Motor control</td>
-<td>15 min</td>
-<td>Drive the robot with button presses. Confirms wiring before adding sensors.</td>
-</tr>
-<tr>
-<td>Activity 4: Reading IR sensors</td>
-<td>15 min</td>
-<td>Read sensor values on the LED display. Understand 0 vs 1 before writing steering logic.</td>
-</tr>
-<tr>
-<td>RoboCup Junior context</td>
-<td>10 min</td>
-<td>How these skills connect to competition. What a Rescue Line run looks like.</td>
-</tr>
-<tr>
-<td>Live demo: line following</td>
-<td>20 min</td>
-<td>Facilitator codes a working line follower live. Participants follow along or extend.</td>
-</tr>
-<tr>
-<td>Questions</td>
-<td>10 min</td>
-<td></td>
-</tr>
-<tr>
-<td>{ .timing-table }</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
+<section class="section" id="s-overview">
+<p class="section-label">The challenge</p>
+<h2 class="section-title">What is RCJA Soccer?</h2>
+<p class="section-intro">In RCJA Soccer, teams of two autonomous robots compete on a green carpet field to score goals using an infrared ball. Robots must be built from LEGO, programmed by the students, and started manually — no remote control allowed. It is one of the most popular RoboCup Junior challenges in Australia.</p>
+<div class="rcja-banner"><div><div class="rcja-title">RoboCup Junior Australia</div><div class="rcja-sub"></div></div><div class="rcja-badge"><div class="rcja-badge-val"></div><div class="rcja-badge-label"></div></div></div>
 
-<section class="section" id="s-what">
-<h2 class="section-title">What is the micro:bit</h2>
-<p class="section-intro">The micro:bit was developed by the BBC and the Micro:bit Educational Foundation for use in schools. It is a small, low-cost microcontroller with built-in sensors and outputs. It supports two programming languages in the same browser-based editor, with no software to install.</p>
+<!-- SLIDE_BREAK -->
+
+<p>This guide focuses on the two LEGO-based leagues: <strong>Simple Simon</strong> (beginner) and <strong>Standard</strong> (step up). Both use the same IR ball, the same field, and the same game rules. The differences are in what sensors and wheels your robot is allowed to use.</p>
 <div class="version-compare">
   <div class="version-card">
     <div class="version-hdr v1-hdr">
-      <span>micro:bit V1</span>
-      <span class="version-badge v1-badge">Original</span>
+      Simple Simon
+      <span class="version-badge v1-badge">Beginner</span>
     </div>
     <ul class="version-list">
-      <li><span class="vl-dot v1-dot"></span>5×5 LED display</li>
-      <li><span class="vl-dot v1-dot"></span>2 buttons (A and B)</li>
-      <li><span class="vl-dot v1-dot"></span>Accelerometer and compass</li>
-      <li><span class="vl-dot v1-dot"></span>Temperature and light sensing</li>
-      <li><span class="vl-dot v1-dot"></span>2.4 GHz radio and Bluetooth</li>
-      <li><span class="vl-dot v1-dot"></span>25-pin edge connector</li>
-      <li><span class="vl-dot v1-dot"></span>USB and JST battery connector</li>
+      <li><span class="vl-dot v1-dot"></span>LEGO construction only</li>
+      <li><span class="vl-dot v1-dot"></span>IR sensor only (from approved list)</li>
+      <li><span class="vl-dot v1-dot"></span>No gyro or compass sensors</li>
+      <li><span class="vl-dot v1-dot"></span>No omni-directional wheels</li>
+      <li><span class="vl-dot v1-dot"></span>No dribbler allowed</li>
+      <li><span class="vl-dot v1-dot"></span>2-year participation limit</li>
+      <li><span class="vl-dot v1-dot"></span>1.0 kg max weight</li>
     </ul>
   </div>
   <div class="version-card">
     <div class="version-hdr v2-hdr">
-      <span>micro:bit V2</span>
-      <span class="version-badge v2-badge">Current</span>
+      Standard League
+      <span class="version-badge v2-badge">Step up</span>
     </div>
     <ul class="version-list">
-      <li><span class="vl-dot v2-dot"></span>Everything in V1, plus:</li>
-      <li><span class="vl-dot v2-dot"></span>Built-in microphone</li>
-      <li><span class="vl-dot v2-dot"></span>Built-in speaker</li>
-      <li><span class="vl-dot v2-dot"></span>Capacitive touch logo (third button)</li>
-      <li><span class="vl-dot v2-dot"></span>More RAM and flash storage</li>
-      <li><span class="vl-dot v2-dot"></span>Power LED and reset button</li>
-      <li><span class="vl-dot v2-dot"></span>Backwards compatible with all V1 accessories</li>
+      <li><span class="vl-dot v2-dot"></span>LEGO construction only</li>
+      <li><span class="vl-dot v2-dot"></span>Approved 3rd-party sensors allowed</li>
+      <li><span class="vl-dot v2-dot"></span>Gyro and compass sensors allowed</li>
+      <li><span class="vl-dot v2-dot"></span>Omni wheels allowed (80 mm max, LEGO axle)</li>
+      <li><span class="vl-dot v2-dot"></span>No dribbler allowed</li>
+      <li><span class="vl-dot v2-dot"></span>No participation time limit</li>
+      <li><span class="vl-dot v2-dot"></span>1.0 kg max weight</li>
     </ul>
   </div>
 </div>
 
-<div class="callout">
-  <strong>Which version do you have?</strong> Look for a notch cut into the gold edge connector at the bottom of the board. V2 has it; V1 does not. Both work with the same MakeCode editor and the same accessories.
-</div>
+<div class="callout"><strong>Both leagues use the same IR ball, field, and game rules.</strong> The main differences are sensors and wheels. Simple Simon is a great starting point — once you have up to two years of experience, Standard League opens up more options for your robot design.</div>
+<p>For the full 2026 rules, use the <a href="https://talkingj.github.io/rcja-rules/">RCJA Rules Reference Tool</a>.</p>
 </section>
 
-<section class="section" id="s-hardware">
-<p class="section-label">On the board</p>
-<h2 class="section-title">Built-in sensors and outputs</h2>
-<p class="section-intro">The micro:bit has sensors and outputs soldered onto the board. With only the board and a USB cable, a student can detect movement, read temperature, transmit data wirelessly, and show output on the LED display. No additional components are required.</p>
-<div class="photo-row"><div class="diagram-slot" id="photo-microbit-front"><img src="https://cdn.sanity.io/images/ajwvhvgo/production/97d0aae4483c6acae040ee34512ae1459073455d-800x653.png?q=80&amp;fit=max&amp;auto=format" alt="micro:bit V2 front: annotated diagram showing LED matrix, buttons, USB connector, touch logo, microphone, and edge connector pads" loading="lazy"></div><div class="diagram-slot" id="photo-microbit-back"><img src="https://cdn.sanity.io/images/ajwvhvgo/production/e87a84e4547c396feba8e2f59f72cc3fdd332a65-800x646.png?q=80&amp;fit=max&amp;auto=format" alt="micro:bit V2 back: annotated diagram showing edge connector pads, pin labels, and V2 notch" loading="lazy"></div></div>
+<section class="section" id="s-field">
+<p class="section-label">Playing environment</p>
+<h2 class="section-title">The Soccer Field</h2>
+<p class="section-intro">The field is a green or charcoal carpet with matte black walls, two coloured goals, and white boundary lines. Robots play on the carpet inside the white lines — the area between the lines and the walls is the "out area". Fields may be on a table or on the floor.</p>
+<div class="hw-grid"><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="1"/><line x1="12" y1="5" x2="12" y2="19"/><circle cx="12" cy="12" r="3"/></svg></div><div class="hw-name">Green carpet</div><div class="hw-desc">3–5 mm thick green or charcoal coloured carpet. The recommended surface for all RCJA Soccer fields. All dimensions have a 5% tolerance.</div><span class="hw-tag">Surface</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="2" y="6" width="20" height="12" rx="0"/><line x1="8" y1="6" x2="8" y2="12"/><line x1="16" y1="6" x2="16" y2="12"/><line x1="12" y1="12" x2="12" y2="18"/></svg></div><div class="hw-name">Black walls</div><div class="hw-desc">Matte black walls surround the entire field, including behind the goals. Walls are at least 100 mm high (220 mm at Nationals).</div><span class="hw-tag">Boundary</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><path d="M4 20V6h16v14"/><path d="M4 6l4 4h8l4-4"/><line x1="8" y1="10" x2="8" y2="20"/><line x1="16" y1="10" x2="16" y2="20"/></svg></div><div class="hw-name">Goals</div><div class="hw-desc">450 mm wide, 74 mm deep, with a crossbar 140 mm high. One goal is cyan (Dulux Striking Cyan), the other is yellow (Dulux Dandelion Yellow).</div><span class="hw-tag">Scoring</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/><line x1="4" y1="6" x2="4" y2="18"/><line x1="20" y1="6" x2="20" y2="18"/><circle cx="12" cy="12" r="2"/></svg></div><div class="hw-name">White lines</div><div class="hw-desc">50 mm thick white lines, 250 mm from the walls on every side. These define the boundary of the out area.</div><span class="hw-tag">Boundary</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></div><div class="hw-name">Neutral points</div><div class="hw-desc">Two side neutral points plus one centre point. The ball is placed on the nearest neutral point after stoppages like lack of progress.</div><span class="hw-tag">Restart</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="1"/><line x1="12" y1="5" x2="12" y2="19"/><circle cx="12" cy="12" r="3"/></svg></div><div class="hw-name">Out area</div><div class="hw-desc">The space between the white lines and the walls. Ball-out-of-play rules differ between leagues (see below).</div><span class="hw-tag">Boundary</span></div></div>
 
 <!-- SLIDE_BREAK -->
 
-<div class="hw-grid"><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18"/><circle cx="8.5" cy="8.5" r="1.5" fill="#3db166" stroke="none"/><circle cx="12" cy="8.5" r="1.5" fill="#3db166" stroke="none"/><circle cx="15.5" cy="8.5" r="1.5" fill="#3db166" stroke="none"/><circle cx="8.5" cy="12" r="1.5" fill="#3db166" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="#3db166" stroke="none"/><circle cx="15.5" cy="12" r="1.5" fill="#3db166" stroke="none"/><circle cx="8.5" cy="15.5" r="1.5" fill="#3db166" stroke="none"/><circle cx="12" cy="15.5" r="1.5" fill="#3db166" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="#3db166" stroke="none"/></svg></div><div class="hw-name">5x5 LED display</div><div class="hw-desc">25 red LEDs, each individually controllable. Shows text, numbers, icons, and animations. Also acts as a light sensor when not displaying.</div><span class="hw-tag">Output + Input</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><circle cx="7" cy="12" r="3"/><circle cx="17" cy="12" r="3"/></svg></div><div class="hw-name">Buttons A and B</div><div class="hw-desc">Physical pushbuttons on either side of the board. Detect press, release, and hold. The primary way a user interacts with a running program.</div><span class="hw-tag">Input</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></div><div class="hw-name">Accelerometer</div><div class="hw-desc">Measures movement and tilt across three axes. Detects gestures: shake, tilt, freefall. Reads the board&#x27;s angle in any direction.</div><span class="hw-tag">Input</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div><div class="hw-name">Compass</div><div class="hw-desc">Measures magnetic field direction. After calibration, gives a compass bearing. Useful for navigation, detecting magnetic objects, and orientation projects.</div><span class="hw-tag">Input</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg></div><div class="hw-name">Temperature sensor</div><div class="hw-desc">Reads the CPU die temperature, which approximates ambient temperature. Good enough for weather logging, thermostat projects, and science experiments.</div><span class="hw-tag">Input</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><path d="M1 6l5 6-5 6M23 6l-5 6 5 6M8 12h8"/></svg></div><div class="hw-name">Radio (2.4 GHz)</div><div class="hw-desc">Send and receive short messages between micro:bits, up to 70 m in open space. Enables multi-device projects: games, remote controls, sensor networks.</div><span class="hw-tag">Input + Output</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div><div class="hw-name">Microphone (V2)</div><div class="hw-desc">Detects sound level, clap patterns, and loud/quiet events. Opens up music-reactive projects, sound-triggered automations, and noise monitoring.</div><span class="hw-tag">V2 only · Input</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div><div class="hw-name">Speaker (V2)</div><div class="hw-desc">On-board buzzer that plays tones, melodies, and effects without any extra hardware. Controlled with the music blocks in MakeCode or Python&#x27;s music module.</div><span class="hw-tag">V2 only · Output</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="2" y="14" width="20" height="6" rx="0"/><path d="M6 14V8M12 14V4M18 14V10"/></svg></div><div class="hw-name">Edge connector</div><div class="hw-desc">25 gold pads at the bottom: analogue, digital, I2C, SPI, and power pins. Connect motors, servos, extra sensors, and carrier boards. Crocodile clips work on the large pads.</div><span class="hw-tag">Extension</span></div></div>
-</section>
-
-<section class="section" id="s-program">
-<h2 class="section-title">Programming the micro:bit</h2>
-<p class="section-intro">Programming is done through a browser at makecode.microbit.org. No software installation is required. The editor supports drag-and-drop blocks and text-based Python in the same interface, and includes a simulator so students can test their programs before connecting hardware.</p>
-<div class="sim-callout">
-  <div class="sim-icon">
-    <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-  </div>
-  <div>
-    <div class="sim-title">The browser simulator</div>
-    <div class="sim-body">MakeCode includes a micro:bit simulator that runs in the browser. Students can test button presses, shake events, LED output, and sensor readings without connecting hardware. Lessons can proceed before any boards arrive.</div>
-    <a class="sim-link" href="https://makecode.microbit.org" target="_blank" rel="noopener">Open MakeCode editor</a>
-  </div>
-</div>
-
-<div class="lang-compare">
-  <div class="lang-card">
-    <div class="lang-hdr">
-      <span class="lang-name">MakeCode Blocks</span>
-      <span class="lang-level level-beginner">Beginner</span>
-    </div>
-    <div class="lang-body">
-      Drag-and-drop visual programming. Blocks snap together and colour-code by category. Code is always syntactically valid: no curly braces, no semicolons, no error messages about missing brackets.
-      <ul class="lang-pros">
-        <li>No typing required to get started</li>
-        <li>Instant feedback in the browser simulator</li>
-        <li>View the equivalent JavaScript any time</li>
-        <li>Same editor as MicroPython</li>
-      </ul>
-    </div>
-  </div>
-  <div class="lang-card">
-    <div class="lang-hdr">
-      <span class="lang-name">MicroPython</span>
-      <span class="lang-level level-advanced">Step up</span>
-    </div>
-    <div class="lang-body">
-      Standard Python running on the board. The same language used in GCSE, VCE, and undergraduate computing courses. Students can move from blocks to Python on the same board, in the same editor, without additional cost.
-      <ul class="lang-pros">
-        <li>Transferable skill: Python is the most-used language globally</li>
-        <li>Access to lower-level hardware control and timing</li>
-        <li>Works in MakeCode or the dedicated Python editor</li>
-        <li>Same board, no additional cost</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="callout">
-  <strong>Downloading to the board:</strong> clicking "Download" produces a .hex file. Drag it onto the MICROBIT USB drive that appears when the board is connected and the program loads automatically. No drivers or additional software needed. Works on Windows, Mac, and Chromebook.
-</div>
-
-<!-- SLIDE_BREAK -->
-
-<div class="makecode-embed">
-  <div class="makecode-header">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-    MakeCode editor
-    <a href="https://makecode.microbit.org" target="_blank" rel="noopener" class="makecode-open">Open full screen ↗</a>
-  </div>
-  <iframe src="https://makecode.microbit.org/"
-    frameborder="0"
-    sandbox="allow-popups allow-forms allow-scripts allow-same-origin allow-downloads allow-modals allow-pointer-lock"
-    allow="autoplay; clipboard-read; clipboard-write"
-    allowfullscreen></iframe>
-</div>
-</section>
-
-<section class="section" id="s-projects">
-<h2 class="section-title">Extending the micro:bit</h2>
-<p class="section-intro">The micro:bit's 25-pin edge connector gives access to a large ecosystem of add-ons. The accessories below connect via that connector, either directly with crocodile clips or through a carrier board. No soldering is required for any of them.</p>
-<div class="project-grid"><div class="project-card"><div class="project-stripe" style="background:#3db166"></div><div class="project-img"><img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/expansion-board/images/6zRKrvw.jpg" alt="Motor carrier board" loading="lazy"></div><div class="project-body"><div class="project-domain">Motors</div><div class="project-name">Motor carrier board</div><div class="project-desc">The motor:bit board plugs directly onto the edge connector and adds two DC motor outputs, 12 GVS sensor ports, and a battery connector. No soldering required.</div><div class="project-tags"><span class="tag">DC motors</span><span class="tag">GVS ports</span><span class="tag">Robot base</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#2563eb"></div><div class="project-img"><img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/sensor/octopus-sensors/sensor/images/u76NzbX.png" alt="IR tracking sensor" loading="lazy"></div><div class="project-body"><div class="project-domain">Sensing</div><div class="project-name">IR tracking sensor</div><div class="project-desc">A two-channel sensor that reads black and white surfaces. Returns 0 on black, 1 on white. Connects to GVS ports. The core sensor for line following.</div><div class="project-tags"><span class="tag">Line detection</span><span class="tag">Digital output</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#7c3aed"></div><div class="project-img"><img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/sensor/octopus-sensors/sensor/images/04089_01.png" alt="Ultrasonic distance sensor" loading="lazy"></div><div class="project-body"><div class="project-domain">Sensing</div><div class="project-name">Ultrasonic distance sensor</div><div class="project-desc">Measures distance to an object ahead by sending and receiving a sound pulse. Range 2 cm to 400 cm. Used for obstacle detection, object location, and proximity alerts.</div><div class="project-tags"><span class="tag">Distance</span><span class="tag">HC-SR04 compatible</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#059669"></div><div class="project-body"><div class="project-domain">Sensing</div><div class="project-name">Soil moisture sensor</div><div class="project-desc">Reads moisture levels from soil via the analogue edge connector pins. Connects directly to the large gold pads with crocodile clips. Common in science and environment projects.</div><div class="project-tags"><span class="tag">Analogue input</span><span class="tag">Science</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#db2777"></div><div class="project-body"><div class="project-domain">Output</div><div class="project-name">NeoPixel LED strip</div><div class="project-desc">Individually addressable RGB LEDs, chainable to any length. Controlled over a single GVS data line. Used in art, wearables, status indicators, and light-reactive projects.</div><div class="project-tags"><span class="tag">RGB LEDs</span><span class="tag">Chainable</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#d97706"></div><div class="project-img"><img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/sensor/planet-x-sensors/images/05016_01.png" alt="OLED screen" loading="lazy"></div><div class="project-body"><div class="project-domain">Output</div><div class="project-name">OLED screen</div><div class="project-desc">A 128x64 pixel screen connected over I2C. Displays text, numbers, and graphics beyond the 5x5 LED matrix. Common in data logging and science projects.</div><div class="project-tags"><span class="tag">I2C</span><span class="tag">128x64 pixels</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#0891b2"></div><div class="project-body"><div class="project-domain">Control</div><div class="project-name">Servo motor</div><div class="project-desc">Precise angular movement (0 to 180 degrees) via a single GVS port. Used for steering, robotic arms, and camera mounts. Controlled with a PWM block in MakeCode.</div><div class="project-tags"><span class="tag">PWM</span><span class="tag">Precise movement</span></div></div></div><div class="project-card"><div class="project-stripe" style="background:#dc2626"></div><div class="project-img"><img src="https://kitronik.co.uk/wp-content/uploads/2025/07/56116_large-kitronik-arcade-bbc-micro-bit-makecode_bfdff151-0831-4c62-88bb-c8335304a8ff.jpg" alt="MakeCode Arcade shield" loading="lazy"></div><div class="project-body"><div class="project-domain">Gaming</div><div class="project-name">MakeCode Arcade shield</div><div class="project-desc">Adds a colour screen, directional buttons, and action buttons. Turns the micro:bit into a handheld game console. Games are written separately in MakeCode Arcade.</div><div class="project-tags"><span class="tag">Colour display</span><span class="tag">Game input</span></div></div></div></div>
-</section>
-
-<section class="section" id="s-kit">
-<p class="section-label">Kit assembly</p>
-<h2 class="section-title">About your kit</h2>
-<p class="section-intro">Your kit arrives as individual components. No soldering is required. All connections are push-fit or screw terminal.</p>
-<div class="callout"><strong>What is in your kit:</strong> one micro:bit V2, one Elecfreaks motor:bit carrier board, two TT DC gear motors with wheels, one 2-channel IR tracking sensor module, one HC-SR04 ultrasonic sensor, one 4xAA battery holder with JST connector, and jumper wires.</div>
-<div class="photo-row"><div class="diagram-slot" id="photo-motorbit-kit"><img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/expansion-board/images/6zRKrvw.jpg" alt="Elecfreaks motor:bit carrier board" loading="lazy"></div><div class="diagram-slot" id="photo-motorbit-assembled"><img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/expansion-board/images/5ayGCgd.png" alt="micro:bit inserted into the motor:bit carrier board" loading="lazy"></div></div>
-
-<div class="hw-grid"><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></div><div class="hw-name">micro:bit V2</div><div class="hw-desc">The brain. Has the 5x5 LED display, buttons, sensors, and radio. Plugs into the top of the carrier board.</div></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="10" rx="1"/><path d="M6 7V5M10 7V5M14 7V5M18 7V5"/></svg></div><div class="hw-name">motor:bit carrier board</div><div class="hw-desc">Connects to the micro:bit edge connector. Has motor driver circuits, power regulation, and labelled ports for motors and sensors.</div></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div><div class="hw-name">TT gear motors x2</div><div class="hw-desc">One for each wheel. Wired to M1 and M2 on the carrier board using the screw terminals.</div></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="4" y="8" width="16" height="8" rx="1"/><circle cx="9" cy="12" r="2"/><circle cx="15" cy="12" r="2"/></svg></div><div class="hw-name">IR tracking sensor</div><div class="hw-desc">Two sensors on one board. Detects black vs. white surfaces. Connects to P3 and P4. Mount at the front, facing down.</div></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="3" y="8" width="18" height="8" rx="1"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg></div><div class="hw-name">Ultrasonic sensor</div><div class="hw-desc">Two round transducers: one transmits, one receives. Measures distance up to 4 m. Connect to a spare GVS port and match the pin in MakeCode.</div></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="3" y="9" width="18" height="10" rx="1"/><path d="M7 9V7a2 2 0 0 1 4 0v2M13 9V7a2 2 0 0 1 4 0v2"/></svg></div><div class="hw-name">4xAA battery pack</div><div class="hw-desc">Plugs into the JST connector on the carrier board. Use alkaline AA batteries. Rechargeable AA batteries are too low-voltage for reliable motor operation.</div></div></div>
-</section>
-
-<section class="section" id="s-robocup">
-<p class="section-label">Real-world context</p>
-<h2 class="section-title">Skills for any RoboCup Junior competition</h2>
-<p class="section-intro">The micro:bit skills covered in this workshop apply across all RoboCup Junior competitions. Each competition uses different rules and scoring, but the underlying building blocks are the same: reading sensors, controlling motors, making decisions in code, and starting the robot autonomously.</p>
-<div class="rcja-banner"><div><div class="rcja-title">RoboCup Junior Australia</div><div class="rcja-sub">An international robotics competition for students up to 19 years old. Teams design, build, and program autonomous robots. No remote controls. Australia runs national qualifiers and sends teams to the World Championship.</div></div><div class="rcja-badge"><div class="rcja-badge-val">4</div><div class="rcja-badge-label">competitions</div></div></div>
-
-<!-- SLIDE_BREAK -->
-
-<div class="activity-grid"><div class="activity-card"><div class="activity-title">Rescue Line</div><div class="activity-cap">Sensors · Motors · Decisions</div><div class="activity-desc">An autonomous robot follows a black line on white tiles, avoids obstacles, climbs ramps, and rescues a victim from a marked zone. IR sensors detect the line; the micro:bit decides when to steer, avoid, and stop.</div></div><div class="activity-card"><div class="activity-title">Rescue Maze</div><div class="activity-cap">Sensors · Motors · Navigation</div><div class="activity-desc">The robot navigates a maze of black walls to find and rescue victims. No line to follow; the robot uses distance sensors and dead-reckoning to map and traverse the maze autonomously.</div></div><div class="activity-card"><div class="activity-title">OnStage</div><div class="activity-cap">LED · Sound · Choreography</div><div class="activity-desc">A robot or robotic creation performs a 2-minute choreographed routine on a stage. The micro:bit&#x27;s speaker, LED matrix, and radio make it useful for coordinated multi-robot or prop-based performances.</div></div><div class="activity-card"><div class="activity-title">Soccer</div><div class="activity-cap">IR ball sensing · Motors · Strategy</div><div class="activity-desc">Two robots per team play autonomous soccer. They must detect the infrared ball, navigate the field, and score goals. Motor control, sensor reading, and game-state logic are all needed.</div></div></div>
-
-<p>This workshop uses Rescue Line as the worked example because the kit maps directly to it: IR sensors for line detection, DC motors for driving, and the micro:bit making all decisions. Students who complete this workshop have the core skills to enter any competition.</p>
-<!-- SLIDE_BREAK -->
-
-<div class="photo-row"><div class="diagram-slot" id="photo-motorbit-kit"><img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/expansion-board/images/6zRKrvw.jpg" alt="Elecfreaks motor:bit carrier board" loading="lazy"></div><div class="diagram-slot" id="photo-motorbit-assembled"><img src="https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/expansion-board/images/5ayGCgd.png" alt="micro:bit inserted into the motor:bit carrier board" loading="lazy"></div></div>
-
-<div class="callout"><strong>Rescue Line at a glance:</strong> 120-second autonomous run. The robot follows a black line on white tiles, navigates ramps and gaps, avoids obstacles placed on the course, and rescues a small victim from a marked zone. Scored on each element completed. No remote control allowed once the run starts.</div>
-<div class="activity-grid"><div class="activity-card"><div class="activity-num">Core skill 1</div><div class="activity-title">Line following</div><div class="activity-cap">IR tracking sensors · P3 and P4</div><div class="activity-desc">Two IR sensors read the black line on the white tile. When one sensor leaves the line the robot steers back. This is the core loop that runs for the whole course.</div></div><div class="activity-card"><div class="activity-num">Core skill 2</div><div class="activity-title">Obstacle avoidance</div><div class="activity-cap">Ultrasonic sensor via carrier board</div><div class="activity-desc">The ultrasonic sensor measures distance ahead. When an obstacle is detected the robot drives around it and reacquires the line within 30 cm.</div></div><div class="activity-card"><div class="activity-num">Core skill 3</div><div class="activity-title">Victim rescue</div><div class="activity-cap">Ultrasonic sensor · DC motors</div><div class="activity-desc">The robot detects the victim inside the rescue zone using the ultrasonic sensor, then drives forward to push it clear. Worth 50 points, the highest single scoring action in a run.</div></div><div class="activity-card"><div class="activity-num">Core skill 4</div><div class="activity-title">Autonomous start</div><div class="activity-cap">Button A · downloaded program</div><div class="activity-desc">Competition rules require the robot to start from a button press on the board. The Robot Handler presses Button A to begin. No laptops, phones, or remote controls at the field.</div></div><div class="activity-card"><div class="activity-num">Core skill 5</div><div class="activity-title">Status display</div><div class="activity-cap">5x5 LED display</div><div class="activity-desc">The LED display shows the robot&#x27;s current state during the run: following, avoiding, rescuing. Referees and coaches can see what mode it is in without stopping the robot.</div></div><div class="activity-card"><div class="activity-num">Core skill 6</div><div class="activity-title">Ramp detection</div><div class="activity-cap">Accelerometer</div><div class="activity-desc">The accelerometer reads the board&#x27;s tilt angle. Teams use this to detect when the robot is on a ramp and switch to a different motor speed or control strategy for the climb.</div></div></div>
-</section>
-
-<section class="section" id="s-code">
-<h2 class="section-title">Building toward line following</h2>
-<p class="section-intro">Four short activities that build up the skills needed for a line following robot. Each one adds a piece: display, input, motors, sensors. By the end you have everything working and the facilitator will show you how to put it together into a complete line follow.</p>
-<div class="callout"><strong>Adding your MakeCode project to this page:</strong> open your project at <a href="https://makecode.microbit.org">makecode.microbit.org</a>, click <strong>Share</strong>, copy the URL (looks like <code>https://makecode.microbit.org/S12345-abcde</code>), then paste it as <code>makecode_url:</code> in the matching block in <code>content/07-code.md</code> and rebuild.</div>
-<h3>Setup: extensions you need</h3>
-<ol class="setup-steps">
-<li>Go to <a href="https://makecode.microbit.org">makecode.microbit.org</a> and click <strong>New Project</strong>.</li>
-<li>Click the <strong>gear icon</strong> (top right) then <strong>Extensions</strong>.</li>
-<li>Search for <code>motorbit</code> and add it (motor control blocks).</li>
-<li>Search for <code>sonarbit</code> and add it (ultrasonic sensor block).</li>
-</ol>
-<!-- SLIDE_BREAK -->
-
-<h3>Wiring reference</h3>
+<h3>Ball out of play</h3>
+<p>The rules for when the ball is "out" differ between Simple Simon / Standard and the higher leagues:</p>
 <table class="pin-table pin-table">
 <thead>
 <tr>
-<th>Connection</th>
-<th>Port</th>
-<th>Notes</th>
+<th>League</th>
+<th>Ball is out of play when...</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Left motor</td>
-<td><code>M1</code></td>
-<td>TT motor, left wheel</td>
+<td><strong>Simple Simon</strong></td>
+<td>The ball strikes the wall behind either goal. If inclines are not used, the ball strikes any wall</td>
 </tr>
 <tr>
-<td>Right motor</td>
-<td><code>M2</code></td>
-<td>TT motor, right wheel</td>
-</tr>
-<tr>
-<td>Left IR sensor</td>
-<td><code>P4</code></td>
-<td>0 = black, 1 = white</td>
-</tr>
-<tr>
-<td>Right IR sensor</td>
-<td><code>P3</code></td>
-<td>0 = black, 1 = white</td>
-</tr>
-<tr>
-<td>Ultrasonic sensor</td>
-<td>Free GVS port</td>
-<td>Match pin in MakeCode</td>
+<td><strong>Standard</strong></td>
+<td>If inclines are <strong>not</strong> used: the ball strikes any wall (including sides of goals). If inclines <strong>are</strong> used: the ball strikes the back wall or sides of goals</td>
 </tr>
 </tbody>
 </table>
-<div class="callout"><strong>Sensor logic:</strong> the IR sensors return 0 on black and 1 on white. Set a pull-up on P3 and P4 inside your <em>on start</em> block.</div>
+<div class="callout"><strong>What are inclines?</strong> The out areas of the field may be raised by 10 mm on the outside edge, creating a gentle slope that rolls the ball back toward the playing area. Whether inclines are used affects ball-out-of-play rules.</div>
+<h3>Key field dimensions</h3>
+<table class="pin-table pin-table">
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal width (internal)</td>
+<td>450 mm</td>
+</tr>
+<tr>
+<td>Goal depth (internal)</td>
+<td>74 mm</td>
+</tr>
+<tr>
+<td>Crossbar height</td>
+<td>140 mm</td>
+</tr>
+<tr>
+<td>White line thickness</td>
+<td>50 mm</td>
+</tr>
+<tr>
+<td>White line distance from wall</td>
+<td>250 mm</td>
+</tr>
+<tr>
+<td>Wall height (minimum)</td>
+<td>100 mm (220 mm at Nationals)</td>
+</tr>
+<tr>
+<td>Dimension tolerance</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<div class="callout"><strong>Design tip:</strong> Robots should be built to cope with the 5% tolerance in field dimensions. Don't rely on exact measurements — test on different surfaces and field sizes when possible.</div>
+</section>
+
+<section class="section" id="s-rules">
+<p class="section-label">How the game works</p>
+<h2 class="section-title">Game Rules at a Glance</h2>
+<p class="section-intro">These are the key rules for Simple Simon and Standard League. Both leagues follow the same game rules — the differences are only in robot construction. For the complete rules, use the <a href="https://talkingj.github.io/rcja-rules/">RCJA Rules Reference Tool</a>.</p>
 <!-- SLIDE_BREAK -->
 
-<h3>Activity 1: LED display</h3>
-<p>Board and browser only. Get comfortable with MakeCode and confirm your setup works before touching the robot.</p>
-<p><strong>Goal:</strong> on start, show a heart icon. When button A is pressed, scroll the text "READY". When button B is pressed, show a tick icon.</p>
-<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project: Activity 1 - LED display</div><div class="mcp-hint">Create your Activity 1 MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
+<h3>Key rule concepts</h3>
+<div class="activity-grid"><div class="activity-card"><div class="activity-title">Ball capture zone</div><div class="activity-cap">30 mm maximum depth</div><div class="activity-desc">Any concavity in your robot (measured with a straight edge across protruding points) cannot be deeper than 30 mm. Referees test this during scrutineering and can check at any time.</div></div><div class="activity-card"><div class="activity-title">No holding the ball</div><div class="activity-cap">All degrees of freedom</div><div class="activity-desc">A robot cannot take full control of the ball — no surrounding it, encircling it, or trapping it. If the ball stops rolling while the robot moves, it&#x27;s probably being held.</div></div><div class="activity-card"><div class="activity-title">No dribbler</div><div class="activity-cap">Simple Simon &amp; Standard</div><div class="activity-desc">A dribbler is a rotating drum that puts backspin on the ball. These are not allowed in Simple Simon or Standard League. Only Lightweight and Open leagues permit dribblers.</div></div><div class="activity-card"><div class="activity-title">Goalie rules</div><div class="activity-cap">Must move forward</div><div class="activity-desc">A goalie must respond to the ball with forward movement down the field. It cannot just move sideways. Failure to move forward will result in the robot being deemed &quot;damaged&quot;.</div></div><div class="activity-card"><div class="activity-title">Multiple defence</div><div class="activity-cap">One defender in the box</div><div class="activity-desc">Only one robot from the defending team should be in the penalty area. If two defenders are in the box and affecting play, the less influential one is moved to the centre.</div></div><div class="activity-card"><div class="activity-title">Fouls</div><div class="activity-cap">Attacking without the ball</div><div class="activity-desc">If a robot continuously attacks or charges a robot that doesn&#x27;t have the ball, the referee calls a foul. The fouling robot is deemed damaged. Repeated fouls lead to disqualification.</div></div></div>
 
 <!-- SLIDE_BREAK -->
 
-<h3>Activity 2: Button events</h3>
-<p>Introduces event-driven programming. The robot will need to start from a button press in competition, so this is directly useful.</p>
-<p><strong>Goal:</strong> button A shows an arrow (forward). Button B shows a square (stop). Both buttons together show a cross (emergency stop). On start, show a dot.</p>
-<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project: Activity 2 - Button events</div><div class="mcp-hint">Create your Activity 2 MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
+<h3>Other important rules</h3>
+<ul>
+<li><strong>10-goal mercy rule:</strong> A game ends when there is a 10-goal difference. The losing team may elect to continue, but the score won't change.</li>
+<li><strong>Late penalty:</strong> Teams lose one goal per minute if late to a match. After 10 minutes, the game is forfeited 10–0.</li>
+<li><strong>No free kicks, penalty kicks, or offside</strong> — the game is simpler than real football.</li>
+<li><strong>Communication:</strong> Robots can communicate wirelessly, but it must not interfere with other robots. Use unique message prefixes. The referee can ask you to disable communication.</li>
+<li><strong>Humans:</strong> Only the team captain can handle robots during the game, and only at the referee's instruction. Other team members must stay more than 1 metre from the field.</li>
+</ul>
+<div class="callout"><strong>The referee's decisions are final.</strong> Arguing with a referee results in a yellow warning card. Continued argument means a red card and immediate forfeit. If you disagree with a call, note it calmly — protests can only be about scoring errors, and only before signing the score sheet.</div><div class="pitch-grid"><div class="pitch-card"><div class="pitch-num">01</div><div class="pitch-title">Autonomous only</div><div class="pitch-body">No remote control of any kind. Robots run downloaded programs and must be started manually by the team captain. They cannot be started from a laptop, tablet, or phone.</div></div><div class="pitch-card"><div class="pitch-num">02</div><div class="pitch-title">2 x 5-minute halves</div><div class="pitch-body">Five-minute break between halves. The game clock runs continuously except during a referee&#x27;s timeout. Some competitions may use 10-minute halves.</div></div><div class="pitch-card"><div class="pitch-num">03</div><div class="pitch-title">Kick-off</div><div class="pitch-body">Coin toss decides who kicks off or chooses ends. Ball placed at centre, non-kicking team&#x27;s robots must have part of the robot in their penalty box. All robots start on the referee&#x27;s command.</div></div><div class="pitch-card"><div class="pitch-num">04</div><div class="pitch-title">Scoring</div><div class="pitch-body">A goal is scored when the ball strikes the back wall of the goal. Own goals count for the opposition. After a goal, the non-scoring team gets the kick-off.</div></div><div class="pitch-card"><div class="pitch-num">05</div><div class="pitch-title">Lack of progress</div><div class="pitch-body">Called when the ball is stuck, no robot can reach it, or a robot is &quot;forcing&quot; the ball through a defender. Ball moves to the nearest neutral point (then centre if it happens again).</div></div><div class="pitch-card"><div class="pitch-num">06</div><div class="pitch-title">Damaged robots</div><div class="pitch-body">A robot is &quot;damaged&quot; if it doesn&#x27;t respond to the ball, gets stuck for 20+ seconds, tips over, damages the ball or field, or makes noise from a speaker. Off the field for at least 30 seconds.</div></div></div>
+</section>
+
+<section class="section" id="s-robot">
+<p class="section-label">Robot specifications</p>
+<h2 class="section-title">Building a Legal Robot</h2>
+<p class="section-intro">Both Simple Simon and Standard League robots must be built from LEGO parts only. The key difference is which sensors and wheels are allowed. Every robot must pass scrutineering before competing — referees check size, weight, ball capture zone, and construction.</p>
+<table class="pin-table pin-table">
+<thead>
+<tr>
+<th>Specification</th>
+<th>Simple Simon</th>
+<th>Standard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Construction</td>
+<td>LEGO only</td>
+<td>LEGO only</td>
+</tr>
+<tr>
+<td>Max diameter</td>
+<td>220 mm</td>
+<td>220 mm</td>
+</tr>
+<tr>
+<td>Max height</td>
+<td>220 mm</td>
+<td>220 mm</td>
+</tr>
+<tr>
+<td>Max weight</td>
+<td>1.0 kg</td>
+<td>1.0 kg</td>
+</tr>
+<tr>
+<td>Ball capture zone</td>
+<td>30 mm max</td>
+<td>30 mm max</td>
+</tr>
+<tr>
+<td>IR sensor</td>
+<td>Approved list only</td>
+<td>Approved list only</td>
+</tr>
+<tr>
+<td>Gyro / compass</td>
+<td><strong>Not allowed</strong></td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>Omni wheels</td>
+<td><strong>Not allowed</strong></td>
+<td>Allowed (80 mm max, LEGO axle)</td>
+</tr>
+<tr>
+<td>Dribbler</td>
+<td>Not allowed</td>
+<td>Not allowed</td>
+</tr>
+<tr>
+<td>Power source</td>
+<td>LEGO rechargeable battery</td>
+<td>LEGO rechargeable battery</td>
+</tr>
+<tr>
+<td>Participation limit</td>
+<td><strong>2 years</strong></td>
+<td>No limit</td>
+</tr>
+</tbody>
+</table>
+<!-- SLIDE_BREAK -->
+
+<h3>Key components</h3>
+<div class="hw-grid"><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M4 9h2M18 9h2M4 15h2M18 15h2"/></svg></div><div class="hw-name">SPIKE Hub</div><div class="hw-desc">The brain of your robot. Runs your program, reads sensors, and drives motors. Must be started manually — no laptops or phones.</div><span class="hw-tag">Controller</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div><div class="hw-name">Motors</div><div class="hw-desc">SPIKE large and medium motors for driving wheels and mechanisms. Your robot must be able to drive in all directions.</div><span class="hw-tag">Drive</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="4" y="8" width="16" height="8" rx="1"/><circle cx="9" cy="12" r="2"/><circle cx="15" cy="12" r="2"/></svg></div><div class="hw-name">IR sensor</div><div class="hw-desc">Detects the pulsed infrared ball (40 kHz carrier, 920–960 nm wavelength). Essential for finding the ball. Must be from the approved sensor list.</div><span class="hw-tag">Required</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="#3db166" stroke="none"/><path d="M12 2v4M12 18v4"/></svg></div><div class="hw-name">Colour sensor</div><div class="hw-desc">Can detect field colours (green carpet, white lines) and goal colours (cyan vs yellow). Useful for orientation and knowing which goal to aim for.</div><span class="hw-tag">Optional</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div><div class="hw-name">Gyro / compass</div><div class="hw-desc">Standard League only. Helps maintain heading and orientation so your robot always knows which way it&#x27;s facing. Not allowed in Simple Simon.</div><span class="hw-tag">Standard only</span></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="3" y="9" width="18" height="10" rx="1"/><path d="M7 9V7a2 2 0 0 1 4 0v2M13 9V7a2 2 0 0 1 4 0v2"/></svg></div><div class="hw-name">Battery</div><div class="hw-desc">Must use the LEGO rechargeable battery only. No other power sources or voltages are permitted in Simple Simon and Standard.</div><span class="hw-tag">Required</span></div></div>
+
+<div class="callout"><strong>Handle requirement:</strong> Every robot must have a stable, easily accessible handle at least 50 mm above the highest structure. Cable ties make a strong, lightweight handle. The handle height does not count toward the 220 mm robot height limit.</p>
+<p><strong>Approved sensors:</strong> Only sensors on the official list are allowed. Check the current list at <a href="https://www.robocupjunior.org.au/soccer/sensors/">robocupjunior.org.au/soccer/sensors</a>.</p>
+<p><strong>The 220 mm cylinder test:</strong> Your robot must rotate freely inside a 220 mm diameter cylinder with no resistance. Build to 210 mm to allow for tolerance. Any moving parts must be fully extended during inspection.</div>
+</section>
+
+<section class="section" id="s-building">
+<p class="section-label">Design guidance</p>
+<h2 class="section-title">Building Your Soccer Robot</h2>
+<p class="section-intro">Practical tips for designing and building a competitive SPIKE-based soccer robot. Whether you are building for Simple Simon or Standard League, these fundamentals apply.</p>
+<!-- SLIDE_BREAK -->
+
+<h3>Robot roles</h3>
+<p>Most teams run two robots with different jobs. You don't have to — both robots can play the same role — but specialising usually works better.</p>
+<div class="activity-grid"><div class="activity-card"><div class="activity-title">Striker</div><div class="activity-cap">Ball-chasing robot</div><div class="activity-desc">Finds the ball using the IR sensor, drives toward it, and pushes it toward the opponent&#x27;s goal. Needs to be fast and responsive. A good striker reacts quickly to changes in ball position.</div></div><div class="activity-card"><div class="activity-title">Goalie</div><div class="activity-cap">Goal defender</div><div class="activity-desc">Stays near your goal but MUST move forward to intercept the ball. Cannot just sit in front of the goal or only move sideways. A goalie that doesn&#x27;t move forward will be deemed &quot;damaged&quot; by the referee.</div></div></div>
+
+<div class="callout"><strong>Goalie warning:</strong> A goalie that only moves sideways or stays stationary will be removed from the field as a "damaged" robot. It must respond to the ball with forward movement — the rules require it to be able to take some part of the robot outside the penalty box (300 mm from the goal).</div>
+<h3>Things people forget</h3>
+<ul>
+<li><strong>The handle</strong> — every robot needs one, at least 50 mm above the top. Add it early, not the night before.</li>
+<li><strong>Cable management</strong> — loose wires catch on walls and other robots. Tidy them with cable ties.</li>
+<li><strong>Battery access</strong> — you need to charge between matches. Don't bury the battery deep inside the robot.</li>
+<li><strong>Calibration access</strong> — you may need to adjust sensors at the venue. Make sure you can reach them without disassembling the robot.</li>
+<li><strong>Speakers</strong> — if your SPIKE hub makes sounds during gameplay (not just debugging), your robot will be deemed damaged. Turn off any startup sounds.</li>
+</ul><div class="pitch-grid"><div class="pitch-card"><div class="pitch-num">01</div><div class="pitch-title">Start simple</div><div class="pitch-body">Get a robot that drives and finds the ball before adding complexity. A working simple robot beats a broken complex one every time. You can always iterate between matches.</div></div><div class="pitch-card"><div class="pitch-num">02</div><div class="pitch-title">Ball capture zone</div><div class="pitch-body">Keep any concavity under 30 mm deep. Referees test this by placing a straight edge across the outermost points of the robot. If the ball can go in more than 30 mm, you fail inspection.</div></div><div class="pitch-card"><div class="pitch-num">03</div><div class="pitch-title">Weight budget</div><div class="pitch-body">1 kg maximum including everything. LEGO adds up quickly — weigh your robot early and often. Leave room for the battery and any sensors you still need to add.</div></div><div class="pitch-card"><div class="pitch-num">04</div><div class="pitch-title">Size matters</div><div class="pitch-body">220 mm diameter cylinder, 220 mm height. Build to 210 mm to give yourself tolerance. Remember: moving parts must be fully extended during the cylinder test.</div></div><div class="pitch-card"><div class="pitch-num">05</div><div class="pitch-title">Wheels and drive</div><div class="pitch-body">Simple Simon: standard LEGO wheels only. Standard: omni wheels allowed (80 mm max diameter, must use a LEGO axle). Your robot must be able to drive in all directions.</div></div><div class="pitch-card"><div class="pitch-num">06</div><div class="pitch-title">Protect your wires</div><div class="pitch-body">Cable ties or tape can secure wires but must not be part of the robot&#x27;s structure. No glue, screws, or non-LEGO building materials are permitted.</div></div></div>
+</section>
+
+<section class="section" id="s-programming">
+<p class="section-label">Programming concepts</p>
+<h2 class="section-title">Programming Your Robot</h2>
+<p class="section-intro">SPIKE robots can be programmed in SPIKE App blocks (drag-and-drop) or Python. This section covers the key programming concepts for soccer — the ideas your code needs to handle, regardless of which language you use.</p>
+<div class="lang-compare">
+  <div class="lang-card">
+    <div class="lang-hdr">
+      <span class="lang-name">SPIKE App Blocks</span>
+      <span class="lang-level level-beginner">Beginner</span>
+    </div>
+    <div class="lang-body">
+      Visual drag-and-drop programming in the LEGO Education SPIKE app. Great for getting started — you can see the logic flow and test quickly.
+      <ul class="lang-pros">
+        <li>No syntax to memorise</li>
+        <li>Built-in motor and sensor blocks</li>
+        <li>Quick to prototype and iterate</li>
+        <li>Works on tablets and computers</li>
+      </ul>
+    </div>
+  </div>
+  <div class="lang-card">
+    <div class="lang-hdr">
+      <span class="lang-name">Python</span>
+      <span class="lang-level level-advanced">Step up</span>
+    </div>
+    <div class="lang-body">
+      Text-based programming for more control and flexibility. SPIKE supports MicroPython. Better for complex logic and fine-tuned sensor handling.
+      <ul class="lang-pros">
+        <li>More precise control over timing</li>
+        <li>Easier to handle complex conditions</li>
+        <li>Transferable programming skill</li>
+        <li>Better for inter-robot communication</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <!-- SLIDE_BREAK -->
 
-<h3>Activity 3: Motor control</h3>
-<p>Assembled robot required (motor:bit + motors + battery). Confirms the robot is wired correctly before adding sensors.</p>
-<p><strong>Goal:</strong> button A drives both motors forward for 1 second then stops. Button B spins on the spot (one motor forward, one back). On start, show a ready icon.</p>
-<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project: Activity 3 - Motor control</div><div class="mcp-hint">Create your Activity 3 MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
+<h3>Core programming concepts for soccer</h3>
+<p>Your robot's program needs to handle these key tasks. The exact implementation will depend on your hardware and language choice, but every soccer robot needs to solve these problems.</p>
+<div class="pitch-grid">
+  <div class="pitch-card">
+    <div class="pitch-num">01</div>
+    <div class="pitch-title">Sense the ball</div>
+    <div class="pitch-body">Use the IR sensor to detect the ball's direction and relative distance. The ball pulses infrared light at 40 kHz — your sensor reads the strength from different angles to work out where the ball is.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">02</div>
+    <div class="pitch-title">Drive toward it</div>
+    <div class="pitch-body">Convert sensor readings into motor commands. Turn toward the strongest IR signal and drive forward. The faster your loop runs, the more responsive your robot will be.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">03</div>
+    <div class="pitch-title">Know your heading</div>
+    <div class="pitch-body">Standard League can use a gyro to maintain orientation — so the robot always knows which way is "forward". Simple Simon teams need to rely on other strategies like motor timing or colour detection.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">04</div>
+    <div class="pitch-title">Goal awareness</div>
+    <div class="pitch-body">Know which goal is yours. A colour sensor pointing forward can distinguish cyan from yellow. Without this, your robot might score own goals — which count for the opposition.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">05</div>
+    <div class="pitch-title">Avoid penalties</div>
+    <div class="pitch-body">Program a "stuck" detection: if motors are running but the robot isn't moving (e.g. stalled against a wall), reverse and turn. A robot stuck for 20+ seconds in the goal area gets deemed "damaged".</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">06</div>
+    <div class="pitch-title">Communication</div>
+    <div class="pitch-body">Your two robots can communicate wirelessly (e.g. Bluetooth). Use unique message prefixes so you don't pick up signals from other teams. The referee can ask you to disable this at any time.</div>
+  </div>
+</div>
+
+<div class="callout"><strong>Manual start only:</strong> Your robot must be started by pressing a button on the hub — not from a laptop, tablet, or phone. Make sure your start sequence works reliably from a physical button press, every time.</p>
+<p><strong>Annotated code:</strong> You must submit annotated code before the competition. Judges will ask you to explain your program — make sure every team member understands how it works, not just the person who wrote it.</div>
+</section>
+
+<section class="section" id="s-competition">
+<p class="section-label">At the competition</p>
+<h2 class="section-title">Competition Day Preparation</h2>
+<p class="section-intro">Knowing the rules and having a good robot is only half the battle. Being prepared for competition day — scrutineering, calibration, interviews, and match logistics — makes a big difference to how your team performs.</p>
+<div class="activity-grid"><div class="activity-card"><div class="activity-title">Scrutineering</div><div class="activity-cap">First thing each morning</div><div class="activity-desc">Robots are checked for size (220 mm cylinder), weight (1 kg max), ball capture zone (30 mm), and construction legality. Happens every morning. If you modify your robot during the day, you must get re-inspected.</div></div><div class="activity-card"><div class="activity-title">Calibration</div><div class="activity-cap">Before each game</div><div class="activity-desc">At least 5 minutes of setup time before each match. Use this to calibrate IR sensors and colour sensors for the venue&#x27;s lighting and magnetic conditions. Every venue is different.</div></div><div class="activity-card"><div class="activity-title">Team interview</div><div class="activity-cap">During the competition</div><div class="activity-desc">A panel will interview your team about your design, programming, and process. You must demonstrate that the robot is your own work and that every team member understands the code.</div></div><div class="activity-card"><div class="activity-title">Round robin</div><div class="activity-cap">Group stage</div><div class="activity-desc">3 points for a win, 1 for a draw, 0 for a loss. Teams ranked by total points, then goals scored, then goal difference. Play fair and learn from every match.</div></div><div class="activity-card"><div class="activity-title">Finals</div><div class="activity-cap">Top teams</div><div class="activity-desc">Play-offs for 1st through 4th. Tied finals use &quot;golden goal&quot; — play continues until someone scores. After 5 extra minutes with no goal, only one robot per team is allowed on the field.</div></div></div>
 
 <!-- SLIDE_BREAK -->
 
-<h3>Activity 4: Reading IR sensors</h3>
-<p>IR sensors must be connected (P3 and P4). No track needed. This confirms the sensors are working and you understand what the values mean.</p>
-<p><strong>Goal:</strong> in the forever loop, read P3 and P4. If both return 1 (white), show a blank display. If either returns 0 (black detected), show a dot.</p>
-<div class="makecode-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div class="mcp-label">MakeCode project: Activity 4 - Reading sensors</div><div class="mcp-hint">Create your Activity 4 MakeCode project, click Share, and paste the URL above as makecode_url:</div></div>
+<h3>Preparation checklist</h3>
+<div class="pitch-grid">
+  <div class="pitch-card">
+    <div class="pitch-num">01</div>
+    <div class="pitch-title">Annotated code</div>
+    <div class="pitch-body">Submit before the competition. Your code must have comments explaining sensor use, decision-making logic, and motor control. You can keep updating after submission, but maintain an annotated version.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">02</div>
+    <div class="pitch-title">Digital poster</div>
+    <div class="pitch-body">A3 size. Must include: team name, member first names and roles, one innovative feature, one challenge you overcame, and what you learned. Required for special awards. No personal info beyond first names.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">03</div>
+    <div class="pitch-title">Spare parts</div>
+    <div class="pitch-body">Bring extra LEGO pieces, cables, and a charger. You can repair between matches, but modifications must be re-inspected. Don't get caught without a critical part.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">04</div>
+    <div class="pitch-title">Practice on carpet</div>
+    <div class="pitch-body">Sensors behave differently on different surfaces. If possible, practice on carpet similar to competition carpet (3–5 mm thick, green or charcoal). The Gen2 vinyl mat works for practice.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">05</div>
+    <div class="pitch-title">Know your roles</div>
+    <div class="pitch-body">Designate a captain — they handle robots during the game. Other members start one robot each, then must stay 1+ metre from the field. Cover any cyan, yellow, or orange on your clothing if asked.</div>
+  </div>
+  <div class="pitch-card">
+    <div class="pitch-num">06</div>
+    <div class="pitch-title">Spirit of competition</div>
+    <div class="pitch-body">Share what you've learned with other teams. Ask questions. Be respectful to referees — their decisions are final. The goal is learning, not just winning.</div>
+  </div>
+</div>
 
-<!-- SLIDE_BREAK -->
-
-<h3>Live demo: line following</h3>
-<p>Once activities 1 to 4 are done, you have all the pieces. The facilitator will now show how to combine motor control and sensor readings into a working line follower.</p>
-<p>The logic is straightforward: read both sensors in a forever loop, steer toward whichever sensor sees the line, drive forward when both see white.</p>
-<div class="callout"><strong>Want to try it yourself?</strong> Use a 5 cm strip of black electrical tape on white paper. You do not need a full track to test the steering logic.</div>
+<div class="callout"><strong>Late penalty:</strong> Teams lose one goal per minute if late to a match. After 10 minutes, the game is forfeited 10–0. The 10 minutes includes any break time — be ready early.</p>
+<p><strong>After the game:</strong> If both captains are happy with the result, they sign the score sheet. After signing, no protests can be lodged — so check the score before you sign.</div>
+<p>For the complete 2026 rules, use the <a href="https://talkingj.github.io/rcja-rules/">RCJA Rules Reference Tool</a>.</p>
 </section>
 
 <section class="section" id="s-resources">

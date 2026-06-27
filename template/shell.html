@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Getting Started in RCJA Soccer</title>
+<title>micro:bit: What it is and why it works</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1112,7 +1112,7 @@ body.presenting #pres-overlay { display: flex; }
 <div id="progress"></div>
 
 <header id="top-bar">
-  <h1>RCJA Soccer</h1>
+  <h1>micro:bit</h1>
   <button id="btn-present" onclick="enterPresentation()">
     <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
     Present
@@ -1278,19 +1278,23 @@ import * as THREE from 'three';
 import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-document.querySelectorAll('.stl-viewer-wrap').forEach(container => {
+function initSTLViewer(container) {
+  if (container.dataset.stlInit) return;
+  container.dataset.stlInit = '1';
+
   const src = container.dataset.src;
-  if (!src) return;
+  const w = container.clientWidth || 600;
+  const h = container.clientHeight || 420;
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setSize(w, h);
   container.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x1b2945);
 
-  const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.01, 1000);
+  const camera = new THREE.PerspectiveCamera(45, w / h, 0.01, 1000);
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
@@ -1330,13 +1334,28 @@ document.querySelectorAll('.stl-viewer-wrap').forEach(container => {
   controls.addEventListener('start', () => { controls.autoRotate = false; });
 
   new ResizeObserver(() => {
-    const w = container.clientWidth, h = container.clientHeight;
-    renderer.setSize(w, h);
-    camera.aspect = w / h;
+    const rw = container.clientWidth, rh = container.clientHeight;
+    renderer.setSize(rw, rh);
+    camera.aspect = rw / rh;
     camera.updateProjectionMatrix();
   }).observe(container);
 
   (function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera); })();
+}
+
+// Init when the slide containing the viewer becomes visible
+const stlObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) initSTLViewer(e.target); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.stl-viewer-wrap').forEach(container => {
+  if (!container.dataset.src) return;
+  // If already visible (e.g. no slide wrapper), init immediately
+  if (container.clientWidth > 0) {
+    initSTLViewer(container);
+  } else {
+    stlObserver.observe(container);
+  }
 });
 </script>
 </body>

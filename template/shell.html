@@ -1012,6 +1012,99 @@ body.presenting #pres-overlay { display: flex; }
 }
 #btn-present:hover { background: var(--green); border-color: var(--green); color: var(--navy); }
 #btn-present svg { width: 12px; height: 12px; fill: currentColor; }
+
+/* ── RESOURCES SECTION ───────────────────────── */
+.resource-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.resource-card {
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.resource-card-type {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--green);
+}
+.resource-card-name {
+  font-size: 15px; font-weight: 700;
+  color: var(--navy);
+}
+.resource-card-desc {
+  font-size: 13px; color: var(--muted);
+  line-height: 1.5; flex: 1;
+}
+.resource-card-download {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 8px;
+  background: var(--navy); color: #fff;
+  font-size: 12px; font-weight: 600;
+  padding: 8px 14px;
+  text-decoration: none;
+  transition: background 0.15s;
+  width: fit-content;
+}
+.resource-card-download:hover { background: var(--navy-mid); }
+.resource-card-download svg { flex-shrink: 0; }
+
+/* ── STL VIEWER ──────────────────────────────── */
+.stl-viewer-wrap {
+  position: relative;
+  background: var(--navy);
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.stl-viewer-wrap canvas {
+  display: block;
+  width: 100% !important;
+}
+.stl-viewer-hint {
+  position: absolute;
+  bottom: 12px; left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.55);
+  color: rgba(255,255,255,0.7);
+  font-size: 11px; padding: 4px 10px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.stl-viewer-loading {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+  transition: opacity 0.3s;
+}
+.stl-viewer-wrap.loaded .stl-viewer-loading { opacity: 0; pointer-events: none; }
+
+/* ── DXF PREVIEW ─────────────────────────────── */
+.dxf-preview {
+  border: 1.5px solid var(--border);
+  background: var(--navy);
+  overflow: auto;
+  margin-bottom: 32px;
+  position: relative;
+}
+.dxf-preview svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.dxf-preview-label {
+  position: absolute;
+  top: 10px; left: 12px;
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.35);
+}
 </style>
 </head>
 <body>
@@ -1177,6 +1270,73 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); presNav(1); }
   if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); presNav(-1); }
   if (e.key === 'Escape') exitPresentation();
+});
+</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+document.querySelectorAll('.stl-viewer-wrap').forEach(container => {
+  const src = container.dataset.src;
+  if (!src) return;
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  container.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x1b2945);
+
+  const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.01, 1000);
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.06;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 0.8;
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+  const key = new THREE.DirectionalLight(0xffffff, 1.4);
+  key.position.set(5, 8, 5);
+  scene.add(key);
+  const fill = new THREE.DirectionalLight(0x3db166, 0.4);
+  fill.position.set(-4, -2, -4);
+  scene.add(fill);
+
+  new STLLoader().load(src, geo => {
+    geo.computeBoundingBox();
+    const box = geo.boundingBox;
+    const center = new THREE.Vector3();
+    box.getCenter(center);
+    geo.translate(-center.x, -center.y, -center.z);
+    const size = new THREE.Vector3();
+    box.getSize(size);
+    const scale = 3 / Math.max(size.x, size.y, size.z);
+    geo.scale(scale, scale, scale);
+
+    const mat = new THREE.MeshPhongMaterial({ color: 0x2a4a7a, specular: 0x3db166, shininess: 50 });
+    scene.add(new THREE.Mesh(geo, mat));
+
+    const dist = 4;
+    camera.position.set(dist * 0.7, dist * 0.5, dist);
+    camera.lookAt(0, 0, 0);
+    controls.update();
+    container.classList.add('loaded');
+  });
+
+  controls.addEventListener('start', () => { controls.autoRotate = false; });
+
+  new ResizeObserver(() => {
+    const w = container.clientWidth, h = container.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }).observe(container);
+
+  (function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera); })();
 });
 </script>
 </body>

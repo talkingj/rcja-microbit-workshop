@@ -421,6 +421,75 @@ def simple_highlight(src):
     return ''.join(result)
 
 
+def render_stl_viewer(yaml_text):
+    """Render <!-- STL_VIEWER --> shortcode."""
+    data = _parse_yaml(yaml_text)
+    if not isinstance(data, dict):
+        data = {}
+    src  = html.escape(str(data.get('src', '')))
+    name = html.escape(str(data.get('name', '3D model')))
+    desc = html.escape(str(data.get('desc', '')))
+    desc_html = f'<p style="font-size:13px;color:var(--muted);margin-bottom:12px">{desc}</p>' if desc else ''
+    return (
+        f'{desc_html}'
+        f'<div class="stl-viewer-wrap" data-src="{src}" style="height:420px">'
+        f'<div class="stl-viewer-loading">Loading {name}…</div>'
+        f'<div class="stl-viewer-hint">Drag to rotate &nbsp;·&nbsp; Scroll to zoom</div>'
+        f'</div>'
+        f'<a href="{src}" download class="resource-card-download" style="margin-bottom:32px">'
+        f'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>'
+        f'Download STL'
+        f'</a>'
+    )
+
+
+def render_dxf_preview(yaml_text):
+    """Render <!-- DXF_PREVIEW --> shortcode: converts DXF to inline SVG."""
+    data = _parse_yaml(yaml_text)
+    if not isinstance(data, dict):
+        data = {}
+    src  = str(data.get('src', ''))
+    name = html.escape(str(data.get('name', 'DXF file')))
+    desc = html.escape(str(data.get('desc', '')))
+    desc_html = f'<p style="font-size:13px;color:var(--muted);margin-bottom:12px">{desc}</p>' if desc else ''
+
+    svg_html = ''
+    if src and HAS_YAML:
+        try:
+            import ezdxf
+            from ezdxf.addons.drawing import Frontend, RenderContext
+            from ezdxf.addons.drawing.svg import SVGBackend
+            from ezdxf.addons.drawing.properties import LayoutProperties
+            from ezdxf.addons.drawing import layout as dxf_layout
+
+            dxf_path = ROOT / src
+            doc = ezdxf.readfile(str(dxf_path))
+            msp = doc.modelspace()
+            backend = SVGBackend()
+            ctx = RenderContext(doc)
+            props = LayoutProperties.from_layout(msp)
+            props.set_colors('#1b2945', '#3db166')
+            Frontend(ctx, backend).draw_layout(msp, finalize=True, layout_properties=props)
+            page = dxf_layout.Page(0, 0, dxf_layout.Units.mm,
+                                   margins=dxf_layout.Margins.all(0))
+            svg_html = backend.get_string(page, xml_declaration=False)
+        except Exception as e:
+            svg_html = f'<p style="color:var(--muted);padding:24px">DXF preview unavailable: {html.escape(str(e))}</p>'
+
+    dl_src = html.escape(src)
+    return (
+        f'{desc_html}'
+        f'<div class="dxf-preview">'
+        f'<span class="dxf-preview-label">{name}</span>'
+        f'{svg_html}'
+        f'</div>'
+        f'<a href="{dl_src}" download class="resource-card-download" style="margin-bottom:32px">'
+        f'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>'
+        f'Download DXF'
+        f'</a>'
+    )
+
+
 def resolve_embeds(body, _source_file=''):
     """Replace EMBED and MAKECODE_EMBED comment markers with rendered HTML."""
     # <!-- HW_CARDS\n...yaml...\n-->
@@ -445,6 +514,19 @@ def resolve_embeds(body, _source_file=''):
     body = re.sub(
         r'<!--\s*PHOTO_ROW\s*\n(.*?)\n-->',
         lambda m: render_photo_row(m.group(1).strip()),
+        body, flags=re.DOTALL,
+    )
+
+    # <!-- STL_VIEWER\n...yaml...\n-->
+    body = re.sub(
+        r'<!--\s*STL_VIEWER\s*\n(.*?)\n-->',
+        lambda m: render_stl_viewer(m.group(1).strip()),
+        body, flags=re.DOTALL,
+    )
+    # <!-- DXF_PREVIEW\n...yaml...\n-->
+    body = re.sub(
+        r'<!--\s*DXF_PREVIEW\s*\n(.*?)\n-->',
+        lambda m: render_dxf_preview(m.group(1).strip()),
         body, flags=re.DOTALL,
     )
 

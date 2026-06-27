@@ -1012,6 +1012,99 @@ body.presenting #pres-overlay { display: flex; }
 }
 #btn-present:hover { background: var(--green); border-color: var(--green); color: var(--navy); }
 #btn-present svg { width: 12px; height: 12px; fill: currentColor; }
+
+/* ── RESOURCES SECTION ───────────────────────── */
+.resource-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.resource-card {
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.resource-card-type {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--green);
+}
+.resource-card-name {
+  font-size: 15px; font-weight: 700;
+  color: var(--navy);
+}
+.resource-card-desc {
+  font-size: 13px; color: var(--muted);
+  line-height: 1.5; flex: 1;
+}
+.resource-card-download {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 8px;
+  background: var(--navy); color: #fff;
+  font-size: 12px; font-weight: 600;
+  padding: 8px 14px;
+  text-decoration: none;
+  transition: background 0.15s;
+  width: fit-content;
+}
+.resource-card-download:hover { background: var(--navy-mid); }
+.resource-card-download svg { flex-shrink: 0; }
+
+/* ── STL VIEWER ──────────────────────────────── */
+.stl-viewer-wrap {
+  position: relative;
+  background: var(--navy);
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.stl-viewer-wrap canvas {
+  display: block;
+  width: 100% !important;
+}
+.stl-viewer-hint {
+  position: absolute;
+  bottom: 12px; left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.55);
+  color: rgba(255,255,255,0.7);
+  font-size: 11px; padding: 4px 10px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.stl-viewer-loading {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+  transition: opacity 0.3s;
+}
+.stl-viewer-wrap.loaded .stl-viewer-loading { opacity: 0; pointer-events: none; }
+
+/* ── DXF PREVIEW ─────────────────────────────── */
+.dxf-preview {
+  border: 1.5px solid var(--border);
+  background: var(--navy);
+  overflow: auto;
+  margin-bottom: 32px;
+  position: relative;
+}
+.dxf-preview svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.dxf-preview-label {
+  position: absolute;
+  top: 10px; left: 12px;
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.35);
+}
 </style>
 </head>
 <body>
@@ -1053,6 +1146,7 @@ body.presenting #pres-overlay { display: flex; }
     <button class="nav-tab" data-target="s-kit">About your kit</button>
     <button class="nav-tab" data-target="s-robocup">RoboCup Junior</button>
     <button class="nav-tab" data-target="s-code">Coding</button>
+    <button class="nav-tab" data-target="s-resources">Resources</button>
   </div>
 </nav>
 
@@ -1391,6 +1485,22 @@ body.presenting #pres-overlay { display: flex; }
 <p>The logic is straightforward: read both sensors in a forever loop, steer toward whichever sensor sees the line, drive forward when both see white.</p>
 <div class="callout"><strong>Want to try it yourself?</strong> Use a 5 cm strip of black electrical tape on white paper. You do not need a full track to test the steering logic.</div>
 </section>
+
+<section class="section" id="s-resources">
+<h2 class="section-title">Files to download</h2>
+<p class="section-intro">Laser cut chassis template and 3D printable chassis, both designed in Fusion 360. Download the file that matches your fabrication method.</p>
+<!-- SLIDE_BREAK -->
+
+<h3>Laser cut chassis (DXF)</h3>
+<p>Designed for 3mm acrylic or MDF. All holes are sized for M3 hardware. Includes mounts for the motor:bit carrier board, IR sensors at the front, and the ultrasonic sensor.</p>
+<p style="font-size:13px;color:var(--muted);margin-bottom:12px">Open in Fusion 360, LibreCAD, LightBurn, or import directly into your laser cutter software.</p><div class="dxf-preview"><span class="dxf-preview-label">Laser cut chassis</span><svg xmlns="http://www.w3.org/2000/svg" width="331.8mm" height="126.3mm" viewBox="0 0 1000000 380651"><defs><style>.C1 {stroke: #3db166; stroke-width: 753; stroke-opacity: 1.000; fill: none; fill-opacity: 1.000;}</style></defs><rect fill="#1b2945" x="0" y="0" width="1000000" height="380651" fill-opacity="1.0" /><g stroke-linecap="round" stroke-linejoin="round" fill-rule="evenodd"><path d="M 9042 6053 l 0 0" class="C1" /><path d="M -0 361712 l 0 0" class="C1" /><path d="M 350141 361712 l 0 0" class="C1" /><path d="M 370729 6053 l 0 0" class="C1" /><path d="M 131111 361712 l 69323 0" class="C1" /><path d="M 70830 352669 l 0 9042" class="C1" /><path d="M 75351 247479 l 0 181" class="C1" /><path d="M 122069 138973 c 0 2497 -2024 4521 -4521 4521 c -2497 0 -4521 -2024 -4521 -4521 c 0 -2497 2024 -4521 4521 -4521 c 2497 0 4521 2024 4521 4521" class="C1" /><path d="M 218519 138973 c 0 2497 -2024 4521 -4521 4521 c -2497 0 -4521 -2024 -4521 -4521 c 0 -2497 2024 -4521 4521 -4521 c 2497 0 4521 2024 4521 4521" class="C1" /><path d="M -0 25 l 0 361686" class="C1" /><path d="M 260716 361712 l 0 -9042" class="C1" /><path d="M 416450 201967 l -60281 0" class="C1" /><path d="M 425492 247489 l 0 -147689" class="C1" /><path d="M 100971 361712 l 0 -9042" class="C1" /><path d="M 122069 235423 c 0 2497 -2024 4521 -4521 4521 c -2497 0 -4521 -2024 -4521 -4521 c 0 -2497 2024 -4521 4521 -4521 c 2497 0 4521 2024 4521 4521" class="C1" /><path d="M 218519 235423 c 0 2497 -2024 4521 -4521 4521 c -2497 0 -4521 -2024 -4521 -4521 c 0 -2497 2024 -4521 4521 -4521 c 2497 0 4521 2024 4521 4521" class="C1" /><path d="M 331546 25 l -331546 0" class="C1" /><path d="M 256195 247659 l 0 -180" class="C1" /><path d="M 350141 25 l 0 361686" class="C1" /><path d="M 331546 361712 l 0 -361686" class="C1" /><path d="M 100971 352669 l -30141 0" class="C1" /><path d="M 549068 251106 l 0 -3918" class="C1" /><path d="M 568660 135969 c 0 2497 -2024 4521 -4521 4521 c -2497 0 -4521 -2024 -4521 -4521 c 0 -2497 2024 -4521 4521 -4521 c 2497 0 4521 2024 4521 4521" class="C1" /><path d="M 356169 201967 l 0 -195913" class="C1" /><path d="M 615378 201967 l 0 -195913" class="C1" /><path d="M 451112 352669 l -30141 0" class="C1" /><path d="M 416450 6053 l 0 195913" class="C1" /><path d="M 230575 352669 l 0 9042" class="C1" /><path d="M 472210 135969 c 0 2497 -2024 4521 -4521 4521 c -2497 0 -4521 -2024 -4521 -4521 c 0 -2497 2024 -4521 4521 -4521 c 2497 0 4521 2024 4521 4521" class="C1" /><path d="M 480821 361712 l 69754 -0" class="C1" /><path d="M 610856 352669 l -30141 0" class="C1" /><path d="M 420971 352669 l 0 9042" class="C1" /><path d="M 260716 352669 l -30141 0" class="C1" /><path d="M 541533 307459 c 0 2497 -2024 4521 -4521 4521 c -2497 0 -4521 -2024 -4521 -4521 c 0 -2497 2024 -4521 4521 -4521 c 2497 0 4521 2024 4521 4521" class="C1" /><path d="M 568660 238447 c 0 2497 -2024 4521 -4521 4521 c -2497 0 -4521 -2024 -4521 -4521 c 0 -2497 2024 -4521 4521 -4521 c 2497 0 4521 2024 4521 4521" class="C1" /><path d="M 356169 6053 l 60281 0" class="C1" /><path d="M 425492 99800 l 180843 0" class="C1" /><path d="M 440562 251106 l 60281 0" class="C1" /><path d="M 675659 6053 l 0 195913" class="C1" /><path d="M 440562 290288 l 0 -39183" class="C1" /><path d="M 131111 247177 l 0 301" class="C1" /><path d="M 1000000 278148 l -213998 0" class="C1" /><path d="M 350141 361712 l 70830 0" class="C1" /><path d="M 828199 380626 l -30141 0" class="C1" /><path d="M 530984 290288 l 0 -39183" class="C1" /><path d="M 200435 361712 l -0 -74870" class="C1" /><path d="M 472210 238447 c 0 2497 -2024 4521 -4521 4521 c -2497 0 -4521 -2024 -4521 -4521 c 0 -2497 2024 -4521 4521 -4521 c 2497 0 4521 2024 4521 4521" class="C1" /><path d="M 500844 251106 l 0 39183" class="C1" /><path d="M 681687 25 l -331546 0" class="C1" /><path d="M 928875 362542 l 30141 0" class="C1" /><path d="M 615378 6053 l 60281 -0" class="C1" /><path d="M 500844 290288 l -60281 0" class="C1" /><path d="M 591265 251106 l 0 39183" class="C1" /><path d="M 610856 361712 l 70830 0" class="C1" /><path d="M -0 361712 l 70830 0" class="C1" /><path d="M 962544 314317 c 0 13317 -10796 24112 -24112 24112 c -13317 0 -24112 -10796 -24112 -24112 c 0 -13317 10796 -24112 24112 -24112 c 13317 0 24112 10796 24112 24112" class="C1" /><path d="M 85901 286842 l 0 -39183" class="C1" /><path d="M 131111 286842 l -0 74869" class="C1" /><path d="M 884636 314317 c 0 13317 -10796 24112 -24112 24112 c -13317 0 -24112 -10796 -24112 -24112 c 0 -13317 10796 -24112 24112 -24112 c 13317 0 24112 10796 24112 24112" class="C1" /><path d="M 828199 362542 l 0 18084" class="C1" /><path d="M 798058 380626 l 0 -18084" class="C1" /><path d="M 451112 361712 l 129604 0" class="C1" /><path d="M 987944 380626 l -30141 0" class="C1" /><path d="M 610856 361712 l 0 -9042" class="C1" /><path d="M 530984 251106 l 60281 0" class="C1" /><path d="M 957803 380626 l 0 -18084" class="C1" /><path d="M 606335 247489 l -180843 0" class="C1" /><path d="M 828199 362542 l 129604 0" class="C1" /><path d="M 426999 274304 c 0 9155 -7422 16577 -16577 16577 c -9155 0 -16577 -7422 -16577 -16577 c 0 -9155 7422 -16577 16577 -16577 c 9155 0 16577 7422 16577 16577" class="C1" /><path d="M 245645 247659 l 0 39183" class="C1" /><path d="M 637983 274304 c 0 9155 -7422 16577 -16577 16577 c -9155 0 -16577 -7422 -16577 -16577 c 0 -9155 7422 -16577 16577 -16577 c 9155 0 16577 7422 16577 16577" class="C1" /><path d="M 481252 247187 l 0 301" class="C1" /><path d="M 451112 361712 l 0 -9042" class="C1" /><path d="M 681687 361712 l 0 -361686" class="C1" /><path d="M 789809 362542 l 8250 0" class="C1" /><path d="M 786002 278148 l -0 84393" class="C1" /><path d="M 786002 362542 l 12056 0" class="C1" /><path d="M 987944 362542 l 12056 0" class="C1" /><path d="M 987944 362542 l 0 18084" class="C1" /><path d="M 580716 352669 l 0 9042" class="C1" /><path d="M 549068 247187 l -67816 -0" class="C1" /><path d="M 591265 290288 l -60281 0" class="C1" /><path d="M 100971 361712 l 129604 0" class="C1" /><path d="M 131111 286842 l -45211 0" class="C1" /><path d="M 200435 247479 l 0 -301" class="C1" /><path d="M 76858 274304 c 0 9155 -7422 16577 -16577 16577 c -9155 0 -16577 -7422 -16577 -16577 c 0 -9155 7422 -16577 16577 -16577 c 9155 0 16577 7422 16577 16577" class="C1" /><path d="M 497829 307459 c 0 2497 -2024 4521 -4521 4521 c -2497 0 -4521 -2024 -4521 -4521 c 0 -2497 2024 -4521 4521 -4521 c 2497 0 4521 2024 4521 4521" class="C1" /><path d="M 245645 286842 l -45211 0" class="C1" /><path d="M 1000000 362542 l 0 -84393" class="C1" /><path d="M 260716 361712 l 70830 0" class="C1" /><path d="M 287842 274304 c 0 9155 -7422 16577 -16577 16577 c -9155 0 -16577 -7422 -16577 -16577 c 0 -9155 7422 -16577 16577 -16577 c 9155 0 16577 7422 16577 16577" class="C1" /><path d="M 606335 99800 l 0 147689" class="C1" /><path d="M 675659 201967 l -60281 0" class="C1" /><path d="M 85901 247660 l 159745 -1" class="C1" /></g></svg></div><a href="resources/microbit-robot.dxf" download class="resource-card-download" style="margin-bottom:32px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download DXF</a>
+
+<!-- SLIDE_BREAK -->
+
+<h3>3D printed chassis (STL)</h3>
+<p>Same geometry as the DXF, exported as a solid for FDM printing. Print at 0.2mm layer height, 20% infill, no supports needed.</p>
+<p style="font-size:13px;color:var(--muted);margin-bottom:12px">Slice with Cura, PrusaSlicer, or Bambu Studio. Drag to rotate, scroll to zoom.</p><div class="stl-viewer-wrap" data-src="resources/microbit-robot-3d.stl" style="height:420px"><div class="stl-viewer-loading">Loading 3D printed chassis…</div><div class="stl-viewer-hint">Drag to rotate &nbsp;·&nbsp; Scroll to zoom</div></div><a href="resources/microbit-robot-3d.stl" download class="resource-card-download" style="margin-bottom:32px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download STL</a>
+</section>
 </div>
 
 
@@ -1514,6 +1624,73 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); presNav(1); }
   if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); presNav(-1); }
   if (e.key === 'Escape') exitPresentation();
+});
+</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+document.querySelectorAll('.stl-viewer-wrap').forEach(container => {
+  const src = container.dataset.src;
+  if (!src) return;
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  container.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x1b2945);
+
+  const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.01, 1000);
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.06;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 0.8;
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+  const key = new THREE.DirectionalLight(0xffffff, 1.4);
+  key.position.set(5, 8, 5);
+  scene.add(key);
+  const fill = new THREE.DirectionalLight(0x3db166, 0.4);
+  fill.position.set(-4, -2, -4);
+  scene.add(fill);
+
+  new STLLoader().load(src, geo => {
+    geo.computeBoundingBox();
+    const box = geo.boundingBox;
+    const center = new THREE.Vector3();
+    box.getCenter(center);
+    geo.translate(-center.x, -center.y, -center.z);
+    const size = new THREE.Vector3();
+    box.getSize(size);
+    const scale = 3 / Math.max(size.x, size.y, size.z);
+    geo.scale(scale, scale, scale);
+
+    const mat = new THREE.MeshPhongMaterial({ color: 0x2a4a7a, specular: 0x3db166, shininess: 50 });
+    scene.add(new THREE.Mesh(geo, mat));
+
+    const dist = 4;
+    camera.position.set(dist * 0.7, dist * 0.5, dist);
+    camera.lookAt(0, 0, 0);
+    controls.update();
+    container.classList.add('loaded');
+  });
+
+  controls.addEventListener('start', () => { controls.autoRotate = false; });
+
+  new ResizeObserver(() => {
+    const w = container.clientWidth, h = container.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }).observe(container);
+
+  (function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera); })();
 });
 </script>
 </body>

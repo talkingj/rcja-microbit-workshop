@@ -26,7 +26,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install markdown ezdxf
+        run: pip install markdown ezdxf pyyaml
 
       - name: Build HTML
         run: python build.py

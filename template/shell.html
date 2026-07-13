@@ -1308,13 +1308,34 @@ import * as THREE from './resources/vendor/three/three.module.js';
 import { STLLoader } from './resources/vendor/three/addons/loaders/STLLoader.js';
 import { OrbitControls } from './resources/vendor/three/addons/controls/OrbitControls.js';
 
+function showViewerError(container, msg) {
+  const l = container.querySelector('.stl-viewer-loading');
+  if (l) { l.textContent = msg; l.style.opacity = '1'; l.dataset.specific = '1'; }
+  container.classList.remove('loaded');
+}
+
 function initSTLViewer(container) {
   if (container.dataset.stlInit) return;
   container.dataset.stlInit = '1';
+  try {
+    runSTLViewer(container);
+  } catch (err) {
+    showViewerError(container, 'Could not start 3D view (' + (err && err.message ? err.message : err) + '). Use the download button below.');
+  }
+}
 
+function runSTLViewer(container) {
   const src = container.dataset.src;
   const w = container.clientWidth || 600;
   const h = container.clientHeight || 420;
+
+  // WebGL support check — fail clearly instead of throwing into the void.
+  const testCanvas = document.createElement('canvas');
+  const gl = testCanvas.getContext('webgl2') || testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
+  if (!gl) {
+    showViewerError(container, '3D view needs WebGL, which is turned off in this browser. Turn on hardware acceleration, or use the download button below.');
+    return;
+  }
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -1394,14 +1415,31 @@ document.querySelectorAll('.stl-viewer-wrap').forEach(container => {
 });
 </script>
 <script>
-// Fallback: if the 3D module never ran (no import-map support, blocked script,
-// or WebGL unavailable), don't leave the viewer spinning on "Loading…".
+// Capture any module-load or runtime error so the viewer can report the real
+// cause instead of spinning forever or showing a generic message.
+window.__stlError = null;
+window.addEventListener('error', function (e) {
+  var t = e && e.target;
+  if (t && (t.tagName === 'SCRIPT' || t.tagName === 'LINK')) {
+    window.__stlError = 'A required file failed to load (' + (t.src || t.href) + ')';
+  } else if (e && e.message) {
+    window.__stlError = e.message;
+  }
+}, true);
+
+// Fallback: if the 3D module never produced a canvas (script blocked, module
+// syntax error, WebGL unavailable), don't leave the viewer spinning on "Loading…".
 setTimeout(function () {
   document.querySelectorAll('.stl-viewer-wrap').forEach(function (c) {
     if (c.classList.contains('loaded')) return;
     if (c.querySelector('canvas')) return;
     var l = c.querySelector('.stl-viewer-loading');
-    if (l) l.textContent = '3D preview unavailable in this browser. Use the download button below.';
+    if (!l) return;
+    // Leave a specific message already set by the module in place.
+    if (l.dataset.specific === '1') return;
+    l.textContent = window.__stlError
+      ? ('3D preview could not load: ' + window.__stlError + '. Use the download button below.')
+      : '3D preview unavailable in this browser. Use the download button below.';
   });
 }, 6000);
 </script>

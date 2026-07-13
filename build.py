@@ -217,7 +217,7 @@ def render_hw_cards(yaml_text):
 
 
 def render_activity_cards(yaml_text):
-    """Render <!-- ACTIVITY_CARDS --> shortcode: YAML list of {title, cap, desc, num?}."""
+    """Render <!-- ACTIVITY_CARDS --> shortcode: YAML list of {title, cap, desc, num?, icon?}."""
     items = _parse_yaml(yaml_text)
     if not isinstance(items, list):
         return ''
@@ -227,9 +227,12 @@ def render_activity_cards(yaml_text):
         cap   = html.escape(str(item.get('cap', '')))
         desc  = html.escape(str(item.get('desc', '')))
         num   = item.get('num', '')
+        icon  = _icon_svg(str(item.get('icon', '')))
         num_html = f'<div class="activity-num">{html.escape(str(num))}</div>' if num else ''
+        icon_html = f'<div class="activity-icon">{icon}</div>' if icon else ''
         cards.append(
             f'<div class="activity-card">'
+            f'{icon_html}'
             f'{num_html}'
             f'<div class="activity-title">{title}</div>'
             f'<div class="activity-cap">{cap}</div>'

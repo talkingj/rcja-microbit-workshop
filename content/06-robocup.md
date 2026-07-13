@@ -18,20 +18,24 @@ count_label: competitions
 
 <!-- ACTIVITY_CARDS
 - title: Rescue Line
-  cap: "Sensors \xB7 Motors \xB7 Decisions"
-  desc: An autonomous robot follows a black line on white tiles, avoids obstacles, climbs ramps, and rescues a victim from a marked zone. IR sensors detect the line; the micro:bit decides when to steer, avoid, and stop.
+  icon: lines
+  cap: "Sensors · Motors · Decisions"
+  desc: Follow a black line on white tiles, avoid obstacles, climb ramps, and rescue a victim. IR sensors track the line while the micro:bit steers and decides.
 - title: Rescue Maze
-  cap: "Sensors \xB7 Motors \xB7 Navigation"
-  desc: The robot navigates a maze of black walls to find and rescue victims. No line to follow; the robot uses distance sensors and dead-reckoning to map and traverse the maze autonomously.
+  icon: wall
+  cap: "Sensors · Motors · Navigation"
+  desc: Navigate a maze of black walls to find and rescue victims. Distance sensors and dead-reckoning replace line following.
 - title: OnStage
-  cap: "LED \xB7 Sound \xB7 Choreography"
-  desc: "A robot or robotic creation performs a 2-minute choreographed routine on a stage. The micro:bit's speaker, LED matrix, and radio make it useful for coordinated multi-robot or prop-based performances."
+  icon: speaker
+  cap: "LED · Sound · Choreography"
+  desc: Perform a 2-minute choreographed routine on stage. The micro:bit's speaker, LEDs, and radio coordinate multi-robot performances.
 - title: Soccer
-  cap: "IR ball sensing \xB7 Motors \xB7 Strategy"
-  desc: Two robots per team play autonomous soccer. They must detect the infrared ball, navigate the field, and score goals. Motor control, sensor reading, and game-state logic are all needed.
+  icon: soccer-ball
+  cap: "IR ball · Motors · Strategy"
+  desc: Two robots per team play autonomous soccer — detect the IR ball, navigate the field, and score goals.
 -->
 
-This workshop uses Rescue Line as the worked example because the kit maps directly to it: IR sensors for line detection, DC motors for driving, and the micro:bit making all decisions. Students who complete this workshop have the core skills to enter any competition.
+This workshop uses Rescue Line as its worked example — the kit maps directly to it. Students who complete the workshop have the core skills to enter any competition.
 
 <!-- SLIDE_BREAK -->
 
@@ -49,26 +53,32 @@ This workshop uses Rescue Line as the worked example because the kit maps direct
 <!-- ACTIVITY_CARDS
 - title: Line following
   num: Core skill 1
-  cap: "IR tracking sensors \xB7 P3 and P4"
-  desc: Two IR sensors read the black line on the white tile. When one sensor leaves the line the robot steers back. This is the core loop that runs for the whole course.
+  icon: ir-sensor
+  cap: "IR sensors · P3 and P4"
+  desc: Two IR sensors read the black line. When one leaves the line the robot steers back. This loop runs for the whole course.
 - title: Obstacle avoidance
   num: Core skill 2
-  cap: Ultrasonic sensor via carrier board
-  desc: The ultrasonic sensor measures distance ahead. When an obstacle is detected the robot drives around it and reacquires the line within 30 cm.
+  icon: ultrasonic
+  cap: Ultrasonic sensor
+  desc: Measures distance ahead. When an obstacle is detected, drive around it and reacquire the line within 30 cm.
 - title: Victim rescue
   num: Core skill 3
-  cap: "Ultrasonic sensor \xB7 DC motors"
-  desc: The robot detects the victim inside the rescue zone using the ultrasonic sensor, then drives forward to push it clear. Worth 50 points, the highest single scoring action in a run.
+  icon: goal
+  cap: "Ultrasonic · DC motors"
+  desc: Detect the victim in the rescue zone and push it clear. Worth 50 points — the highest single scoring action.
 - title: Autonomous start
   num: Core skill 4
-  cap: "Button A \xB7 downloaded program"
-  desc: Competition rules require the robot to start from a button press on the board. The Robot Handler presses Button A to begin. No laptops, phones, or remote controls at the field.
+  icon: buttons
+  cap: "Button A · downloaded program"
+  desc: Rules require a button press to start. No laptops, phones, or remote controls at the field.
 - title: Status display
   num: Core skill 5
-  cap: 5x5 LED display
-  desc: "The LED display shows the robot's current state during the run: following, avoiding, rescuing. Referees and coaches can see what mode it is in without stopping the robot."
+  icon: led-matrix
+  cap: 5×5 LED display
+  desc: Show the current mode — following, avoiding, rescuing — so referees and coaches can see state without stopping the robot.
 - title: Ramp detection
   num: Core skill 6
+  icon: accelerometer
   cap: Accelerometer
-  desc: The accelerometer reads the board's tilt angle. Teams use this to detect when the robot is on a ramp and switch to a different motor speed or control strategy for the climb.
+  desc: Read the board's tilt angle to detect ramps and switch to a different motor speed for the climb.
 -->

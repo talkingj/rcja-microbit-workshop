@@ -788,24 +788,33 @@ pre.code-hint {
 .activity-card {
   background: var(--white);
   padding: 22px 20px;
+  border-left: 3px solid transparent;
+  transition: border-color 80ms, background 80ms;
+}
+.activity-card:hover { border-left-color: var(--green); background: var(--surface); }
+.activity-icon {
+  width: 32px; height: 32px;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10px;
 }
 .activity-num {
-  font-size: 11px; font-weight: 700;
+  font-size: 10px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--green); margin-bottom: 8px;
+  color: var(--green); margin-bottom: 6px;
 }
 .activity-title {
-  font-size: 15px; font-weight: 700;
+  font-size: 14px; font-weight: 700;
   color: var(--navy); margin-bottom: 4px;
 }
 .activity-cap {
   font-size: 11px; color: var(--muted);
-  margin-bottom: 10px;
-  text-transform: uppercase; letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
 }
 .activity-desc {
-  font-size: 13px; color: var(--label);
-  line-height: 1.6;
+  font-size: 12px; color: var(--label);
+  line-height: 1.55;
 }
 
 /* ── PRESENTATION OVERLAY ─────────────────────── */
@@ -958,7 +967,9 @@ body.presenting #pres-overlay { display: flex; }
 
 /* Activity cards */
 .pres-slide .activity-grid { gap: 1px; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.08); }
-.pres-slide .activity-card { background: var(--navy); }
+.pres-slide .activity-card { background: var(--navy); border-left-color: transparent; }
+.pres-slide .activity-card:hover { border-left-color: var(--green); background: rgba(255,255,255,0.04); }
+.pres-slide .activity-icon { background: rgba(255,255,255,0.08); }
 .pres-slide .activity-num { color: var(--green); }
 .pres-slide .activity-title { color: #fff; }
 .pres-slide .activity-cap { color: rgba(255,255,255,0.35); }

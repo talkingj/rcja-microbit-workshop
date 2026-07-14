@@ -692,26 +692,35 @@ def build_workshop(workshop):
 
 
 def render_workshop_card(w):
-    slug   = html.escape(str(w.get('slug', '')))
-    title  = html.escape(str(w.get('title', '')))
-    sub    = html.escape(str(w.get('subtitle', '')))
-    blurb  = html.escape(str(w.get('blurb', '')))
-    accent = html.escape(str(w.get('accent', '#3db166')))
+    slug         = html.escape(str(w.get('slug', '')))
+    title        = html.escape(str(w.get('title', '')))
+    sub          = html.escape(str(w.get('subtitle', '')))
+    blurb        = html.escape(str(w.get('blurb', '')))
+    accent       = html.escape(str(w.get('accent', '#3db166')))
+    coming_soon  = bool(w.get('coming_soon'))
     metas  = []
     for key in ('level', 'duration', 'audience'):
         if w.get(key):
             metas.append(f'<span class="wc-meta">{html.escape(str(w[key]))}</span>')
     meta_html = ''.join(metas)
+
+    if coming_soon:
+        tag, tag_attrs = 'div', ' class="workshop-card workshop-card--soon"'
+        cta_html = '<span class="wc-cta wc-cta--soon">Coming soon</span>'
+    else:
+        tag, tag_attrs = 'a', f' class="workshop-card" href="{slug}.html"'
+        cta_html = '<span class="wc-cta">Open workshop →</span>'
+
     return (
-        f'<a class="workshop-card" href="{slug}.html">'
+        f'<{tag}{tag_attrs}>'
         f'<div class="wc-stripe" style="background:{accent}"></div>'
         f'<div class="wc-body">'
         f'<div class="wc-title">{title}</div>'
         f'<div class="wc-sub">{sub}</div>'
         f'<div class="wc-blurb">{blurb}</div>'
         f'<div class="wc-metas">{meta_html}</div>'
-        f'<span class="wc-cta">Open workshop →</span>'
-        f'</div></a>'
+        f'{cta_html}'
+        f'</div></{tag}>'
     )
 
 
@@ -729,6 +738,8 @@ def build():
         print('ERROR: no workshops found in workshops.yml')
         sys.exit(1)
     for w in workshops:
+        if w.get('coming_soon'):
+            continue
         build_workshop(w)
     build_landing(workshops)
     if not HAS_YAML:

@@ -8,3 +8,10 @@
   accent: "#3db166"
   pill: "Getting Started"
   content: "content/microbit"
+
+- slug: soccer
+  title: "RoboCup Soccer"
+  subtitle: "Coming soon"
+  blurb: "A hands-on workshop for RoboCup Junior Soccer — hardware, strategy, and live robot coding."
+  accent: "#8a94a6"
+  coming_soon: true

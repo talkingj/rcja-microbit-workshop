@@ -31,6 +31,8 @@
   .workshop-card{display:block;border:1.5px solid var(--border);text-decoration:none;
                  color:inherit;background:#fff;transition:border-color .15s,transform .15s}
   .workshop-card:hover{border-color:var(--green);transform:translateY(-2px)}
+  .wc-img{height:160px;overflow:hidden;background:var(--surface)}
+  .wc-img img{width:100%;height:100%;object-fit:cover;display:block}
   .wc-stripe{height:6px}
   .wc-body{padding:24px}
   .wc-title{font-size:20px;font-weight:700;color:var(--navy);letter-spacing:-0.02em}
@@ -44,6 +46,7 @@
   .workshop-card--soon{cursor:default}
   .workshop-card--soon:hover{border-color:var(--border);transform:none}
   .workshop-card--soon .wc-title,.workshop-card--soon .wc-blurb{opacity:.6}
+  .workshop-card--soon .wc-img img{filter:grayscale(1);opacity:.55}
   .wc-cta--soon{color:var(--muted)}
   .lp-footer{max-width:1000px;margin:0 auto;padding:0 24px 64px;
              font-size:13px;color:var(--muted)}

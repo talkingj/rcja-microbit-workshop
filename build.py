@@ -697,6 +697,7 @@ def render_workshop_card(w):
     sub          = html.escape(str(w.get('subtitle', '')))
     blurb        = html.escape(str(w.get('blurb', '')))
     accent       = html.escape(str(w.get('accent', '#3db166')))
+    image        = html.escape(str(w.get('image', '')))
     coming_soon  = bool(w.get('coming_soon'))
     metas  = []
     for key in ('level', 'duration', 'audience'):
@@ -711,8 +712,14 @@ def render_workshop_card(w):
         tag, tag_attrs = 'a', f' class="workshop-card" href="{slug}.html"'
         cta_html = '<span class="wc-cta">Open workshop →</span>'
 
+    img_html = (
+        f'<div class="wc-img"><img src="{image}" alt="{title}" loading="lazy"></div>'
+        if image else ''
+    )
+
     return (
         f'<{tag}{tag_attrs}>'
+        f'{img_html}'
         f'<div class="wc-stripe" style="background:{accent}"></div>'
         f'<div class="wc-body">'
         f'<div class="wc-title">{title}</div>'

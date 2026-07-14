@@ -1101,7 +1101,7 @@ body.presenting #pres-overlay { display: flex; }
 /* ── STL VIEWER ──────────────────────────────── */
 .stl-viewer-wrap {
   position: relative;
-  background: var(--navy);
+  background: var(--surface);
   border: 1.5px solid var(--border);
   overflow: hidden;
   margin-bottom: 32px;
@@ -1114,8 +1114,8 @@ body.presenting #pres-overlay { display: flex; }
   position: absolute;
   bottom: 12px; left: 50%;
   transform: translateX(-50%);
-  background: rgba(0,0,0,0.55);
-  color: rgba(255,255,255,0.7);
+  background: rgba(27,41,69,0.85);
+  color: rgba(255,255,255,0.85);
   font-size: 11px; padding: 4px 10px;
   pointer-events: none;
   white-space: nowrap;
@@ -1123,7 +1123,7 @@ body.presenting #pres-overlay { display: flex; }
 .stl-viewer-loading {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,0.4);
+  color: var(--muted);
   font-size: 13px;
   transition: opacity 0.3s;
 }
@@ -1132,7 +1132,7 @@ body.presenting #pres-overlay { display: flex; }
 /* ── DXF PREVIEW ─────────────────────────────── */
 .dxf-preview {
   border: 1.5px solid var(--border);
-  background: var(--navy);
+  background: var(--surface);
   overflow: auto;
   margin-bottom: 32px;
   position: relative;
@@ -1147,7 +1147,7 @@ body.presenting #pres-overlay { display: flex; }
   top: 10px; left: 12px;
   font-size: 10px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.35);
+  color: var(--muted);
 }
 </style>
 </head>
@@ -1361,7 +1361,7 @@ function runSTLViewer(container) {
   container.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x1b2945);
+  scene.background = new THREE.Color(0xf4f6fa);
 
   const camera = new THREE.PerspectiveCamera(45, w / h, 0.01, 1000);
 
@@ -1371,11 +1371,11 @@ function runSTLViewer(container) {
   controls.autoRotate = true;
   controls.autoRotateSpeed = 0.8;
 
-  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-  const key = new THREE.DirectionalLight(0xffffff, 1.4);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+  const key = new THREE.DirectionalLight(0xffffff, 1.2);
   key.position.set(5, 8, 5);
   scene.add(key);
-  const fill = new THREE.DirectionalLight(0x3db166, 0.4);
+  const fill = new THREE.DirectionalLight(0x3db166, 0.5);
   fill.position.set(-4, -2, -4);
   scene.add(fill);
 
@@ -1395,7 +1395,7 @@ function runSTLViewer(container) {
     const scale = 3 / Math.max(size.x, size.y, size.z);
     geo.scale(scale, scale, scale);
 
-    const mat = new THREE.MeshPhongMaterial({ color: 0x2a4a7a, specular: 0x3db166, shininess: 50 });
+    const mat = new THREE.MeshPhongMaterial({ color: 0x9aa8c2, specular: 0x3db166, shininess: 40 });
     scene.add(new THREE.Mesh(geo, mat));
 
     const dist = 4;

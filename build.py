@@ -483,6 +483,9 @@ def render_dxf_preview(yaml_text):
             from ezdxf.addons.drawing.svg import SVGBackend
             from ezdxf.addons.drawing.properties import LayoutProperties
             from ezdxf.addons.drawing import layout as dxf_layout
+            from ezdxf.addons.drawing.config import (
+                Configuration, ColorPolicy, BackgroundPolicy, LineweightPolicy,
+            )
 
             dxf_path = ROOT / src
             doc = ezdxf.readfile(str(dxf_path))
@@ -490,10 +493,19 @@ def render_dxf_preview(yaml_text):
             backend = SVGBackend()
             ctx = RenderContext(doc)
             props = LayoutProperties.from_layout(msp)
-            props.set_colors('#1b2945', '#3db166')
-            Frontend(ctx, backend).draw_layout(msp, finalize=True, layout_properties=props)
+            props.set_colors('#ffffff', '#1b2945')
+            config = Configuration(
+                color_policy=ColorPolicy.CUSTOM,
+                custom_fg_color='#1b2945',
+                background_policy=BackgroundPolicy.CUSTOM,
+                custom_bg_color='#ffffff',
+                lineweight_policy=LineweightPolicy.ABSOLUTE,
+                lineweight_scaling=0,
+                min_lineweight=10,
+            )
+            Frontend(ctx, backend, config=config).draw_layout(msp, finalize=True, layout_properties=props)
             page = dxf_layout.Page(0, 0, dxf_layout.Units.mm,
-                                   margins=dxf_layout.Margins.all(0))
+                                   margins=dxf_layout.Margins.all(2))
             svg_html = backend.get_string(page, xml_declaration=False)
         except Exception as e:
             svg_html = f'<p style="color:var(--muted);padding:24px">DXF preview unavailable: {html.escape(str(e))}</p>'

@@ -1,0 +1,10 @@
+- slug: microbit
+  title: "The micro:bit"
+  subtitle: "What it is and why it works"
+  blurb: "A hands-on intro to the BBC micro:bit and how it powers a RoboCup Rescue Line robot. Covers the hardware, MakeCode, and live robot coding."
+  level: "Beginner"
+  duration: "2 hours"
+  audience: "Teachers & students"
+  accent: "#3db166"
+  pill: "Getting Started"
+  content: "content/microbit"

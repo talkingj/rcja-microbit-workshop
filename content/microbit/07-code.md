@@ -90,8 +90,6 @@ hint: Create your Activity 4 MakeCode project, click Share, and paste the URL ab
 
 ### Live demo: line following
 
-Yeah just the basics because I'll show them how to do a line follow code.
-
-Watch how the sensor readings from Activity 4 connect to steering decisions. The if/else logic is straightforward once you've seen the sensor values live: if both read white, drive forward; if either reads black, steer toward it.
+The sensor readings from Activity 4 become steering decisions: if both read white, drive forward; if either reads black, steer toward it.
 
 > This is a facilitator-led demo. Participants watch and ask questions — no coding required.

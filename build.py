@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-Build script: reads content/*.md + code/*.py -> microbit-workshop.html
+Build script: reads workshops.yml + content/<slug>/*.md + code/*.py ->
+index.html (landing page) + one <slug>.html per workshop.
 
 Usage:
-    python build.py              # writes microbit-workshop.html
+    python build.py              # writes index.html + <slug>.html for each workshop
     python build.py --watch      # rebuild on file change (requires watchdog: pip install watchdog)
 
 Dependencies:
@@ -33,8 +34,16 @@ except ImportError:
 ROOT     = Path(__file__).parent
 CONTENT  = ROOT / 'content'
 CODE_DIR = ROOT / 'code'
-TEMPLATE = ROOT / 'template' / 'shell.html'
-OUTPUT   = ROOT / 'index.html'
+WORKSHOPS_YML    = ROOT / 'workshops.yml'
+SHELL_TEMPLATE   = ROOT / 'template' / 'shell.html'
+LANDING_TEMPLATE = ROOT / 'template' / 'landing.html'
+
+
+def load_workshops():
+    """Read workshops.yml -> list of dicts."""
+    text = WORKSHOPS_YML.read_text(encoding='utf-8')
+    data = _parse_yaml(text)
+    return data if isinstance(data, list) else []
 
 
 # ── Front matter parser ───────────────────────────────────────────────────────
@@ -625,11 +634,15 @@ def build_section(meta, body_html):
 
 # ── Main build ────────────────────────────────────────────────────────────────
 
-def build():
-    files = sorted(glob(str(CONTENT / '*.md')))
+def build_workshop(workshop):
+    slug        = workshop['slug']
+    content_dir = ROOT / workshop['content']
+    out_path    = ROOT / f'{slug}.html'
+
+    files = sorted(glob(str(content_dir / '*.md')))
     if not files:
-        print('ERROR: no files found in content/')
-        sys.exit(1)
+        print(f'WARNING: no content for workshop {slug!r}')
+        return
 
     nav_tabs  = []
     hero_html = ''
@@ -660,15 +673,64 @@ def build():
         for i, (sid, label) in enumerate(nav_tabs)
     )
 
-    shell = TEMPLATE.read_text(encoding='utf-8')
+    title      = workshop.get('title', slug)
+    subtitle   = workshop.get('subtitle', '')
+    page_title = f'{title}: {subtitle}' if subtitle else title
+
+    shell = SHELL_TEMPLATE.read_text(encoding='utf-8')
+    shell = shell.replace('<!-- PAGE_TITLE -->', html.escape(page_title))
+    shell = shell.replace('<!-- WORKSHOP_NAME -->', html.escape(title))
+    shell = shell.replace('<!-- TOP_PILL -->', html.escape(workshop.get('pill', '')))
     shell = shell.replace('<!-- NAV_TABS -->', nav_html)
     shell = shell.replace('<!-- HERO -->', hero_html)
     shell = shell.replace('<!-- SECTIONS_BEFORE_PAGE -->', '')
     shell = shell.replace('<!-- SECTIONS_IN_PAGE -->', '\n\n'.join(page_secs))
     shell = shell.replace('<!-- SECTIONS_FULLWIDTH -->', '')
 
-    OUTPUT.write_text(shell, encoding='utf-8')
-    print(f'Built: {OUTPUT}')
+    out_path.write_text(shell, encoding='utf-8')
+    print(f'Built workshop: {out_path.name}')
+
+
+def render_workshop_card(w):
+    slug   = html.escape(str(w.get('slug', '')))
+    title  = html.escape(str(w.get('title', '')))
+    sub    = html.escape(str(w.get('subtitle', '')))
+    blurb  = html.escape(str(w.get('blurb', '')))
+    accent = html.escape(str(w.get('accent', '#3db166')))
+    metas  = []
+    for key in ('level', 'duration', 'audience'):
+        if w.get(key):
+            metas.append(f'<span class="wc-meta">{html.escape(str(w[key]))}</span>')
+    meta_html = ''.join(metas)
+    return (
+        f'<a class="workshop-card" href="{slug}.html">'
+        f'<div class="wc-stripe" style="background:{accent}"></div>'
+        f'<div class="wc-body">'
+        f'<div class="wc-title">{title}</div>'
+        f'<div class="wc-sub">{sub}</div>'
+        f'<div class="wc-blurb">{blurb}</div>'
+        f'<div class="wc-metas">{meta_html}</div>'
+        f'<span class="wc-cta">Open workshop →</span>'
+        f'</div></a>'
+    )
+
+
+def build_landing(workshops):
+    cards = ''.join(render_workshop_card(w) for w in workshops)
+    shell = LANDING_TEMPLATE.read_text(encoding='utf-8')
+    shell = shell.replace('<!-- WORKSHOP_CARDS -->', cards)
+    (ROOT / 'index.html').write_text(shell, encoding='utf-8')
+    print('Built landing: index.html')
+
+
+def build():
+    workshops = load_workshops()
+    if not workshops:
+        print('ERROR: no workshops found in workshops.yml')
+        sys.exit(1)
+    for w in workshops:
+        build_workshop(w)
+    build_landing(workshops)
     if not HAS_YAML:
         print('  Tip: pip install pyyaml  for YAML front matter support')
     if not HAS_MARKDOWN:
@@ -688,13 +750,23 @@ def watch():
 
     class Handler(FileSystemEventHandler):
         def on_modified(self, event):
-            if not event.is_directory:
+            if event.is_directory:
+                return
+            print(f'Changed: {event.src_path}')
+            build()
+
+    class RootHandler(FileSystemEventHandler):
+        # ROOT also holds the generated index.html / <slug>.html outputs;
+        # only react to workshops.yml here to avoid rebuilding on our own output.
+        def on_modified(self, event):
+            if not event.is_directory and Path(event.src_path) == WORKSHOPS_YML:
                 print(f'Changed: {event.src_path}')
                 build()
 
     observer = Observer()
     for path in [str(CONTENT), str(CODE_DIR), str(ROOT / 'template')]:
-        observer.schedule(Handler(), path, recursive=False)
+        observer.schedule(Handler(), path, recursive=True)
+    observer.schedule(RootHandler(), str(ROOT), recursive=False)
     observer.start()
     print('Watching for changes. Ctrl+C to stop.')
     try:

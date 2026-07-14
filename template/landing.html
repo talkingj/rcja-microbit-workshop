@@ -12,19 +12,10 @@
        background:#fff;line-height:1.6}
   .lp-hero{background:var(--navy);padding:64px 24px}
   .lp-hero-inner{max-width:1000px;margin:0 auto}
-  .lp-hero-grid{display:flex;align-items:center;justify-content:space-between;
-                gap:40px;flex-wrap:wrap}
-  .lp-hero-text{flex:1;min-width:260px}
   .lp-kicker{font-size:11px;font-weight:700;text-transform:uppercase;
              letter-spacing:.1em;color:var(--green);margin-bottom:14px}
   .lp-hero h1{font-size:clamp(30px,5vw,52px);font-weight:700;letter-spacing:-0.035em;
               color:#fff;line-height:1.1}
-  .lp-hero-media{flex-shrink:0}
-  .lp-hero-img{display:block;width:220px;height:auto;background:#fff;
-               border:1.5px solid rgba(255,255,255,.15);padding:10px}
-  .lp-hero-credit{font-size:10px;color:rgba(255,255,255,.35);margin-top:8px;text-align:center}
-  .lp-hero-credit a{color:inherit}
-  @media(max-width:560px){.lp-hero-media{display:none}}
   .lp-main{max-width:1000px;margin:0 auto;padding:48px 24px}
   .workshop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
                  gap:20px}
@@ -55,15 +46,9 @@
 </head>
 <body>
   <section class="lp-hero">
-    <div class="lp-hero-inner lp-hero-grid">
-      <div class="lp-hero-text">
-        <div class="lp-kicker">RoboCup Junior Australia</div>
-        <h1>micro:bit Workshops</h1>
-      </div>
-      <div class="lp-hero-media">
-        <img class="lp-hero-img" src="assets/photos/microbit-v2.jpg" alt="A BBC micro:bit v2 board">
-        <p class="lp-hero-credit">Photo: Simon Waldherr, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></p>
-      </div>
+    <div class="lp-hero-inner">
+      <div class="lp-kicker">RoboCup Junior Australia</div>
+      <h1>micro:bit Workshops</h1>
     </div>
   </section>
   <main class="lp-main">

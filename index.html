@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RCJA Workshops</title>
+<title>micro:bit Workshops</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{--navy:#1b2945;--navy-mid:#263a5e;--green:#3db166;--border:#d0d7e3;
@@ -12,11 +12,19 @@
        background:#fff;line-height:1.6}
   .lp-hero{background:var(--navy);padding:64px 24px}
   .lp-hero-inner{max-width:1000px;margin:0 auto}
+  .lp-hero-grid{display:flex;align-items:center;justify-content:space-between;
+                gap:40px;flex-wrap:wrap}
+  .lp-hero-text{flex:1;min-width:260px}
   .lp-kicker{font-size:11px;font-weight:700;text-transform:uppercase;
              letter-spacing:.1em;color:var(--green);margin-bottom:14px}
   .lp-hero h1{font-size:clamp(30px,5vw,52px);font-weight:700;letter-spacing:-0.035em;
-              color:#fff;line-height:1.1;margin-bottom:16px}
-  .lp-hero p{font-size:16px;color:rgba(255,255,255,.6);max-width:60ch}
+              color:#fff;line-height:1.1}
+  .lp-hero-media{flex-shrink:0}
+  .lp-hero-img{display:block;width:220px;height:auto;background:#fff;
+               border:1.5px solid rgba(255,255,255,.15);padding:10px}
+  .lp-hero-credit{font-size:10px;color:rgba(255,255,255,.35);margin-top:8px;text-align:center}
+  .lp-hero-credit a{color:inherit}
+  @media(max-width:560px){.lp-hero-media{display:none}}
   .lp-main{max-width:1000px;margin:0 auto;padding:48px 24px}
   .workshop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
                  gap:20px}
@@ -44,17 +52,20 @@
 </head>
 <body>
   <section class="lp-hero">
-    <div class="lp-hero-inner">
-      <div class="lp-kicker">RoboCup Junior Australia</div>
-      <h1>Teacher Workshops</h1>
-      <p>Self-contained, hands-on workshops you can run in your classroom. Pick one to
-         get started — each includes everything you need: hardware tour, code, and a
-         presentation mode for the projector.</p>
+    <div class="lp-hero-inner lp-hero-grid">
+      <div class="lp-hero-text">
+        <div class="lp-kicker">RoboCup Junior Australia</div>
+        <h1>micro:bit Workshops</h1>
+      </div>
+      <div class="lp-hero-media">
+        <img class="lp-hero-img" src="assets/photos/microbit-v2.jpg" alt="A BBC micro:bit v2 board">
+        <p class="lp-hero-credit">Photo: Simon Waldherr, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></p>
+      </div>
     </div>
   </section>
   <main class="lp-main">
     <div class="workshop-grid">
-      <a class="workshop-card" href="microbit.html"><div class="wc-stripe" style="background:#3db166"></div><div class="wc-body"><div class="wc-title">The micro:bit</div><div class="wc-sub">What it is and why it works</div><div class="wc-blurb">A hands-on intro to the BBC micro:bit and how it powers a RoboCup Rescue Line robot. Covers the hardware, MakeCode, and live robot coding.</div><div class="wc-metas"><span class="wc-meta">Beginner</span><span class="wc-meta">2 hours</span><span class="wc-meta">Teachers &amp; students</span></div><span class="wc-cta">Open workshop →</span></div></a><div class="workshop-card workshop-card--soon"><div class="wc-stripe" style="background:#8a94a6"></div><div class="wc-body"><div class="wc-title">RoboCup Soccer</div><div class="wc-sub">Coming soon</div><div class="wc-blurb">A hands-on workshop for RoboCup Junior Soccer — hardware, strategy, and live robot coding.</div><div class="wc-metas"></div><span class="wc-cta wc-cta--soon">Coming soon</span></div></div>
+      <a class="workshop-card" href="microbit.html"><div class="wc-stripe" style="background:#3db166"></div><div class="wc-body"><div class="wc-title">Build-A-Bit</div><div class="wc-sub">What it is and why it works</div><div class="wc-blurb">A hands-on intro to the BBC micro:bit and how it powers a RoboCup Rescue Line robot. Covers the hardware, MakeCode, and live robot coding.</div><div class="wc-metas"><span class="wc-meta">Beginner</span><span class="wc-meta">2 hours</span><span class="wc-meta">Teachers &amp; students</span></div><span class="wc-cta">Open workshop →</span></div></a><div class="workshop-card workshop-card--soon"><div class="wc-stripe" style="background:#8a94a6"></div><div class="wc-body"><div class="wc-title">RoboCup Soccer</div><div class="wc-sub">Coming soon</div><div class="wc-blurb">A hands-on workshop for RoboCup Junior Soccer — hardware, strategy, and live robot coding.</div><div class="wc-metas"></div><span class="wc-cta wc-cta--soon">Coming soon</span></div></div>
     </div>
   </main>
   <footer class="lp-footer">RoboCup Junior Australia · built for classroom use</footer>

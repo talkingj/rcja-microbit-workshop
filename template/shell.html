@@ -4,13 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title><!-- PAGE_TITLE --></title>
+<link rel="icon" type="image/png" href="assets/rcja-logo.png">
+<link rel="apple-touch-icon" href="assets/rcja-logo.png">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
   --navy:       #1b2945;
   --navy-mid:   #263a5e;
-  --green:      #3db166;
+  --green:      #3fd37f;
   --green-dark: #339655;
   --blue-tint:  #eef1f8;
   --border:     #d0d7e3;
@@ -65,6 +67,11 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
   white-space: nowrap; flex-shrink: 0;
 }
 .home-link:hover { color: #fff; }
+.top-logo {
+  display: flex; align-items: center; flex-shrink: 0;
+  margin-right: 2px;
+}
+.top-logo img { height: 36px; width: auto; display: block; }
 
 /* ── NAV ──────────────────────────────────────── */
 #nav-bar {
@@ -153,7 +160,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 .section-label {
   font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.09em;
-  color: var(--green); margin-bottom: 10px;
+  color: var(--green-dark); margin-bottom: 10px;
 }
 
 .section-title {
@@ -807,7 +814,7 @@ pre.code-hint {
 .activity-num {
   font-size: 10px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--green); margin-bottom: 6px;
+  color: var(--green-dark); margin-bottom: 6px;
 }
 .activity-title {
   font-size: 14px; font-weight: 700;
@@ -1075,7 +1082,7 @@ body.presenting #pres-overlay { display: flex; }
 .resource-card-type {
   font-size: 10px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--green);
+  color: var(--green-dark);
 }
 .resource-card-name {
   font-size: 15px; font-weight: 700;
@@ -1156,6 +1163,9 @@ body.presenting #pres-overlay { display: flex; }
 <div id="progress"></div>
 
 <header id="top-bar">
+  <a href="index.html" class="top-logo" aria-label="RoboCup Junior Australia — all workshops">
+    <img src="assets/rcja-logo.png" alt="RoboCup Junior Australia">
+  </a>
   <h1><!-- WORKSHOP_NAME --></h1>
   <a href="index.html" class="home-link">← All workshops</a>
   <button id="btn-present" onclick="enterPresentation()">

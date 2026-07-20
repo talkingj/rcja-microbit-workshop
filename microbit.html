@@ -44,15 +44,16 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 /* ── TOP BAR ──────────────────────────────────── */
 #top-bar {
   position: sticky; top: 0; z-index: 200;
-  background: var(--navy);
-  height: 52px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  height: 60px;
   display: flex; align-items: center;
   padding: 0 24px;
   gap: 12px;
 }
 #top-bar h1 {
   font-size: 14px; font-weight: 700;
-  letter-spacing: -0.01em; color: #fff;
+  letter-spacing: -0.01em; color: var(--navy);
   flex: 1; min-width: 0;
 }
 .top-pill {
@@ -62,20 +63,20 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
   text-transform: uppercase; letter-spacing: 0.05em;
 }
 .home-link {
-  font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.65);
+  font-size: 11px; font-weight: 700; color: var(--muted);
   text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em;
   white-space: nowrap; flex-shrink: 0;
 }
-.home-link:hover { color: #fff; }
+.home-link:hover { color: var(--navy); }
 .top-logo {
   display: flex; align-items: center; flex-shrink: 0;
   margin-right: 2px;
 }
-.top-logo img { height: 36px; width: auto; display: block; }
+.top-logo img { height: 42px; width: auto; display: block; }
 
 /* ── NAV ──────────────────────────────────────── */
 #nav-bar {
-  position: sticky; top: 52px; z-index: 100;
+  position: sticky; top: 60px; z-index: 100;
   background: var(--white);
   border-bottom: 2px solid var(--border-lt);
   overflow-x: auto; scrollbar-width: none;
@@ -1028,14 +1029,14 @@ body.presenting #pres-overlay { display: flex; }
 
 /* ── PRESENT BUTTON IN TOPBAR ─────────────────── */
 #btn-present, #btn-pdf {
-  background: none; border: 1.5px solid rgba(255,255,255,0.3);
-  color: rgba(255,255,255,0.8); padding: 5px 12px;
+  background: none; border: 1.5px solid var(--border);
+  color: var(--navy); padding: 5px 12px;
   font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
   transition: background 80ms, border-color 80ms, color 80ms;
   display: flex; align-items: center; gap: 6px;
 }
 #btn-present:hover { background: var(--green); border-color: var(--green); color: var(--navy); }
-#btn-pdf:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); color: #fff; }
+#btn-pdf:hover { background: var(--surface); border-color: var(--navy); color: var(--navy); }
 #btn-present svg, #btn-pdf svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; }
 #btn-present svg { fill: currentColor; stroke: none; }
 

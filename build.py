@@ -284,10 +284,28 @@ def render_photo_row(yaml_text):
         url     = html.escape(str(item.get('url', '')))
         alt     = html.escape(str(item.get('alt', '')))
         slot_id = item.get('id', '')
+        caption = str(item.get('caption', '')).strip()
         id_attr = f' id="{html.escape(str(slot_id))}"' if slot_id else ''
+        cap_html = ''
+        if caption:
+            # Bold the leading number token of each "N label" entry split on ·
+            parts = []
+            for entry in caption.split('·'):
+                entry = entry.strip()
+                if not entry:
+                    continue
+                bits = entry.split(' ', 1)
+                if len(bits) == 2 and bits[0].isdigit():
+                    parts.append(f'<b>{html.escape(bits[0])}</b> {html.escape(bits[1])}')
+                else:
+                    parts.append(html.escape(entry))
+            cap_html = f'<div class="diagram-caption">{" · ".join(parts)}</div>'
         slots.append(
+            f'<div class="diagram-cell">'
             f'<div class="diagram-slot"{id_attr}>'
             f'<img src="{url}" alt="{alt}" loading="lazy">'
+            f'</div>'
+            f'{cap_html}'
             f'</div>'
         )
     return f'<div class="photo-row">{"".join(slots)}</div>'
@@ -372,6 +390,63 @@ def render_makecode_embed(url, title=''):
         f'frameborder="0" '
         f'sandbox="allow-popups allow-forms allow-scripts allow-same-origin" '
         f'allowfullscreen></iframe>'
+        f'</div>'
+    )
+
+
+# ── Video embedder ────────────────────────────────────────────────────────────
+
+def _drive_id(url):
+    """Extract a Google Drive file ID from a share URL, or return the input if it
+    already looks like a bare ID."""
+    if not url:
+        return ''
+    url = url.strip()
+    # https://drive.google.com/file/d/<ID>/view?usp=sharing
+    m = re.search(r'/file/d/([\w-]+)', url)
+    if m:
+        return m.group(1)
+    # https://drive.google.com/open?id=<ID>  or  ...?id=<ID>&...
+    m = re.search(r'[?&]id=([\w-]+)', url)
+    if m:
+        return m.group(1)
+    # Already a bare ID (no slashes / scheme)
+    if '/' not in url and '.' not in url:
+        return url
+    return ''
+
+
+def render_video_embed(url, title='', caption=''):
+    """Render a Google Drive video embed, or a placeholder if no URL/ID.
+
+    `url` accepts a full Drive share link or a bare file ID. The Drive file must be
+    shared as "Anyone with the link".
+    """
+    file_id = _drive_id(url)
+    label = html.escape(title or 'Video')
+    if not file_id:
+        return (
+            f'<div class="video-placeholder">'
+            f'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>'
+            f'<div class="mcp-label">Video: {label}</div>'
+            f'<div class="mcp-hint">Share the Google Drive file as <em>Anyone with the link</em>, then add it as<br>'
+            f'<code>drive_url: https://drive.google.com/file/d/&lt;ID&gt;/view</code><br>'
+            f'in this section\'s <code>VIDEO_EMBED</code> block</div>'
+            f'</div>'
+        )
+    cap = f'<div class="video-caption">{html.escape(caption)}</div>' if caption else ''
+    return (
+        f'<div class="video-embed">'
+        f'<div class="video-header">'
+        f'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>'
+        f'{label}'
+        f'<a href="https://drive.google.com/file/d/{html.escape(file_id)}/view" target="_blank" rel="noopener" class="video-open">Open in Drive ↗</a>'
+        f'</div>'
+        f'<div class="video-frame">'
+        f'<iframe src="https://drive.google.com/file/d/{html.escape(file_id)}/preview" '
+        f'allow="autoplay" allowfullscreen loading="lazy"></iframe>'
+        f'</div>'
+        f'{cap}'
         f'</div>'
     )
 
@@ -591,6 +666,21 @@ def resolve_embeds(body, _source_file=''):
             )
         return render_makecode_embed(url, title)
     body = re.sub(r'<!--\s*MAKECODE_EMBED\s*\n(.*?)\n-->', replace_makecode, body, flags=re.DOTALL)
+
+    # <!-- VIDEO_EMBED\ntitle: ...\ndrive_url: ...\ncaption: ...\n-->
+    def replace_video(match):
+        block = match.group(1)
+        data = {}
+        for line in block.splitlines():
+            if ':' in line:
+                k, _, v = line.partition(':')
+                data[k.strip()] = v.strip()
+        return render_video_embed(
+            data.get('drive_url', '').strip(),
+            data.get('title', '').strip(),
+            data.get('caption', '').strip(),
+        )
+    body = re.sub(r'<!--\s*VIDEO_EMBED\s*\n(.*?)\n-->', replace_video, body, flags=re.DOTALL)
 
     return body
 

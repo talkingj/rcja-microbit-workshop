@@ -5,16 +5,14 @@ label: Session overview
 title: About this session
 ---
 
-A 2-hour hands-on workshop. The first half covers what the micro:bit is and what it can do. The second half is live coding on the assembled robot. No rescue line track is required. All activities work with the kit components and a browser.
+A 2-hour hands-on activity. The first half covers what the micro:bit is and what it can do. The second half follows two videos: assembling the robot, then coding it to follow a line and avoid obstacles. No rescue line track is required.
 
 | Topic | Time | Notes |
 |---|---|---|
 | Introduction | 10 min | What is the micro:bit, where it is used, cost and availability |
 | Hardware tour | 10 min | Walk through the built-in sensors and what the edge connector gives access to |
-| Activity 1: LED display | 15 min | First MakeCode program. Show text and icons. Test in the simulator, then download to the board. |
-| Activity 2: Button events | 15 min | Button A and B trigger different LED outputs. Introduces event-driven programming. |
-| Activity 3: Motor control | 20 min | Drive the robot forward, backward, and turn using button presses. Requires the motor:bit board and motors. |
-| Activity 4: Reading sensors | 20 min | Read the IR sensor values and display them on the LED. No line needed. Participants see 0 vs 1 in real time. |
+| Assembling the robot | 30 min | Follow the assembly video: sensors, motors, battery, and mounting the board on a base. |
+| Coding: line following | 25 min | Follow the coding video: add the extensions, then build the if/else line-follow program. |
+| Coding: obstacle avoidance | 20 min | Add the ultrasonic sensor logic on top so the robot drives around an obstacle. |
 | RoboCup Junior context | 15 min | Show how the sensor readings connect to a real competition. Demo or video of a Rescue Line run. |
-| Free build time | 10 min | Participants extend their programs or explore the live demo code. |
-| Questions | 5 min | |
+| Questions | 10 min | |

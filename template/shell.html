@@ -229,12 +229,13 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 /* ── HARDWARE GRID ────────────────────────────── */
 .hw-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--border);
   border: 1px solid var(--border);
   margin-bottom: 32px;
 }
+@media (max-width: 680px) { .hw-grid { grid-template-columns: 1fr; } }
 
 .hw-card {
   background: var(--white);
@@ -244,8 +245,9 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 .hw-card:hover { background: var(--surface); }
 
 .hw-icon {
-  width: 36px; height: 36px;
-  background: var(--navy);
+  width: 40px; height: 40px;
+  background: rgba(63, 211, 127, 0.12);
+  border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 12px;
 }
@@ -698,6 +700,51 @@ ol.setup-steps code {
   padding: 1px 5px;
 }
 
+/* ── VIDEO EMBED ──────────────────────────────── */
+.video-embed {
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.video-header {
+  background: var(--navy);
+  padding: 8px 14px;
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7);
+  display: flex; align-items: center; gap: 8px;
+}
+.video-header svg { flex-shrink: 0; color: var(--green); }
+.video-open {
+  margin-left: auto;
+  font-size: 11px; color: var(--green);
+  text-decoration: none; font-weight: 600;
+}
+.video-open:hover { color: #fff; }
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.video-frame iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  display: block; border: none;
+}
+.video-caption {
+  background: var(--navy);
+  padding: 8px 14px;
+  font-size: 12px; color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+}
+.video-placeholder {
+  background: var(--navy);
+  border: 2px dashed var(--navy-mid);
+  padding: 36px 24px;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+  text-align: center; margin-bottom: 24px;
+}
+
 /* ── CODE PLACEHOLDER BLOCK ───────────────────── */
 .code-placeholder-block {
   background: var(--navy);
@@ -725,6 +772,10 @@ pre.code-hint {
 @media (max-width: 640px) {
   .page { padding: 0 16px; }
   #top-bar, #nav-inner { padding-left: 16px; padding-right: 16px; }
+  #top-bar { gap: 10px; }
+  #top-bar h1 { font-size: 13px; }
+  .top-logo img { height: 34px; }
+  .home-link, #btn-pdf, .top-pill { display: none; }
   #hero { padding: 36px 16px 32px; }
   .version-compare, .lang-compare { grid-template-columns: 1fr; }
   .rcja-banner { grid-template-columns: 1fr; }
@@ -779,6 +830,22 @@ pre.code-hint {
   gap: 12px;
   margin-bottom: 32px;
 }
+.diagram-cell { display: flex; flex-direction: column; }
+.diagram-caption {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 10px;
+}
+.diagram-caption b {
+  display: inline-block;
+  min-width: 18px; height: 18px;
+  line-height: 18px; text-align: center;
+  background: var(--navy); color: #fff;
+  border-radius: 50%;
+  font-size: 11px; font-weight: 700;
+  margin-right: 3px;
+}
 
 /* ── TIMING TABLE ────────────────────────────── */
 .timing-table td:first-child {
@@ -793,12 +860,14 @@ pre.code-hint {
 /* ── ACTIVITY CARDS (RoboCup section) ────────── */
 .activity-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   background: var(--border);
   border: 1px solid var(--border);
   margin-bottom: 28px;
 }
+@media (max-width: 900px) { .activity-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .activity-grid { grid-template-columns: 1fr; } }
 .activity-card {
   background: var(--white);
   padding: 22px 20px;
@@ -807,10 +876,11 @@ pre.code-hint {
 }
 .activity-card:hover { border-left-color: var(--green); background: var(--surface); }
 .activity-icon {
-  width: 32px; height: 32px;
-  background: var(--navy);
+  width: 40px; height: 40px;
+  background: rgba(63, 211, 127, 0.12);
+  border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .activity-num {
   font-size: 10px; font-weight: 700;

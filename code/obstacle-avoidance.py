@@ -1,2 +1,2 @@
 # Obstacle avoidance — drop your code here
-# Ultrasonic: set pin to match your physical wiring (free GVS port on motor:bit)
+# Ultrasonic: trig = P15, echo = P16 (motor:bit GVS ports); avoid when distance < 12 cm

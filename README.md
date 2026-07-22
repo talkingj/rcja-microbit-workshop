@@ -71,8 +71,10 @@ Elecfreaks motor:bit smart car — two TT motors, 2-channel IR tracking module, 
 |---|---|
 | Left motor | M1 |
 | Right motor | M2 |
-| Left tracking sensor | P4 |
-| Right tracking sensor | P3 |
+| Left tracking sensor | P13 |
+| Right tracking sensor | P14 |
+| Ultrasonic trig | P15 |
+| Ultrasonic echo | P16 |
 | Buzzer | P0 (on-board) |
 
-Tracking sensors return `0` on the black line, `1` on white. Set pull-ups on P3 and P4.
+Tracking sensors return `1` on the black line, `0` on white (as demonstrated in the assembly/coding videos). If your module reads the opposite way, swap the values in the comparisons.

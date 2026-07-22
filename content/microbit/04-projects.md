@@ -13,7 +13,7 @@ projects:
 
   - domain: Sensing
     name: IR tracking sensor
-    desc: A two-channel sensor that reads black and white surfaces. Returns 0 on black, 1 on white. Connects to GVS ports. The core sensor for line following.
+    desc: A two-channel sensor that reads black and white surfaces as a digital 1 or 0. Which surface reads 1 varies by module, so you calibrate it in code. Connects to GVS ports. The core sensor for line following.
     color: "#2563eb"
     img: "https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/sensor/octopus-sensors/sensor/images/u76NzbX.png"
     tags: [Line detection, Digital output]

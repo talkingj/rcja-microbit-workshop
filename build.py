@@ -374,10 +374,10 @@ def render_makecode_embed(url, title=''):
     embed_src = url
     if 'makecode.microbit.org' in url and '---' not in url and '--docs' not in url:
         # Convert share URL to embed URL
-        embed_src = url.replace('makecode.microbit.org/', 'makecode.microbit.org/---run#pub:').replace('/#', '#')
+        embed_src = url.replace('makecode.microbit.org/', 'makecode.microbit.org/---codeembed#pub:').replace('/#', '#')
         if 'makecode.microbit.org/S' in url:
             share_id = url.split('/S')[-1].split('/')[0].split('#')[0]
-            embed_src = f'https://makecode.microbit.org/---run#pub:S{share_id}'
+            embed_src = f'https://makecode.microbit.org/---codeembed#pub:S{share_id}'
     label = html.escape(title or 'MakeCode project')
     return (
         f'<div class="makecode-embed">'

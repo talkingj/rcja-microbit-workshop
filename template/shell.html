@@ -13,8 +13,9 @@
   --navy:       #1b2945;
   --navy-mid:   #263a5e;
   --green:      #3fd37f;
-  --green-dark: #339655;
+  --green-dark: #217a43;
   --blue-tint:  #eef1f8;
+  --mono:       ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
   --border:     #d0d7e3;
   --border-lt:  #e4e8ef;
   --row-sep:    #f0f0f0;
@@ -143,7 +144,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
   line-height: 1;
 }
 .hs-label {
-  font-size: 11px; color: rgba(255,255,255,0.45);
+  font-size: 11px; color: rgba(255,255,255,0.6);
   margin-top: 4px; white-space: nowrap;
 }
 
@@ -213,7 +214,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 }
 .version-list li {
   padding: 7px 16px;
-  font-size: 12px; color: var(--label);
+  font-size: 13px; color: var(--label);
   border-bottom: 1px solid var(--row-sep);
   display: flex; align-items: center; gap: 8px;
 }
@@ -258,13 +259,13 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 }
 
 .hw-desc {
-  font-size: 12px; color: var(--muted);
+  font-size: 13px; color: var(--muted);
   line-height: 1.55;
 }
 
 .hw-tag {
   display: inline-block;
-  font-size: 10px; font-weight: 700;
+  font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.06em;
   color: var(--green-dark);
   background: #e8f7ee;
@@ -305,7 +306,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 
 .lang-body {
   padding: 14px 16px;
-  font-size: 12px; color: var(--label);
+  font-size: 13px; color: var(--label);
   line-height: 1.6;
 }
 
@@ -314,7 +315,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 }
 .lang-pros li {
   padding: 3px 0;
-  font-size: 12px; color: var(--muted);
+  font-size: 13px; color: var(--muted);
   display: flex; gap: 8px; align-items: flex-start;
 }
 .lang-pros li::before {
@@ -391,7 +392,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 .project-body { padding: 16px; }
 
 .project-domain {
-  font-size: 10px; font-weight: 700;
+  font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--muted); margin-bottom: 6px;
 }
@@ -402,7 +403,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 }
 
 .project-desc {
-  font-size: 12px; color: var(--label);
+  font-size: 13px; color: var(--label);
   line-height: 1.55;
 }
 
@@ -412,7 +413,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 }
 
 .tag {
-  font-size: 10px; font-weight: 600;
+  font-size: 11px; font-weight: 600;
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--muted);
@@ -518,7 +519,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 .map-table td:first-child { font-weight: 600; color: var(--ink); }
 
 .rule-ref {
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 11px; color: var(--muted);
   white-space: nowrap;
 }
@@ -569,7 +570,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
   background: var(--navy);
   border: 1px solid var(--navy-mid);
   padding: 20px 24px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--mono);
   font-size: 13px;
   line-height: 1.7;
   color: rgba(255,255,255,0.85);
@@ -585,7 +586,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 .code-filename {
   background: var(--navy-mid);
   color: rgba(255,255,255,0.5);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 11px;
   padding: 5px 14px;
   letter-spacing: 0.03em;
@@ -615,7 +616,7 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 .pin-table td:last-child { border-right: none; }
 .pin-table tr:last-child td { border-bottom: none; }
 .pin-table code {
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 12px;
   background: var(--surface);
   padding: 1px 5px;
@@ -632,7 +633,7 @@ ol.setup-steps li {
   line-height: 1.65; padding: 4px 0;
 }
 ol.setup-steps code {
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 12px; background: var(--surface);
   padding: 1px 5px; border: 1px solid var(--border);
 }
@@ -686,15 +687,15 @@ ol.setup-steps code {
 }
 .mcp-label {
   font-size: 13px; font-weight: 700;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.6);
   text-transform: uppercase; letter-spacing: 0.07em;
 }
 .mcp-hint {
-  font-size: 12px; color: rgba(255,255,255,0.3);
+  font-size: 12px; color: rgba(255,255,255,0.5);
   max-width: 52ch; line-height: 1.6;
 }
 .mcp-hint code {
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 11px; color: var(--green);
   background: rgba(255,255,255,0.05);
   padding: 1px 5px;
@@ -733,7 +734,7 @@ ol.setup-steps code {
 .video-caption {
   background: var(--navy);
   padding: 8px 14px;
-  font-size: 12px; color: rgba(255,255,255,0.45);
+  font-size: 12px; color: rgba(255,255,255,0.6);
   line-height: 1.5;
 }
 .video-placeholder {
@@ -762,7 +763,7 @@ ol.setup-steps code {
 }
 .code-placeholder-block svg { color: rgba(255,255,255,0.25); }
 pre.code-hint {
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono);
   font-size: 11px; color: rgba(255,255,255,0.25);
   line-height: 1.6; margin: 0; white-space: pre-wrap;
   text-align: left;
@@ -883,7 +884,7 @@ pre.code-hint {
   margin-bottom: 12px;
 }
 .activity-num {
-  font-size: 10px; font-weight: 700;
+  font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--green-dark); margin-bottom: 6px;
 }
@@ -897,7 +898,7 @@ pre.code-hint {
   letter-spacing: 0.03em;
 }
 .activity-desc {
-  font-size: 12px; color: var(--label);
+  font-size: 13px; color: var(--label);
   line-height: 1.55;
 }
 
@@ -995,7 +996,7 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .hw-icon { margin-bottom: 4px; }
 .pres-slide .hw-name { font-size: 13px; margin-bottom: 4px; }
 .pres-slide .hw-desc { font-size: 11px; line-height: 1.45; margin-bottom: 6px; }
-.pres-slide .hw-tag { font-size: 9px; padding: 2px 5px; }
+.pres-slide .hw-tag { font-size: 9px; padding: 2px 5px; color: var(--green); background: rgba(63,211,127,0.12); }
 
 /* Continuation header for split slides */
 .pres-cont-header {
@@ -1032,6 +1033,14 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .pin-table { border-color: rgba(255,255,255,0.1); }
 .pres-slide .pin-table td { border-color: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); }
 .pres-slide .code-ref h3 { color: #fff; }
+/* Inline code chips: the light --surface background is invisible against the
+   dark slide, and pres text is white — give them a dark chip + light text. */
+.pres-slide .pin-table code,
+.pres-slide .setup-steps code {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
 
 /* General text overrides — catch all prose paragraphs, headings, list items */
 .pres-slide p { color: rgba(255,255,255,0.6); }
@@ -1151,7 +1160,7 @@ body.presenting #pres-overlay { display: flex; }
   gap: 8px;
 }
 .resource-card-type {
-  font-size: 10px; font-weight: 700;
+  font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em;
   color: var(--green-dark);
 }

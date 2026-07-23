@@ -42,6 +42,19 @@ a:hover { color: var(--green-dark); }
 button { font-family: inherit; cursor: pointer; border-radius: 0; }
 button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 
+/* ── SKIP LINK ────────────────────────────────── */
+.skip-link {
+  position: fixed; top: 8px; left: 8px; z-index: 400;
+  transform: translateY(-160%);
+  background: var(--navy); color: #fff;
+  padding: 10px 16px; font-size: 13px; font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus-visible {
+  transform: none;
+  outline: 2px solid var(--green); outline-offset: 2px;
+}
+
 /* ── TOP BAR ──────────────────────────────────── */
 #top-bar {
   position: sticky; top: 0; z-index: 200;
@@ -98,8 +111,9 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 /* ── PROGRESS BAR ─────────────────────────────── */
 #progress {
   position: fixed; top: 0; left: 0; height: 3px;
-  width: 0%; background: var(--green); z-index: 300;
-  transition: width 80ms linear;
+  width: 100%; background: var(--green); z-index: 300;
+  transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform 80ms linear;
 }
 
 /* ── HERO ─────────────────────────────────────── */
@@ -526,9 +540,8 @@ button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 
 /* ── CALLOUT ──────────────────────────────────── */
 .callout {
-  border: 1.5px solid var(--border);
-  border-left: 4px solid var(--green);
-  background: var(--surface);
+  border: 1px solid #cfe3d5;
+  background: #f1f7f3;
   padding: 14px 16px;
   font-size: 13px; color: var(--label);
   line-height: 1.6; margin-bottom: 20px;
@@ -787,6 +800,15 @@ pre.code-hint {
   .code-ref { padding: 0 16px; }
 }
 
+/* ── REDUCED MOTION ───────────────────────────── */
+/* Intentional alternative, not a blanket kill: keep short state-change
+   feedback (hover, nav, progress) but drop continuous/large motion —
+   smooth-scroll jumps and the auto-rotating 3D model (gated in JS). */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .pres-slide::after { transition: none; }
+}
+
 /* ── PHOTO PLACEHOLDER ────────────────────────── */
 .photo-slot {
   background: var(--navy);
@@ -939,7 +961,7 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .hero-stats { border-color: rgba(255,255,255,0.12); }
 .pres-slide .hero-stat { border-right-color: rgba(255,255,255,0.12); }
 .pres-slide .hs-val { color: #fff; font-size: 28px; }
-.pres-slide .hs-label { color: rgba(255,255,255,0.4); }
+.pres-slide .hs-label { color: rgba(255,255,255,0.6); }
 /* Prevent hero stats from wrapping to a second row in presentation */
 .pres-slide .hero-stats { flex-wrap: nowrap; width: auto; }
 .pres-slide .hero-stat { padding: 14px 20px; }
@@ -948,31 +970,31 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .v1-hdr { background: rgba(255,255,255,0.06); }
 .pres-slide .v1-hdr span:first-child { color: rgba(255,255,255,0.8); }
 .pres-slide .version-list li { color: rgba(255,255,255,0.6); border-bottom-color: rgba(255,255,255,0.06); }
-.pres-slide .callout { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); border-left-color: var(--green); color: rgba(255,255,255,0.6); }
+.pres-slide .callout { background: rgba(63,211,127,0.08); border-color: rgba(63,211,127,0.22); color: rgba(255,255,255,0.72); }
 .pres-slide .callout strong { color: #fff; }
 
 .pres-slide .hw-grid { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.08); }
 .pres-slide .hw-card { background: transparent; }
 .pres-slide .hw-card:hover { background: rgba(255,255,255,0.05); }
 .pres-slide .hw-name { color: #fff; }
-.pres-slide .hw-desc { color: rgba(255,255,255,0.5); }
+.pres-slide .hw-desc { color: rgba(255,255,255,0.6); }
 
 .pres-slide .lang-card { border-color: rgba(255,255,255,0.1); }
 .pres-slide .lang-body { color: rgba(255,255,255,0.55); }
-.pres-slide .lang-pros li { color: rgba(255,255,255,0.45); }
+.pres-slide .lang-pros li { color: rgba(255,255,255,0.6); }
 .pres-slide .sim-callout { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
 
 .pres-slide .project-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
 .pres-slide .project-img { background: rgba(255,255,255,0.06); border-bottom-color: rgba(255,255,255,0.08); }
 .pres-slide .project-name { color: #fff; }
-.pres-slide .project-desc { color: rgba(255,255,255,0.5); }
-.pres-slide .project-domain { color: rgba(255,255,255,0.35); }
-.pres-slide .tag { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); }
+.pres-slide .project-desc { color: rgba(255,255,255,0.6); }
+.pres-slide .project-domain { color: rgba(255,255,255,0.6); }
+.pres-slide .tag { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.18); color: rgba(255,255,255,0.6); }
 
 .pres-slide .pitch-grid { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.08); }
 .pres-slide .pitch-card { background: transparent; }
 .pres-slide .pitch-title { color: #fff; }
-.pres-slide .pitch-body { color: rgba(255,255,255,0.45); }
+.pres-slide .pitch-body { color: rgba(255,255,255,0.6); }
 .pres-slide .pitch-num { color: rgba(255,255,255,0.1); }
 
 .pres-slide .map-table { border-color: rgba(255,255,255,0.1); }
@@ -984,7 +1006,7 @@ body.presenting #pres-overlay { display: flex; }
 
 .pres-slide .code-ph-icon { background: rgba(255,255,255,0.08); }
 .pres-slide .code-ph-title { color: #fff; }
-.pres-slide .code-ph-body { color: rgba(255,255,255,0.45); }
+.pres-slide .code-ph-body { color: rgba(255,255,255,0.6); }
 
 /* Diagram slots on dark presentation background */
 .pres-slide .diagram-slot { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); max-height: 140px; min-height: 0; }
@@ -1010,7 +1032,7 @@ body.presenting #pres-overlay { display: flex; }
 }
 .pres-cont-title {
   font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.6);
 }
 
 /* Bottom fade on slides that have scrollable overflow */
@@ -1046,7 +1068,7 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide p { color: rgba(255,255,255,0.6); }
 .pres-slide h3 { color: #fff; }
 .pres-slide li { color: rgba(255,255,255,0.6); }
-.pres-slide th { color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
+.pres-slide th { color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
 .pres-slide a { color: var(--green); }
 
 /* Sim callout */
@@ -1065,8 +1087,8 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .activity-icon { background: rgba(255,255,255,0.08); }
 .pres-slide .activity-num { color: var(--green); }
 .pres-slide .activity-title { color: #fff; }
-.pres-slide .activity-cap { color: rgba(255,255,255,0.35); }
-.pres-slide .activity-desc { color: rgba(255,255,255,0.5); }
+.pres-slide .activity-cap { color: rgba(255,255,255,0.6); }
+.pres-slide .activity-desc { color: rgba(255,255,255,0.6); }
 
 /* Setup steps in coding section */
 .pres-slide .setup-steps li { color: rgba(255,255,255,0.6); border-bottom-color: rgba(255,255,255,0.06); }
@@ -1094,7 +1116,7 @@ body.presenting #pres-overlay { display: flex; }
 #pres-counter {
   flex: 1; text-align: center;
   font-size: 12px; font-weight: 600;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.55);
   letter-spacing: 0.06em;
 }
 
@@ -1240,6 +1262,8 @@ body.presenting #pres-overlay { display: flex; }
 </head>
 <body>
 
+<a href="#hero" class="skip-link">Skip to content</a>
+
 <div id="progress"></div>
 
 <header id="top-bar">
@@ -1319,7 +1343,8 @@ sections.forEach(s => { if (s) tabObs.observe(s); });
 
 window.addEventListener('scroll', () => {
   const h = document.documentElement;
-  bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  const scrollable = h.scrollHeight - h.clientHeight;
+  bar.style.transform = 'scaleX(' + (scrollable > 0 ? h.scrollTop / scrollable : 0) + ')';
 }, { passive: true });
 
 // ── PRESENTATION MODE ─────────────────────────────────────────────
@@ -1386,14 +1411,19 @@ function presNav(dir) {
   if (next >= 0 && next < presSlides.length) showSlide(next);
 }
 
+let presReturnFocus = null;
+
 function enterPresentation() {
   buildSlides();
   showSlide(0);
+  presReturnFocus = document.activeElement;
   document.body.classList.add('presenting');
   // Update scroll fade as user scrolls each slide
   presSlides.forEach(slide => {
     slide.addEventListener('scroll', () => updateScrollFade(slide), { passive: true });
   });
+  // Move keyboard focus into the dialog so Tab and screen readers stay inside it.
+  nextBtn.focus();
   if (document.documentElement.requestFullscreen) {
     document.documentElement.requestFullscreen().catch(() => {});
   }
@@ -1402,13 +1432,30 @@ function enterPresentation() {
 function exitPresentation() {
   document.body.classList.remove('presenting');
   if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  // Return focus to wherever it was before the dialog opened.
+  if (presReturnFocus && presReturnFocus.focus) presReturnFocus.focus();
+  presReturnFocus = null;
 }
 
 document.addEventListener('keydown', e => {
   if (!document.body.classList.contains('presenting')) return;
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); presNav(1); }
   if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); presNav(-1); }
-  if (e.key === 'Escape') exitPresentation();
+  if (e.key === 'Escape') { e.preventDefault(); exitPresentation(); }
+  // Trap Tab within the dialog's controls.
+  if (e.key === 'Tab') {
+    const focusable = [...overlay.querySelectorAll('button')].filter(b => !b.disabled);
+    if (!focusable.length) return;
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+});
+
+// Skip link: move actual keyboard focus to the content, not just the viewport.
+document.querySelector('.skip-link')?.addEventListener('click', () => {
+  const target = document.getElementById('hero') || document.querySelector('.section');
+  if (target) { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: false }); }
 });
 </script>
 <script type="module">
@@ -1458,7 +1505,10 @@ function runSTLViewer(container) {
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.06;
-  controls.autoRotate = true;
+  // Honor reduced-motion: the model still loads and stays drag-to-rotate,
+  // it just doesn't spin on its own.
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  controls.autoRotate = !prefersReducedMotion;
   controls.autoRotateSpeed = 0.8;
 
   scene.add(new THREE.AmbientLight(0xffffff, 0.8));
@@ -1493,18 +1543,45 @@ function runSTLViewer(container) {
     camera.lookAt(0, 0, 0);
     controls.update();
     container.classList.add('loaded');
+    renderPending = true; kick();   // render the mesh even if the loop had idled
   }, undefined, () => failViewer());
 
   controls.addEventListener('start', () => { controls.autoRotate = false; });
+
+  // Demand-driven render loop. It runs every frame only while auto-rotating or
+  // while a drag is still settling (damping), renders once on any change, and
+  // stops entirely when the viewer scrolls off-screen or the tab is hidden — so
+  // it never spins in the background draining a classroom laptop's battery.
+  let rafId = null, renderPending = true, onScreen = true;
+
+  function frame() {
+    if (!onScreen || document.hidden) { rafId = null; return; }
+    if (controls.autoRotate || renderPending) {
+      renderPending = false;
+      controls.update();               // may re-flag renderPending via 'change' while damping
+      renderer.render(scene, camera);
+    }
+    rafId = (controls.autoRotate || renderPending) ? requestAnimationFrame(frame) : null;
+  }
+  function kick() { if (rafId === null && onScreen && !document.hidden) rafId = requestAnimationFrame(frame); }
+  controls.addEventListener('change', () => { renderPending = true; kick(); });
 
   new ResizeObserver(() => {
     const rw = container.clientWidth, rh = container.clientHeight;
     renderer.setSize(rw, rh);
     camera.aspect = rw / rh;
     camera.updateProjectionMatrix();
+    renderPending = true; kick();
   }).observe(container);
 
-  (function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera); })();
+  new IntersectionObserver(([e]) => {
+    onScreen = e.isIntersecting;
+    if (onScreen) kick();
+  }, { threshold: 0 }).observe(container);
+
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) kick(); });
+
+  kick();
 }
 
 // Init when the slide containing the viewer becomes visible

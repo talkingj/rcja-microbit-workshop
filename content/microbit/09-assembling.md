@@ -35,10 +35,10 @@ Every connector is labelled. The one rule that keeps you out of trouble: **black
 > **What is in your kit:** one micro:bit V2, one Elecfreaks motor:bit carrier board, two TT DC gear motors with wheels, one 2-channel IR tracking sensor module, one HC-SR04 ultrasonic sensor, one 4xAA battery holder with JST connector, and jumper wires.
 
 <!-- PHOTO_ROW
-- url: "https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/expansion-board/images/6zRKrvw.jpg"
+- url: "assets/photos/motorbit-board.jpg"
   alt: Elecfreaks motor:bit carrier board
   id: photo-motorbit-kit
-- url: "https://wiki-media-ef.oss-cn-hongkong.aliyuncs.com/i18n/en/docusaurus-plugin-content-docs/current/microbit/expansion-board/images/5ayGCgd.png"
+- url: "assets/photos/motorbit-assembled.png"
   alt: micro:bit inserted into the motor:bit carrier board
   id: photo-motorbit-assembled
 -->

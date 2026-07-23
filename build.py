@@ -313,6 +313,18 @@ def render_photo_row(yaml_text):
 
 # ── Card / grid renderers (called when YAML data is present) ──────────────────
 
+# Muted, brand-anchored accent per project domain. Colour encodes the category
+# (all Sensing cards match, etc.) rather than decorating each card at random.
+DOMAIN_COLORS = {
+    'Motors':  '#3f7a57',   # muted green (brand family)
+    'Sensing': '#3f5f8a',   # slate blue (relates to navy)
+    'Output':  '#b07840',   # muted clay
+    'Control': '#3f8079',   # muted teal
+    'Gaming':  '#6f5a86',   # muted plum
+}
+DOMAIN_COLOR_DEFAULT = '#3f7a57'
+
+
 def render_projects(projects):
     """Render a list of project dicts as a .project-grid."""
     cards = []
@@ -320,7 +332,8 @@ def render_projects(projects):
         name   = html.escape(str(p.get('name', '')))
         domain = html.escape(str(p.get('domain', '')))
         desc   = html.escape(str(p.get('desc', '')))
-        color  = html.escape(str(p.get('color', '#3db166')))
+        # Stripe colour is derived from the domain; an explicit `color:` still wins.
+        color  = html.escape(str(p.get('color') or DOMAIN_COLORS.get(p.get('domain', ''), DOMAIN_COLOR_DEFAULT)))
         img    = str(p.get('img', ''))
         tags   = p.get('tags', [])
         tag_html = ''.join(f'<span class="tag">{html.escape(str(t))}</span>' for t in tags)
@@ -387,6 +400,7 @@ def render_makecode_embed(url, title=''):
         f'<a href="{html.escape(url)}" target="_blank" rel="noopener" class="makecode-open">Open in MakeCode ↗</a>'
         f'</div>'
         f'<iframe src="{html.escape(embed_src)}" '
+        f'title="{label} — MakeCode editor" '
         f'frameborder="0" '
         f'sandbox="allow-popups allow-forms allow-scripts allow-same-origin" '
         f'allowfullscreen></iframe>'
@@ -444,6 +458,7 @@ def render_video_embed(url, title='', caption=''):
         f'</div>'
         f'<div class="video-frame">'
         f'<iframe src="https://drive.google.com/file/d/{html.escape(file_id)}/preview" '
+        f'title="{label} (video)" '
         f'allow="autoplay" allowfullscreen loading="lazy"></iframe>'
         f'</div>'
         f'{cap}'

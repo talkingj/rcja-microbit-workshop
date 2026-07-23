@@ -103,12 +103,13 @@ For groups that finish early, or to stretch stronger students, there are a few d
 
 <!-- SLIDE_BREAK -->
 
+
+<!-- STEPS_END -->
+<!-- MAKECODE_EMBED
 ### The finished program
 
 Here is the complete line-following and obstacle-avoidance program from the video. Click **Edit** to open it in MakeCode, or **Download** to send it straight to a connected micro:bit.
 
-<!-- STEPS_END -->
-<!-- MAKECODE_EMBED
 title: Line following + obstacle avoidance
 makecode_url: https://makecode.microbit.org/S61778-52603-41373-17881
 -->

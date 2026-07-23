@@ -5,7 +5,7 @@ label: Build the robot
 title: Assembling your robot
 ---
 
-Your kit arrives as individual components: no soldering, and every connection is push-fit or screw terminal. Watch the assembly video, then use the step list and kit reference below to build along.
+Your kit arrives as individual components: no soldering, and every connection is push-fit or screw terminal. Watch the assembly video, then expand the step-by-step build below to follow along.
 
 <!-- VIDEO_EMBED
 title: Assembling your micro:bit robot
@@ -13,9 +13,7 @@ drive_url: https://drive.google.com/file/d/10NKOaa0V-621W8AjKQY3cZ_uS2OXyHd0/vie
 caption: "Full walkthrough: sensors, motors, battery, and mounting the board on a base."
 -->
 
-<!-- SLIDE_BREAK -->
-
-### Assembly steps
+<!-- STEPS: Step-by-step build -->
 
 Every connector is labelled. The one rule that keeps you out of trouble: **black always goes to ground (G)**.
 
@@ -28,38 +26,4 @@ Every connector is labelled. The one rule that keeps you out of trouble: **black
 
 > **Sensor and motor mirroring:** if the robot later steers the wrong way, a sensor or motor pair is simply plugged in mirrored. Swap the left/right values in code rather than rewiring.
 
-<!-- SLIDE_BREAK -->
-
-### What's in your kit
-
-> **What is in your kit:** one micro:bit V2, one Elecfreaks motor:bit carrier board, two TT DC gear motors with wheels, one 2-channel IR tracking sensor module, one HC-SR04 ultrasonic sensor, one 4xAA battery holder with JST connector, and jumper wires.
-
-<!-- PHOTO_ROW
-- url: "assets/photos/motorbit-board.jpg"
-  alt: Elecfreaks motor:bit carrier board
-  id: photo-motorbit-kit
-- url: "assets/photos/motorbit-assembled.png"
-  alt: micro:bit inserted into the motor:bit carrier board
-  id: photo-motorbit-assembled
--->
-
-<!-- HW_CARDS
-- name: micro:bit V2
-  icon: microbit
-  desc: The brain. Has the 5x5 LED display, buttons, sensors, and radio. Plugs into the top of the carrier board.
-- name: motor:bit carrier board
-  icon: motorbit
-  desc: Connects to the micro:bit edge connector. Has motor driver circuits, power regulation, and labelled ports for motors and sensors.
-- name: TT gear motors x2
-  icon: motor
-  desc: One for each wheel. Wired to M1 and M2 on the carrier board using the screw terminals.
-- name: IR tracking sensor
-  icon: ir-sensor
-  desc: Two sensors on one board. Detects black vs. white surfaces. Connects to P13 and P14. Mount at the front, facing down.
-- name: Ultrasonic sensor
-  icon: ultrasonic
-  desc: "Two round transducers: one transmits, one receives. Measures distance up to 4 m. Trig to P15 and echo to P16 (match the pins in MakeCode)."
-- name: 4xAA battery pack
-  icon: battery
-  desc: Plugs into the JST connector on the carrier board. Use alkaline AA batteries. Rechargeable AA batteries are too low-voltage for reliable motor operation.
--->
+<!-- STEPS_END -->

@@ -759,6 +759,34 @@ ol.setup-steps code {
   text-align: center; margin-bottom: 24px;
 }
 
+/* ── VIDEO STEPS DROPDOWN ─────────────────────── */
+.video-steps {
+  border: 1.5px solid var(--border);
+  margin: -8px 0 28px;
+}
+.video-steps > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 13px 16px;
+  font-size: 13px; font-weight: 700;
+  color: var(--navy);
+  background: var(--surface);
+  display: flex; align-items: center; gap: 8px;
+  user-select: none;
+}
+.video-steps > summary::-webkit-details-marker { display: none; }
+.video-steps > summary::marker { content: ''; }
+.video-steps > summary:hover { color: var(--navy-mid); }
+.video-steps-chevron {
+  margin-left: auto; flex-shrink: 0;
+  color: var(--muted);
+  transition: transform 0.18s ease;
+}
+.video-steps[open] > summary { border-bottom: 1.5px solid var(--border); }
+.video-steps[open] > summary .video-steps-chevron { transform: rotate(180deg); }
+.video-steps-body { padding: 20px 20px 4px; }
+.video-steps-body > :first-child { margin-top: 0; }
+
 /* ── CODE PLACEHOLDER BLOCK ───────────────────── */
 .code-placeholder-block {
   background: var(--navy);
@@ -1207,13 +1235,24 @@ body.presenting #pres-overlay { display: flex; }
 .resource-card-download:hover { background: var(--navy-mid); }
 .resource-card-download svg { flex-shrink: 0; }
 
+/* Footer row under a DXF/STL preview: tool note + download action */
+.resource-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px 24px; flex-wrap: wrap;
+  margin: 14px 0 32px;
+}
+.resource-tools {
+  flex: 1; min-width: 220px; margin: 0;
+  font-size: 13px; color: var(--muted); line-height: 1.5;
+}
+.resource-foot .resource-card-download { margin-top: 0; flex-shrink: 0; }
+
 /* ── STL VIEWER ──────────────────────────────── */
 .stl-viewer-wrap {
   position: relative;
   background: var(--surface);
   border: 1.5px solid var(--border);
   overflow: hidden;
-  margin-bottom: 32px;
 }
 .stl-viewer-wrap canvas {
   display: block;
@@ -1243,7 +1282,6 @@ body.presenting #pres-overlay { display: flex; }
   border: 1.5px solid var(--border);
   background: var(--surface);
   overflow: auto;
-  margin-bottom: 32px;
   position: relative;
 }
 .dxf-preview svg {

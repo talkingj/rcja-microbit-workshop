@@ -13,7 +13,7 @@ drive_url: https://drive.google.com/file/d/1auG9TSjEIdfi6OtP2WDCCmV0zuniTodb/vie
 caption: Adds the motorbit and sonar extensions, then builds the line-follow logic and ultrasonic obstacle avoidance in MakeCode.
 -->
 
-<!-- SLIDE_BREAK -->
+<!-- STEPS: Step-by-step guide -->
 
 ### Setup: extensions you need
 
@@ -57,12 +57,7 @@ Find out what *your* sensors actually do:
 
 ### Part 1: Line following
 
-The two sensors sit on either side of the line, so the line runs **between** them. Build this as an **if / else if / else** chain inside the forever loop, using `digital read pin` on P13 and P14:
-
-- **Turn left:** if `P13 = 1` (left sees black) **and** `P14 = 0` (right sees white). Use *turn left* at speed 50.
-- **Turn right:** if `P13 = 0` **and** `P14 = 1` (right sees black). Use *turn right* at speed 50.
-- **Go straight:** if `P13 = 0` **and** `P14 = 0` (both on white, line running between the sensors). Use *move forward* at speed 50.
-- **Else:** stop.
+The two sensors sit on either side of the line, so the line runs **between** them. Build the logic as an **if / else if / else** chain inside the forever loop, reading `digital read pin` on P13 and P14. When the left sensor sees black and the right sees white (`P13 = 1`, `P14 = 0`) the robot has drifted right, so *turn left* at speed 50; when the right sensor sees black and the left sees white (`P13 = 0`, `P14 = 1`), *turn right* at speed 50. When both sensors are on white (`P13 = 0`, `P14 = 0`) the line is running cleanly between them, so *move forward* at speed 50. Anything else — including both sensors on black — falls through to the *else* and stops.
 
 <div class="callout">
 <strong>Known limitation: both sensors on black.</strong> The one case left over is <b>both sensors see black at once</b>, which lands in the <em>else</em> and stops the robot. That happens on a thick line, a sharp corner, or an intersection, so this two-sensor design follows a clean line well but stalls at junctions. That's a property of the design, not a student mistake. Handling intersections is a later step (see <b>Extend it</b> below and the RoboCup section).
@@ -77,11 +72,7 @@ Load it, then tune. Two different problems have two different fixes:
 
 ### Part 2: Obstacle avoidance (ultrasonic)
 
-In RoboCup Rescue Line the robot must drive **around** an obstacle. Add the ultrasonic sensor on top of the line follower:
-
-- Read the distance every loop with the **sonar** block (trig `P15`, echo `P16`, units **cm**).
-- If the distance is **less than 12 cm**, run an avoidance manoeuvre: break out of line following, pause briefly, then step through *turn right → pause → forward → pause → turn left → forward → …* until the robot has cleared the object and is back on the line.
-- Nest the whole line-following if/else inside the ultrasonic if/else so both run together: the ultrasonic is checked every loop, and line following runs whenever nothing is in range.
+In RoboCup Rescue Line the robot must drive **around** an obstacle, so add the ultrasonic sensor on top of the line follower. Read the distance every loop with the **sonar** block (trig `P15`, echo `P16`, units **cm**). When the distance drops **below 12 cm**, break out of line following and run an avoidance manoeuvre — pause briefly, then step through *turn right → pause → forward → pause → turn left → forward → …* until the robot has cleared the object and is back on the line. The trick is to nest the whole line-following if/else inside the ultrasonic if/else so both run together: the ultrasonic is checked every loop, and line following takes over whenever nothing is in range.
 
 <div class="callout">
 <strong>Expect a lot of tuning; it may not work first time.</strong> This manoeuvre is <em>open-loop</em>: it runs fixed turn and drive times and hopes the robot ends up back on the line. Battery level, floor friction, and small motor differences all change how far each timed step travels, so the pause lengths from the video may need adjusting, and the robot won't always rejoin the line cleanly. Treat it as a starting point to tune, not a finished solution.
@@ -108,12 +99,7 @@ Robotics with a class guarantees a few of these. Work down the table.
 
 ### Extend it
 
-For groups that finish early, or to stretch stronger students:
-
-- **Tune for speed:** find the fastest speed the robot can still follow the line reliably.
-- **Show its state:** use the LED display or the V2 speaker to signal what the robot "thinks": an arrow for each turn, a tone when it sees an obstacle. Great for debugging, too.
-- **Add a third state:** handle *both sensors on black* (a corner or junction) deliberately instead of stopping; for example, keep turning until one sensor comes off the black.
-- **Struggling groups:** focus on getting calibration and Part 1 working: a robot that follows a line is a complete result. Flash the finished program below and let them read and tweak it rather than build from scratch.
+For groups that finish early, or to stretch stronger students, there are a few directions to push in. They can tune for speed, hunting for the fastest the robot can go while still tracking the line reliably. They can make the robot show its state on the LED display or the V2 speaker — an arrow for each turn, a tone when it sees an obstacle — which doubles as a debugging aid. And they can add a third state that handles *both sensors on black* (a corner or junction) deliberately instead of stopping, for example by turning until one sensor comes off the black. Struggling groups, meanwhile, should focus on getting calibration and Part 1 working: a robot that follows a line is a complete result, and they can flash the finished program below to read and tweak rather than build from scratch.
 
 <!-- SLIDE_BREAK -->
 
@@ -125,3 +111,5 @@ Here is the complete line-following and obstacle-avoidance program from the vide
 title: Line following + obstacle avoidance
 makecode_url: https://makecode.microbit.org/S61778-52603-41373-17881
 -->
+
+<!-- STEPS_END -->

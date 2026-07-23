@@ -541,17 +541,19 @@ def render_stl_viewer(yaml_text):
     src  = html.escape(str(data.get('src', '')))
     name = html.escape(str(data.get('name', '3D model')))
     desc = html.escape(str(data.get('desc', '')))
-    desc_html = f'<p style="font-size:13px;color:var(--muted);margin-bottom:12px">{desc}</p>' if desc else ''
+    tools_html = f'<p class="resource-tools">{desc}</p>' if desc else ''
     return (
-        f'{desc_html}'
         f'<div class="stl-viewer-wrap" data-src="{src}" style="height:420px">'
         f'<div class="stl-viewer-loading">Loading {name}…</div>'
         f'<div class="stl-viewer-hint">Drag to rotate &nbsp;·&nbsp; Scroll to zoom</div>'
         f'</div>'
-        f'<a href="{src}" download class="resource-card-download" style="margin-bottom:32px">'
+        f'<div class="resource-foot">'
+        f'{tools_html}'
+        f'<a href="{src}" download class="resource-card-download">'
         f'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>'
         f'Download STL'
         f'</a>'
+        f'</div>'
     )
 
 
@@ -563,7 +565,7 @@ def render_dxf_preview(yaml_text):
     src  = str(data.get('src', ''))
     name = html.escape(str(data.get('name', 'DXF file')))
     desc = html.escape(str(data.get('desc', '')))
-    desc_html = f'<p style="font-size:13px;color:var(--muted);margin-bottom:12px">{desc}</p>' if desc else ''
+    tools_html = f'<p class="resource-tools">{desc}</p>' if desc else ''
 
     svg_html = ''
     if src and HAS_YAML:
@@ -602,15 +604,17 @@ def render_dxf_preview(yaml_text):
 
     dl_src = html.escape(src)
     return (
-        f'{desc_html}'
         f'<div class="dxf-preview">'
         f'<span class="dxf-preview-label">{name}</span>'
         f'{svg_html}'
         f'</div>'
-        f'<a href="{dl_src}" download class="resource-card-download" style="margin-bottom:32px">'
+        f'<div class="resource-foot">'
+        f'{tools_html}'
+        f'<a href="{dl_src}" download class="resource-card-download">'
         f'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>'
         f'Download DXF'
         f'</a>'
+        f'</div>'
     )
 
 
@@ -689,13 +693,32 @@ def resolve_embeds(body, _source_file=''):
         for line in block.splitlines():
             if ':' in line:
                 k, _, v = line.partition(':')
-                data[k.strip()] = v.strip()
+                v = v.strip()
+                # strip a single pair of wrapping quotes (YAML-style values)
+                if len(v) >= 2 and v[0] == v[-1] and v[0] in ('"', "'"):
+                    v = v[1:-1]
+                data[k.strip()] = v
         return render_video_embed(
             data.get('drive_url', '').strip(),
             data.get('title', '').strip(),
             data.get('caption', '').strip(),
         )
     body = re.sub(r'<!--\s*VIDEO_EMBED\s*\n(.*?)\n-->', replace_video, body, flags=re.DOTALL)
+
+    # <!-- STEPS: Label --> ... markdown (already rendered) ... <!-- STEPS_END -->
+    # Collapsible dropdown that tucks written steps under a video. Runs last so the
+    # wrapped content is already fully expanded HTML.
+    body = re.sub(
+        r'(?:<p>)?<!--\s*STEPS:\s*(.*?)\s*-->(?:</p>)?',
+        lambda m: (
+            f'<details class="video-steps"><summary>{html.escape(m.group(1))}'
+            f'<svg class="video-steps-chevron" width="16" height="16" viewBox="0 0 24 24" '
+            f'fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>'
+            f'</summary><div class="video-steps-body">'
+        ),
+        body,
+    )
+    body = re.sub(r'(?:<p>)?<!--\s*STEPS_END\s*-->(?:</p>)?', '</div></details>', body)
 
     return body
 

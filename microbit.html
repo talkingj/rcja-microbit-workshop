@@ -759,6 +759,34 @@ ol.setup-steps code {
   text-align: center; margin-bottom: 24px;
 }
 
+/* ── VIDEO STEPS DROPDOWN ─────────────────────── */
+.video-steps {
+  border: 1.5px solid var(--border);
+  margin: -8px 0 28px;
+}
+.video-steps > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 13px 16px;
+  font-size: 13px; font-weight: 700;
+  color: var(--navy);
+  background: var(--surface);
+  display: flex; align-items: center; gap: 8px;
+  user-select: none;
+}
+.video-steps > summary::-webkit-details-marker { display: none; }
+.video-steps > summary::marker { content: ''; }
+.video-steps > summary:hover { color: var(--navy-mid); }
+.video-steps-chevron {
+  margin-left: auto; flex-shrink: 0;
+  color: var(--muted);
+  transition: transform 0.18s ease;
+}
+.video-steps[open] > summary { border-bottom: 1.5px solid var(--border); }
+.video-steps[open] > summary .video-steps-chevron { transform: rotate(180deg); }
+.video-steps-body { padding: 20px 20px 4px; }
+.video-steps-body > :first-child { margin-top: 0; }
+
 /* ── CODE PLACEHOLDER BLOCK ───────────────────── */
 .code-placeholder-block {
   background: var(--navy);
@@ -1207,13 +1235,24 @@ body.presenting #pres-overlay { display: flex; }
 .resource-card-download:hover { background: var(--navy-mid); }
 .resource-card-download svg { flex-shrink: 0; }
 
+/* Footer row under a DXF/STL preview: tool note + download action */
+.resource-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px 24px; flex-wrap: wrap;
+  margin: 14px 0 32px;
+}
+.resource-tools {
+  flex: 1; min-width: 220px; margin: 0;
+  font-size: 13px; color: var(--muted); line-height: 1.5;
+}
+.resource-foot .resource-card-download { margin-top: 0; flex-shrink: 0; }
+
 /* ── STL VIEWER ──────────────────────────────── */
 .stl-viewer-wrap {
   position: relative;
   background: var(--surface);
   border: 1.5px solid var(--border);
   overflow: hidden;
-  margin-bottom: 32px;
 }
 .stl-viewer-wrap canvas {
   display: block;
@@ -1243,7 +1282,6 @@ body.presenting #pres-overlay { display: flex; }
   border: 1.5px solid var(--border);
   background: var(--surface);
   overflow: auto;
-  margin-bottom: 32px;
   position: relative;
 }
 .dxf-preview svg {
@@ -1344,85 +1382,8 @@ body.presenting #pres-overlay { display: flex; }
 <section class="section" id="s-session">
 <p class="section-label">Session overview</p>
 <h2 class="section-title">About this session</h2>
-<p class="section-intro">A 2-hour hands-on activity. The first half covers what the micro:bit is and what it can do. The second half follows two videos: assembling the robot, then coding it to follow a line and avoid obstacles. No rescue line track is required.</p>
-<div class="callout">
-<strong>At a glance.</strong> <b>Audience:</b> students around 10 and up; screw terminals and if/else logic suit upper primary and lower secondary. <b>Group size:</b> 2–3 students per robot, so everyone gets hands on. <b>Duration:</b> about 2 hours. <b>You provide:</b> one robot kit and one USB laptop or Chromebook per group, plus something to test on: a black line on white (electrical tape on paper or a whiteboard works).
-</div>
-
-<!-- SLIDE_BREAK -->
-
-<h3>What students will be able to do</h3>
-<p>By the end of the session, students can:</p>
-<ul>
-<li>Read a digital sensor and explain what its 0 / 1 output means.</li>
-<li>Write an if / else if / else chain that makes a robot act on sensor readings.</li>
-<li>Explain a control loop: sense → decide → act, repeated every cycle.</li>
-<li>Calibrate a sensor and debug a robot that misbehaves.</li>
-</ul>
-<!-- SLIDE_BREAK -->
-
-<h3>Before the session</h3>
-<ul>
-<li><strong>Devices:</strong> any laptop or Chromebook with a USB port and a modern browser. All coding runs in the browser at makecode.microbit.org, with nothing to install.</li>
-<li><strong>Flashing:</strong> students click <strong>Download</strong> to get a <code>.hex</code> file and drag it onto the MICROBIT USB drive. Direct flashing over WebUSB also works in Chrome and Edge if the school allows it.</li>
-<li><strong>School networks:</strong> check ahead of time that makecode.microbit.org and the two video links actually open on the school network; some filters block unfamiliar sites or Google Drive.</li>
-<li><strong>Batteries:</strong> use fresh alkaline AA cells. Rechargeable AAs (1.2 V each) are too low-voltage for reliable motors.</li>
-</ul>
-<div class="callout">
-<strong>Safety.</strong> <b>Hot glue guns</b> run at around 200 °C, so an adult should do the gluing or supervise closely, and keep cold water nearby for burns. <b>Small parts</b> (screws, wheels) are a choking and loss hazard, so work over trays. <b>Batteries:</b> don't let the bare leads touch; a short circuit gets hot fast. <b>Moving robot:</b> keep fingers, hair, and loose clothing clear of the wheels and gears when it's powered, and test on the floor or a large table where it can't drive off an edge.
-</div>
-
-<!-- SLIDE_BREAK -->
-
-<table class="pin-table pin-table">
-<thead>
-<tr>
-<th>Topic</th>
-<th>Time</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Introduction</td>
-<td>10 min</td>
-<td>What is the micro:bit, where it is used, cost and availability</td>
-</tr>
-<tr>
-<td>Hardware tour</td>
-<td>10 min</td>
-<td>Walk through the built-in sensors and what the edge connector gives access to</td>
-</tr>
-<tr>
-<td>Assembling the robot</td>
-<td>30 min</td>
-<td>Follow the assembly video: sensors, motors, battery, and mounting the board on a base</td>
-</tr>
-<tr>
-<td>Coding: line following</td>
-<td>25 min</td>
-<td>Follow the coding video: add the extensions, calibrate the sensors, then build the if/else line-follow program</td>
-</tr>
-<tr>
-<td>Coding: obstacle avoidance</td>
-<td>20 min</td>
-<td>Add the ultrasonic sensor logic on top so the robot drives around an obstacle</td>
-</tr>
-<tr>
-<td>RoboCup Junior context</td>
-<td>15 min</td>
-<td>Show how the sensor readings connect to a real competition. Demo or video of a Rescue Line run</td>
-</tr>
-<tr>
-<td>Questions &amp; buffer</td>
-<td>10 min</td>
-<td>Also your buffer if assembly or coding overran</td>
-</tr>
-</tbody>
-</table>
-<div class="callout">
-<strong>Running short on time?</strong> Assembly and coding are the blocks most likely to overrun, and the times above leave little slack. If you fall behind: hand out pre-assembled robots (or at least pre-fit the fiddly ultrasonic wiring) to protect the coding time; and since line-following can't be tested in the simulator, build the program along with the video on one shared robot at the front rather than having every group tune their own. If a group runs out of time, the finished MakeCode program on the Coding page flashes straight to their board.
-</div>
+<p class="section-intro">A 2-hour hands-on activity. By the end, every student will have built a working robot and programmed it themselves to follow a line and drive around an obstacle.</p>
+<p>More importantly, they'll understand the idea underneath it: a robot senses its surroundings, decides what to do, and acts — the same sense → decide → act loop that runs in every autonomous machine.</p>
 </section>
 
 <section class="section" id="s-what">
@@ -1500,12 +1461,11 @@ body.presenting #pres-overlay { display: flex; }
 <section class="section" id="s-kit">
 <p class="section-label">Build the robot</p>
 <h2 class="section-title">Assembling your robot</h2>
-<p class="section-intro">Your kit arrives as individual components: no soldering, and every connection is push-fit or screw terminal. Watch the assembly video, then use the step list and kit reference below to build along.</p>
-<div class="video-embed"><div class="video-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>Assembling your micro:bit robot<a href="https://drive.google.com/file/d/10NKOaa0V-621W8AjKQY3cZ_uS2OXyHd0/view" target="_blank" rel="noopener" class="video-open">Open in Drive ↗</a></div><div class="video-frame"><iframe src="https://drive.google.com/file/d/10NKOaa0V-621W8AjKQY3cZ_uS2OXyHd0/preview" title="Assembling your micro:bit robot (video)" allow="autoplay" allowfullscreen loading="lazy"></iframe></div><div class="video-caption">&quot;Full walkthrough: sensors, motors, battery, and mounting the board on a base.&quot;</div></div>
+<p class="section-intro">Your kit arrives as individual components: no soldering, and every connection is push-fit or screw terminal. Watch the assembly video, then expand the step-by-step build below to follow along.</p>
+<div class="video-embed"><div class="video-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>Assembling your micro:bit robot<a href="https://drive.google.com/file/d/10NKOaa0V-621W8AjKQY3cZ_uS2OXyHd0/view" target="_blank" rel="noopener" class="video-open">Open in Drive ↗</a></div><div class="video-frame"><iframe src="https://drive.google.com/file/d/10NKOaa0V-621W8AjKQY3cZ_uS2OXyHd0/preview" title="Assembling your micro:bit robot (video)" allow="autoplay" allowfullscreen loading="lazy"></iframe></div><div class="video-caption">Full walkthrough: sensors, motors, battery, and mounting the board on a base.</div></div>
 
-<!-- SLIDE_BREAK -->
+<details class="video-steps"><summary>Step-by-step build<svg class="video-steps-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="video-steps-body">
 
-<h3>Assembly steps</h3>
 <p>Every connector is labelled. The one rule that keeps you out of trouble: <strong>black always goes to ground (G)</strong>.</p>
 <ol class="setup-steps">
 <li><strong>IR tracking sensors.</strong> Clip each sensor and its two cables into the case. On the back, the pins are labelled <strong>G / V / S</strong>. Line the <strong>black</strong> cable up with <strong>G</strong> (ground). Plug the first sensor into <strong>pin set 13</strong> and the second into <strong>pin set 14</strong>, keeping black on the ground row.</li>
@@ -1516,13 +1476,7 @@ body.presenting #pres-overlay { display: flex; }
 <li><strong>Chassis.</strong> Hot-glue the assembled board onto a base. Laser-cut and 3D-printable chassis files are on the <strong>Resources</strong> page.</li>
 </ol>
 <div class="callout"><strong>Sensor and motor mirroring:</strong> if the robot later steers the wrong way, a sensor or motor pair is simply plugged in mirrored. Swap the left/right values in code rather than rewiring.</div>
-<!-- SLIDE_BREAK -->
-
-<h3>What's in your kit</h3>
-<div class="callout"><strong>What is in your kit:</strong> one micro:bit V2, one Elecfreaks motor:bit carrier board, two TT DC gear motors with wheels, one 2-channel IR tracking sensor module, one HC-SR04 ultrasonic sensor, one 4xAA battery holder with JST connector, and jumper wires.</div>
-<div class="photo-row"><div class="diagram-cell"><div class="diagram-slot" id="photo-motorbit-kit"><img src="assets/photos/motorbit-board.jpg" alt="Elecfreaks motor:bit carrier board" loading="lazy"></div></div><div class="diagram-cell"><div class="diagram-slot" id="photo-motorbit-assembled"><img src="assets/photos/motorbit-assembled.png" alt="micro:bit inserted into the motor:bit carrier board" loading="lazy"></div></div></div>
-
-<div class="hw-grid"><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></div><div class="hw-name">micro:bit V2</div><div class="hw-desc">The brain. Has the 5x5 LED display, buttons, sensors, and radio. Plugs into the top of the carrier board.</div></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="10" rx="1"/><path d="M6 7V5M10 7V5M14 7V5M18 7V5"/></svg></div><div class="hw-name">motor:bit carrier board</div><div class="hw-desc">Connects to the micro:bit edge connector. Has motor driver circuits, power regulation, and labelled ports for motors and sensors.</div></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div><div class="hw-name">TT gear motors x2</div><div class="hw-desc">One for each wheel. Wired to M1 and M2 on the carrier board using the screw terminals.</div></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="4" y="8" width="16" height="8" rx="1"/><circle cx="9" cy="12" r="2"/><circle cx="15" cy="12" r="2"/></svg></div><div class="hw-name">IR tracking sensor</div><div class="hw-desc">Two sensors on one board. Detects black vs. white surfaces. Connects to P13 and P14. Mount at the front, facing down.</div></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="3" y="8" width="18" height="8" rx="1"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg></div><div class="hw-name">Ultrasonic sensor</div><div class="hw-desc">Two round transducers: one transmits, one receives. Measures distance up to 4 m. Trig to P15 and echo to P16 (match the pins in MakeCode).</div></div><div class="hw-card"><div class="hw-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3db166" stroke-width="2" stroke-linecap="round"><rect x="3" y="9" width="18" height="10" rx="1"/><path d="M7 9V7a2 2 0 0 1 4 0v2M13 9V7a2 2 0 0 1 4 0v2"/></svg></div><div class="hw-name">4xAA battery pack</div><div class="hw-desc">Plugs into the JST connector on the carrier board. Use alkaline AA batteries. Rechargeable AA batteries are too low-voltage for reliable motor operation.</div></div></div>
+</div></details>
 </section>
 
 <section class="section" id="s-resources">
@@ -1532,13 +1486,13 @@ body.presenting #pres-overlay { display: flex; }
 
 <h3>Laser cut chassis (DXF)</h3>
 <p>Designed for 3mm acrylic or MDF. All holes are sized for M3 hardware. Includes mounts for the motor:bit carrier board, IR sensors at the front, and the ultrasonic sensor.</p>
-<p style="font-size:13px;color:var(--muted);margin-bottom:12px">Open in Fusion 360, LibreCAD, LightBurn, or import directly into your laser cutter software.</p><div class="dxf-preview"><span class="dxf-preview-label">Laser cut chassis</span><svg xmlns="http://www.w3.org/2000/svg" width="335.8mm" height="130.3mm" viewBox="0 0 1000000 388029"><defs><style>.C1 {stroke: #1b2945; stroke-width: 2521; stroke-opacity: 1.000; fill: none; fill-opacity: 1.000;}</style></defs><rect fill="#ffffff" x="0" y="0" width="1000000" height="388029" fill-opacity="1.0" /><g stroke-linecap="round" stroke-linejoin="round" fill-rule="evenodd"><path d="M 14890 11937 l 0 0" class="C1" /><path d="M 5956 363359 l 0 0" class="C1" /><path d="M 351926 363359 l 0 0" class="C1" /><path d="M 372268 11937 l 0 0" class="C1" /><path d="M 135505 363359 l 68497 0" class="C1" /><path d="M 75942 354424 l 0 8934" class="C1" /><path d="M 80410 250487 l 0 179" class="C1" /><path d="M 126571 143273 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 221872 143273 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 5956 5981 l 0 357378" class="C1" /><path d="M 263566 363359 l 0 -8934" class="C1" /><path d="M 417445 205517 l -59563 0" class="C1" /><path d="M 426380 250497 l 0 -145929" class="C1" /><path d="M 105724 363359 l 0 -8934" class="C1" /><path d="M 126571 238574 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 221872 238574 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 333552 5981 l -327597 0" class="C1" /><path d="M 259099 250665 l 0 -178" class="C1" /><path d="M 351926 5981 l 0 357378" class="C1" /><path d="M 333552 363359 l 0 -357378" class="C1" /><path d="M 105724 354424 l -29782 0" class="C1" /><path d="M 548484 254070 l 0 -3872" class="C1" /><path d="M 567842 140305 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 357882 205517 l 0 -193580" class="C1" /><path d="M 614003 205517 l 0 -193580" class="C1" /><path d="M 451694 354424 l -29782 0" class="C1" /><path d="M 417445 11937 l 0 193580" class="C1" /><path d="M 233784 354424 l 0 8934" class="C1" /><path d="M 472541 140305 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 481049 363359 l 68924 -0" class="C1" /><path d="M 609536 354424 l -29782 0" class="C1" /><path d="M 421912 354424 l 0 8934" class="C1" /><path d="M 263566 354424 l -29782 0" class="C1" /><path d="M 541038 309752 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 567842 241562 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 357882 11937 l 59563 0" class="C1" /><path d="M 426380 104567 l 178689 0" class="C1" /><path d="M 441270 254070 l 59563 0" class="C1" /><path d="M 673566 11937 l 0 193580" class="C1" /><path d="M 441270 292786 l 0 -38716" class="C1" /><path d="M 135505 250189 l 0 298" class="C1" /><path d="M 994044 280791 l -211449 0" class="C1" /><path d="M 351926 363359 l 69987 0" class="C1" /><path d="M 824289 382048 l -29782 0" class="C1" /><path d="M 530615 292786 l 0 -38716" class="C1" /><path d="M 204003 363359 l -0 -73978" class="C1" /><path d="M 472541 241562 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 500833 254070 l 0 38716" class="C1" /><path d="M 679522 5981 l -327597 0" class="C1" /><path d="M 923767 364179 l 29782 0" class="C1" /><path d="M 614003 11937 l 59563 -0" class="C1" /><path d="M 500833 292786 l -59563 0" class="C1" /><path d="M 590178 254070 l 0 38716" class="C1" /><path d="M 609536 363359 l 69987 0" class="C1" /><path d="M 5956 363359 l 69987 0" class="C1" /><path d="M 957034 316529 c 0 13158 -10667 23825 -23825 23825 c -13158 0 -23825 -10667 -23825 -23825 c 0 -13158 10667 -23825 23825 -23825 c 13158 0 23825 10667 23825 23825" class="C1" /><path d="M 90833 289382 l 0 -38716" class="C1" /><path d="M 135505 289382 l -0 73977" class="C1" /><path d="M 880054 316529 c 0 13158 -10667 23825 -23825 23825 c -13158 0 -23825 -10667 -23825 -23825 c 0 -13158 10667 -23825 23825 -23825 c 13158 0 23825 10667 23825 23825" class="C1" /><path d="M 824289 364179 l 0 17869" class="C1" /><path d="M 794508 382048 l 0 -17869" class="C1" /><path d="M 451694 363359 l 128060 0" class="C1" /><path d="M 982131 382048 l -29782 0" class="C1" /><path d="M 609536 363359 l 0 -8934" class="C1" /><path d="M 530615 254070 l 59563 0" class="C1" /><path d="M 952350 382048 l 0 -17869" class="C1" /><path d="M 605069 250497 l -178689 0" class="C1" /><path d="M 824289 364179 l 128060 0" class="C1" /><path d="M 427869 276992 c 0 9046 -7333 16380 -16380 16380 c -9046 0 -16380 -7333 -16380 -16380 c 0 -9046 7333 -16380 16380 -16380 c 9046 0 16380 7333 16380 16380" class="C1" /><path d="M 248675 250665 l 0 38716" class="C1" /><path d="M 636339 276992 c 0 9046 -7333 16380 -16380 16380 c -9046 0 -16380 -7333 -16380 -16380 c 0 -9046 7333 -16380 16380 -16380 c 9046 0 16380 7333 16380 16380" class="C1" /><path d="M 481475 250199 l 0 298" class="C1" /><path d="M 451694 363359 l 0 -8934" class="C1" /><path d="M 679522 363359 l 0 -357378" class="C1" /><path d="M 786357 364179 l 8151 0" class="C1" /><path d="M 782595 280791 l -0 83388" class="C1" /><path d="M 782595 364179 l 11913 0" class="C1" /><path d="M 982131 364179 l 11913 0" class="C1" /><path d="M 982131 364179 l 0 17869" class="C1" /><path d="M 579754 354424 l 0 8934" class="C1" /><path d="M 548484 250199 l -67008 -0" class="C1" /><path d="M 590178 292786 l -59563 0" class="C1" /><path d="M 105724 363359 l 128060 0" class="C1" /><path d="M 135505 289382 l -44672 0" class="C1" /><path d="M 204003 250487 l 0 -298" class="C1" /><path d="M 81899 276992 c 0 9046 -7333 16380 -16380 16380 c -9046 0 -16380 -7333 -16380 -16380 c 0 -9046 7333 -16380 16380 -16380 c 9046 0 16380 7333 16380 16380" class="C1" /><path d="M 497855 309752 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 248675 289381 l -44672 0" class="C1" /><path d="M 994044 364179 l 0 -83388" class="C1" /><path d="M 263566 363359 l 69987 0" class="C1" /><path d="M 290369 276992 c 0 9046 -7333 16380 -16380 16380 c -9046 0 -16380 -7333 -16380 -16380 c 0 -9046 7333 -16380 16380 -16380 c 9046 0 16380 7333 16380 16380" class="C1" /><path d="M 605069 104567 l 0 145929" class="C1" /><path d="M 673566 205517 l -59563 0" class="C1" /><path d="M 90833 250666 l 157842 -1" class="C1" /></g></svg></div><a href="resources/microbit-robot.dxf" download class="resource-card-download" style="margin-bottom:32px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download DXF</a>
+<div class="dxf-preview"><span class="dxf-preview-label">Laser cut chassis</span><svg xmlns="http://www.w3.org/2000/svg" width="335.8mm" height="130.3mm" viewBox="0 0 1000000 388029"><defs><style>.C1 {stroke: #1b2945; stroke-width: 2521; stroke-opacity: 1.000; fill: none; fill-opacity: 1.000;}</style></defs><rect fill="#ffffff" x="0" y="0" width="1000000" height="388029" fill-opacity="1.0" /><g stroke-linecap="round" stroke-linejoin="round" fill-rule="evenodd"><path d="M 14890 11937 l 0 0" class="C1" /><path d="M 5956 363359 l 0 0" class="C1" /><path d="M 351926 363359 l 0 0" class="C1" /><path d="M 372268 11937 l 0 0" class="C1" /><path d="M 135505 363359 l 68497 0" class="C1" /><path d="M 75942 354424 l 0 8934" class="C1" /><path d="M 80410 250487 l 0 179" class="C1" /><path d="M 126571 143273 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 221872 143273 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 5956 5981 l 0 357378" class="C1" /><path d="M 263566 363359 l 0 -8934" class="C1" /><path d="M 417445 205517 l -59563 0" class="C1" /><path d="M 426380 250497 l 0 -145929" class="C1" /><path d="M 105724 363359 l 0 -8934" class="C1" /><path d="M 126571 238574 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 221872 238574 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 333552 5981 l -327597 0" class="C1" /><path d="M 259099 250665 l 0 -178" class="C1" /><path d="M 351926 5981 l 0 357378" class="C1" /><path d="M 333552 363359 l 0 -357378" class="C1" /><path d="M 105724 354424 l -29782 0" class="C1" /><path d="M 548484 254070 l 0 -3872" class="C1" /><path d="M 567842 140305 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 357882 205517 l 0 -193580" class="C1" /><path d="M 614003 205517 l 0 -193580" class="C1" /><path d="M 451694 354424 l -29782 0" class="C1" /><path d="M 417445 11937 l 0 193580" class="C1" /><path d="M 233784 354424 l 0 8934" class="C1" /><path d="M 472541 140305 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 481049 363359 l 68924 -0" class="C1" /><path d="M 609536 354424 l -29782 0" class="C1" /><path d="M 421912 354424 l 0 8934" class="C1" /><path d="M 263566 354424 l -29782 0" class="C1" /><path d="M 541038 309752 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 567842 241562 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 357882 11937 l 59563 0" class="C1" /><path d="M 426380 104567 l 178689 0" class="C1" /><path d="M 441270 254070 l 59563 0" class="C1" /><path d="M 673566 11937 l 0 193580" class="C1" /><path d="M 441270 292786 l 0 -38716" class="C1" /><path d="M 135505 250189 l 0 298" class="C1" /><path d="M 994044 280791 l -211449 0" class="C1" /><path d="M 351926 363359 l 69987 0" class="C1" /><path d="M 824289 382048 l -29782 0" class="C1" /><path d="M 530615 292786 l 0 -38716" class="C1" /><path d="M 204003 363359 l -0 -73978" class="C1" /><path d="M 472541 241562 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 500833 254070 l 0 38716" class="C1" /><path d="M 679522 5981 l -327597 0" class="C1" /><path d="M 923767 364179 l 29782 0" class="C1" /><path d="M 614003 11937 l 59563 -0" class="C1" /><path d="M 500833 292786 l -59563 0" class="C1" /><path d="M 590178 254070 l 0 38716" class="C1" /><path d="M 609536 363359 l 69987 0" class="C1" /><path d="M 5956 363359 l 69987 0" class="C1" /><path d="M 957034 316529 c 0 13158 -10667 23825 -23825 23825 c -13158 0 -23825 -10667 -23825 -23825 c 0 -13158 10667 -23825 23825 -23825 c 13158 0 23825 10667 23825 23825" class="C1" /><path d="M 90833 289382 l 0 -38716" class="C1" /><path d="M 135505 289382 l -0 73977" class="C1" /><path d="M 880054 316529 c 0 13158 -10667 23825 -23825 23825 c -13158 0 -23825 -10667 -23825 -23825 c 0 -13158 10667 -23825 23825 -23825 c 13158 0 23825 10667 23825 23825" class="C1" /><path d="M 824289 364179 l 0 17869" class="C1" /><path d="M 794508 382048 l 0 -17869" class="C1" /><path d="M 451694 363359 l 128060 0" class="C1" /><path d="M 982131 382048 l -29782 0" class="C1" /><path d="M 609536 363359 l 0 -8934" class="C1" /><path d="M 530615 254070 l 59563 0" class="C1" /><path d="M 952350 382048 l 0 -17869" class="C1" /><path d="M 605069 250497 l -178689 0" class="C1" /><path d="M 824289 364179 l 128060 0" class="C1" /><path d="M 427869 276992 c 0 9046 -7333 16380 -16380 16380 c -9046 0 -16380 -7333 -16380 -16380 c 0 -9046 7333 -16380 16380 -16380 c 9046 0 16380 7333 16380 16380" class="C1" /><path d="M 248675 250665 l 0 38716" class="C1" /><path d="M 636339 276992 c 0 9046 -7333 16380 -16380 16380 c -9046 0 -16380 -7333 -16380 -16380 c 0 -9046 7333 -16380 16380 -16380 c 9046 0 16380 7333 16380 16380" class="C1" /><path d="M 481475 250199 l 0 298" class="C1" /><path d="M 451694 363359 l 0 -8934" class="C1" /><path d="M 679522 363359 l 0 -357378" class="C1" /><path d="M 786357 364179 l 8151 0" class="C1" /><path d="M 782595 280791 l -0 83388" class="C1" /><path d="M 782595 364179 l 11913 0" class="C1" /><path d="M 982131 364179 l 11913 0" class="C1" /><path d="M 982131 364179 l 0 17869" class="C1" /><path d="M 579754 354424 l 0 8934" class="C1" /><path d="M 548484 250199 l -67008 -0" class="C1" /><path d="M 590178 292786 l -59563 0" class="C1" /><path d="M 105724 363359 l 128060 0" class="C1" /><path d="M 135505 289382 l -44672 0" class="C1" /><path d="M 204003 250487 l 0 -298" class="C1" /><path d="M 81899 276992 c 0 9046 -7333 16380 -16380 16380 c -9046 0 -16380 -7333 -16380 -16380 c 0 -9046 7333 -16380 16380 -16380 c 9046 0 16380 7333 16380 16380" class="C1" /><path d="M 497855 309752 c 0 2467 -2000 4467 -4467 4467 c -2467 0 -4467 -2000 -4467 -4467 c 0 -2467 2000 -4467 4467 -4467 c 2467 0 4467 2000 4467 4467" class="C1" /><path d="M 248675 289381 l -44672 0" class="C1" /><path d="M 994044 364179 l 0 -83388" class="C1" /><path d="M 263566 363359 l 69987 0" class="C1" /><path d="M 290369 276992 c 0 9046 -7333 16380 -16380 16380 c -9046 0 -16380 -7333 -16380 -16380 c 0 -9046 7333 -16380 16380 -16380 c 9046 0 16380 7333 16380 16380" class="C1" /><path d="M 605069 104567 l 0 145929" class="C1" /><path d="M 673566 205517 l -59563 0" class="C1" /><path d="M 90833 250666 l 157842 -1" class="C1" /></g></svg></div><div class="resource-foot"><p class="resource-tools">Open in Fusion 360, LibreCAD, LightBurn, or import directly into your laser cutter software.</p><a href="resources/microbit-robot.dxf" download class="resource-card-download"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download DXF</a></div>
 
 <!-- SLIDE_BREAK -->
 
 <h3>3D printed chassis (STL)</h3>
 <p>Same geometry as the DXF, exported as a solid for FDM printing. Print at 0.2mm layer height, 20% infill, no supports needed.</p>
-<p style="font-size:13px;color:var(--muted);margin-bottom:12px">Slice with Cura, PrusaSlicer, or Bambu Studio. Drag to rotate, scroll to zoom.</p><div class="stl-viewer-wrap" data-src="resources/microbit-robot-3d.stl" style="height:420px"><div class="stl-viewer-loading">Loading 3D printed chassis…</div><div class="stl-viewer-hint">Drag to rotate &nbsp;·&nbsp; Scroll to zoom</div></div><a href="resources/microbit-robot-3d.stl" download class="resource-card-download" style="margin-bottom:32px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download STL</a>
+<div class="stl-viewer-wrap" data-src="resources/microbit-robot-3d.stl" style="height:420px"><div class="stl-viewer-loading">Loading 3D printed chassis…</div><div class="stl-viewer-hint">Drag to rotate &nbsp;·&nbsp; Scroll to zoom</div></div><div class="resource-foot"><p class="resource-tools">Slice with Cura, PrusaSlicer, or Bambu Studio. Drag to rotate, scroll to zoom.</p><a href="resources/microbit-robot-3d.stl" download class="resource-card-download"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download STL</a></div>
 </section>
 
 <section class="section" id="s-program">
@@ -1599,7 +1553,7 @@ body.presenting #pres-overlay { display: flex; }
 <p class="section-intro">Watch the video, then build the program in MakeCode. It has two parts: following the line, then driving around an obstacle with the ultrasonic sensor. No rescue line track is needed to test the logic.</p>
 <div class="video-embed"><div class="video-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>Coding the line-following robot<a href="https://drive.google.com/file/d/1auG9TSjEIdfi6OtP2WDCCmV0zuniTodb/view" target="_blank" rel="noopener" class="video-open">Open in Drive ↗</a></div><div class="video-frame"><iframe src="https://drive.google.com/file/d/1auG9TSjEIdfi6OtP2WDCCmV0zuniTodb/preview" title="Coding the line-following robot (video)" allow="autoplay" allowfullscreen loading="lazy"></iframe></div><div class="video-caption">Adds the motorbit and sonar extensions, then builds the line-follow logic and ultrasonic obstacle avoidance in MakeCode.</div></div>
 
-<!-- SLIDE_BREAK -->
+<details class="video-steps"><summary>Step-by-step guide<svg class="video-steps-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="video-steps-body">
 
 <h3>Setup: extensions you need</h3>
 <ol class="setup-steps">
@@ -1670,13 +1624,7 @@ body.presenting #pres-overlay { display: flex; }
 <!-- SLIDE_BREAK -->
 
 <h3>Part 1: Line following</h3>
-<p>The two sensors sit on either side of the line, so the line runs <strong>between</strong> them. Build this as an <strong>if / else if / else</strong> chain inside the forever loop, using <code>digital read pin</code> on P13 and P14:</p>
-<ul>
-<li><strong>Turn left:</strong> if <code>P13 = 1</code> (left sees black) <strong>and</strong> <code>P14 = 0</code> (right sees white). Use <em>turn left</em> at speed 50.</li>
-<li><strong>Turn right:</strong> if <code>P13 = 0</code> <strong>and</strong> <code>P14 = 1</code> (right sees black). Use <em>turn right</em> at speed 50.</li>
-<li><strong>Go straight:</strong> if <code>P13 = 0</code> <strong>and</strong> <code>P14 = 0</code> (both on white, line running between the sensors). Use <em>move forward</em> at speed 50.</li>
-<li><strong>Else:</strong> stop.</li>
-</ul>
+<p>The two sensors sit on either side of the line, so the line runs <strong>between</strong> them. Build the logic as an <strong>if / else if / else</strong> chain inside the forever loop, reading <code>digital read pin</code> on P13 and P14. When the left sensor sees black and the right sees white (<code>P13 = 1</code>, <code>P14 = 0</code>) the robot has drifted right, so <em>turn left</em> at speed 50; when the right sensor sees black and the left sees white (<code>P13 = 0</code>, <code>P14 = 1</code>), <em>turn right</em> at speed 50. When both sensors are on white (<code>P13 = 0</code>, <code>P14 = 0</code>) the line is running cleanly between them, so <em>move forward</em> at speed 50. Anything else — including both sensors on black — falls through to the <em>else</em> and stops.</p>
 <div class="callout">
 <strong>Known limitation: both sensors on black.</strong> The one case left over is <b>both sensors see black at once</b>, which lands in the <em>else</em> and stops the robot. That happens on a thick line, a sharp corner, or an intersection, so this two-sensor design follows a clean line well but stalls at junctions. That's a property of the design, not a student mistake. Handling intersections is a later step (see <b>Extend it</b> below and the RoboCup section).
 </div>
@@ -1689,12 +1637,7 @@ body.presenting #pres-overlay { display: flex; }
 <!-- SLIDE_BREAK -->
 
 <h3>Part 2: Obstacle avoidance (ultrasonic)</h3>
-<p>In RoboCup Rescue Line the robot must drive <strong>around</strong> an obstacle. Add the ultrasonic sensor on top of the line follower:</p>
-<ul>
-<li>Read the distance every loop with the <strong>sonar</strong> block (trig <code>P15</code>, echo <code>P16</code>, units <strong>cm</strong>).</li>
-<li>If the distance is <strong>less than 12 cm</strong>, run an avoidance manoeuvre: break out of line following, pause briefly, then step through <em>turn right → pause → forward → pause → turn left → forward → …</em> until the robot has cleared the object and is back on the line.</li>
-<li>Nest the whole line-following if/else inside the ultrasonic if/else so both run together: the ultrasonic is checked every loop, and line following runs whenever nothing is in range.</li>
-</ul>
+<p>In RoboCup Rescue Line the robot must drive <strong>around</strong> an obstacle, so add the ultrasonic sensor on top of the line follower. Read the distance every loop with the <strong>sonar</strong> block (trig <code>P15</code>, echo <code>P16</code>, units <strong>cm</strong>). When the distance drops <strong>below 12 cm</strong>, break out of line following and run an avoidance manoeuvre — pause briefly, then step through <em>turn right → pause → forward → pause → turn left → forward → …</em> until the robot has cleared the object and is back on the line. The trick is to nest the whole line-following if/else inside the ultrasonic if/else so both run together: the ultrasonic is checked every loop, and line following takes over whenever nothing is in range.</p>
 <div class="callout">
 <strong>Expect a lot of tuning; it may not work first time.</strong> This manoeuvre is <em>open-loop</em>: it runs fixed turn and drive times and hopes the robot ends up back on the line. Battery level, floor friction, and small motor differences all change how far each timed step travels, so the pause lengths from the video may need adjusting, and the robot won't always rejoin the line cleanly. Treat it as a starting point to tune, not a finished solution.
 </div>
@@ -1748,18 +1691,14 @@ body.presenting #pres-overlay { display: flex; }
 <!-- SLIDE_BREAK -->
 
 <h3>Extend it</h3>
-<p>For groups that finish early, or to stretch stronger students:</p>
-<ul>
-<li><strong>Tune for speed:</strong> find the fastest speed the robot can still follow the line reliably.</li>
-<li><strong>Show its state:</strong> use the LED display or the V2 speaker to signal what the robot "thinks": an arrow for each turn, a tone when it sees an obstacle. Great for debugging, too.</li>
-<li><strong>Add a third state:</strong> handle <em>both sensors on black</em> (a corner or junction) deliberately instead of stopping; for example, keep turning until one sensor comes off the black.</li>
-<li><strong>Struggling groups:</strong> focus on getting calibration and Part 1 working: a robot that follows a line is a complete result. Flash the finished program below and let them read and tweak it rather than build from scratch.</li>
-</ul>
+<p>For groups that finish early, or to stretch stronger students, there are a few directions to push in. They can tune for speed, hunting for the fastest the robot can go while still tracking the line reliably. They can make the robot show its state on the LED display or the V2 speaker — an arrow for each turn, a tone when it sees an obstacle — which doubles as a debugging aid. And they can add a third state that handles <em>both sensors on black</em> (a corner or junction) deliberately instead of stopping, for example by turning until one sensor comes off the black. Struggling groups, meanwhile, should focus on getting calibration and Part 1 working: a robot that follows a line is a complete result, and they can flash the finished program below to read and tweak rather than build from scratch.</p>
 <!-- SLIDE_BREAK -->
 
 <h3>The finished program</h3>
 <p>Here is the complete line-following and obstacle-avoidance program from the video. Click <strong>Edit</strong> to open it in MakeCode, or <strong>Download</strong> to send it straight to a connected micro:bit.</p>
 <div class="makecode-embed"><div class="makecode-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Line following + obstacle avoidance<a href="https://makecode.microbit.org/S61778-52603-41373-17881" target="_blank" rel="noopener" class="makecode-open">Open in MakeCode ↗</a></div><iframe src="https://makecode.microbit.org/---codeembed#pub:S61778-52603-41373-17881" title="Line following + obstacle avoidance: MakeCode editor" frameborder="0" sandbox="allow-popups allow-forms allow-scripts allow-same-origin" allowfullscreen></iframe></div>
+
+</div></details>
 </section>
 </div>
 

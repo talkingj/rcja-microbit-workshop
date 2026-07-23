@@ -26,7 +26,7 @@ caption: Adds the motorbit and sonar extensions, then builds the line-follow log
 
 ### Calibrate the sensors first
 
-**Do this before writing any line-following logic — it is the single most important step.** IR tracking modules don't all read the same way: some return **1** on black, others return **1** on white. If you assume the wrong one, *every* branch of your program is inverted and no amount of speed-tuning will fix it.
+**Do this before writing any line-following logic; it is the single most important step.** IR tracking modules don't all read the same way: some return **1** on black, others **1** on white. If you assume the wrong one, *every* branch of your program is inverted and no amount of speed-tuning will fix it.
 
 Find out what *your* sensors actually do:
 
@@ -35,7 +35,7 @@ Find out what *your* sensors actually do:
 3. Note which surface gives **1** and which gives **0**. Repeat for `P14` (the right sensor).
 
 <div class="callout">
-<strong>Which way did yours read?</strong> The wiring reference and code below are written for <b>1 = black, 0 = white</b> (as shown in the video). If your module is the other way round — black reads <b>0</b> — that's fine and common: just swap every <code>0</code> and <code>1</code> in the comparisons below. The logic is identical; only the numbers flip.
+<strong>Which way did yours read?</strong> The wiring reference and code below are written for <b>1 = black, 0 = white</b> (as shown in the video). If your module is the other way round (black reads <b>0</b>), that's fine and common: just swap every <code>0</code> and <code>1</code> in the comparisons below. The logic is identical; only the numbers flip.
 </div>
 
 <!-- SLIDE_BREAK -->
@@ -65,13 +65,13 @@ The two sensors sit on either side of the line, so the line runs **between** the
 - **Else:** stop.
 
 <div class="callout">
-<strong>Known limitation — both sensors on black.</strong> The one case left over is <b>both sensors see black at once</b>, which lands in the <em>else</em> and stops the robot. That happens on a thick line, a sharp corner, or an intersection — so this two-sensor design follows a clean line well but stalls at junctions. That's a property of the design, not a student mistake. Handling intersections is a later step (see <b>Extend it</b> below and the RoboCup section).
+<strong>Known limitation: both sensors on black.</strong> The one case left over is <b>both sensors see black at once</b>, which lands in the <em>else</em> and stops the robot. That happens on a thick line, a sharp corner, or an intersection, so this two-sensor design follows a clean line well but stalls at junctions. That's a property of the design, not a student mistake. Handling intersections is a later step (see <b>Extend it</b> below and the RoboCup section).
 </div>
 
 Load it, then tune. Two different problems have two different fixes:
 
 - **It steers the *wrong way* on every turn** (turns away from the line): a sensor or motor pair is plugged in mirrored. Swap *turn left* / *turn right* in the code.
-- **It does the *opposite* action everywhere** (drives off instead of correcting, "straight" and "stop" swapped): the polarity is inverted — go back and swap the 0s and 1s. This is what the calibration step catches.
+- **It does the *opposite* action everywhere** (drives off instead of correcting, "straight" and "stop" swapped): the polarity is inverted, so go back and swap the 0s and 1s. This is what the calibration step catches.
 
 <!-- SLIDE_BREAK -->
 
@@ -79,15 +79,15 @@ Load it, then tune. Two different problems have two different fixes:
 
 In RoboCup Rescue Line the robot must drive **around** an obstacle. Add the ultrasonic sensor on top of the line follower:
 
-- Read distance with the **sonar** block: trig `P15`, echo `P16`, units **cm**.
-- If the distance is **less than 12 cm**, run an avoidance manoeuvre: *break* out of line following, *pause* briefly, then step through **turn right → pause → forward → pause → turn left → forward → …** until the robot has cleared the object and is back on the line.
-- **Nest the whole line-following if/else inside the ultrasonic if/else** so both run together: the ultrasonic is checked every loop, and line following runs whenever nothing is in range.
+- Read the distance every loop with the **sonar** block (trig `P15`, echo `P16`, units **cm**).
+- If the distance is **less than 12 cm**, run an avoidance manoeuvre: break out of line following, pause briefly, then step through *turn right → pause → forward → pause → turn left → forward → …* until the robot has cleared the object and is back on the line.
+- Nest the whole line-following if/else inside the ultrasonic if/else so both run together: the ultrasonic is checked every loop, and line following runs whenever nothing is in range.
 
 <div class="callout">
-<strong>Expect a lot of tuning — it may not work first time.</strong> This manoeuvre is <em>open-loop</em>: it just runs fixed turn and drive times and hopes the robot ends up back on the line. Battery level, floor friction, and small motor differences all change how far each timed step actually travels, so the pause lengths that work in the video may need adjusting for your robot, and the robot won't always rejoin the line cleanly. Treat it as a starting point to tune, not a finished solution.
+<strong>Expect a lot of tuning; it may not work first time.</strong> This manoeuvre is <em>open-loop</em>: it runs fixed turn and drive times and hopes the robot ends up back on the line. Battery level, floor friction, and small motor differences all change how far each timed step travels, so the pause lengths from the video may need adjusting, and the robot won't always rejoin the line cleanly. Treat it as a starting point to tune, not a finished solution.
 </div>
 
-> **Facilitator note:** this final program is built live in the video. Participants can follow along in MakeCode or just watch — no track is required to test the logic.
+> **Facilitator note:** this final program is built live in the video. Participants can follow along in MakeCode or just watch; no track is required to test the logic.
 
 <!-- SLIDE_BREAK -->
 
@@ -111,9 +111,9 @@ Robotics with a class guarantees a few of these. Work down the table.
 For groups that finish early, or to stretch stronger students:
 
 - **Tune for speed:** find the fastest speed the robot can still follow the line reliably.
-- **Show its state:** use the LED display or the V2 speaker to signal what the robot "thinks" — an arrow for each turn, a tone when it sees an obstacle. Great for debugging, too.
-- **Add a third state:** handle *both sensors on black* (a corner or junction) deliberately instead of stopping — for example, keep turning until one sensor comes off the black.
-- **Struggling groups:** focus on getting calibration and Part 1 working — a robot that follows a line is a complete result. Flash the finished program below and let them read and tweak it rather than build from scratch.
+- **Show its state:** use the LED display or the V2 speaker to signal what the robot "thinks": an arrow for each turn, a tone when it sees an obstacle. Great for debugging, too.
+- **Add a third state:** handle *both sensors on black* (a corner or junction) deliberately instead of stopping; for example, keep turning until one sensor comes off the black.
+- **Struggling groups:** focus on getting calibration and Part 1 working: a robot that follows a line is a complete result. Flash the finished program below and let them read and tweak it rather than build from scratch.
 
 <!-- SLIDE_BREAK -->
 

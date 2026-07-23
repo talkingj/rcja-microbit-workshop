@@ -400,7 +400,7 @@ def render_makecode_embed(url, title=''):
         f'<a href="{html.escape(url)}" target="_blank" rel="noopener" class="makecode-open">Open in MakeCode ↗</a>'
         f'</div>'
         f'<iframe src="{html.escape(embed_src)}" '
-        f'title="{label} — MakeCode editor" '
+        f'title="{label}: MakeCode editor" '
         f'frameborder="0" '
         f'sandbox="allow-popups allow-forms allow-scripts allow-same-origin" '
         f'allowfullscreen></iframe>'

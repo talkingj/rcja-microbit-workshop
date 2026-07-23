@@ -2,7 +2,7 @@
 
 Self-contained workshop resources for RoboCup Junior Australia. The site root is a
 landing page listing every workshop; each workshop builds to its own page. Covers what
-the micro:bit is, what it can do, and why it suits Rescue Line — then hands off to a
+the micro:bit is, what it can do, and why it suits Rescue Line, then hands off to a
 live coding demo.
 
 **Live site:** https://talkingj.github.io/rcja-microbit-workshop/
@@ -34,7 +34,7 @@ To add a workshop: create `content/<new-slug>/` with numbered `.md` files (copy 
 ## Editing content
 
 Open any file in `content/<slug>/` in a text editor. Prose is plain markdown. The HTML
-blocks (cards, tables, grids) can have their text edited directly — just don't change
+blocks (cards, tables, grids) can have their text edited directly, just don't change
 the class names.
 
 ## Adding photos
@@ -65,7 +65,7 @@ python build.py --watch
 
 ## Kit
 
-Elecfreaks motor:bit smart car — two TT motors, 2-channel IR tracking module, ultrasonic sensor, carrier board that plugs directly onto the micro:bit edge connector.
+Elecfreaks motor:bit smart car: two TT motors, 2-channel IR tracking module, ultrasonic sensor, carrier board that plugs directly onto the micro:bit edge connector.
 
 | Connection | Pin |
 |---|---|

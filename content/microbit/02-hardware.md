@@ -11,11 +11,11 @@ The micro:bit has sensors and outputs soldered onto the board. With only the boa
 - url: "assets/photos/microbit-v2-front.png"
   alt: "micro:bit V2 front: annotated diagram showing LED matrix, buttons, USB connector, touch logo, microphone, and edge connector pads"
   id: photo-microbit-front
-  caption: "Front · 1 Button B · 2 LED matrix · 3 Pins 0/1/2 · 4 3V pin · 5 GND pin · 6 Touch logo · 7 Microphone"
+  caption: "Front of the micro:bit V2: LED display, A and B buttons, edge-connector pins, touch logo, and microphone."
 - url: "assets/photos/microbit-v2-back.png"
   alt: "micro:bit V2 back: annotated diagram showing edge connector pads, pin labels, and V2 notch"
   id: photo-microbit-back
-  caption: "Back · 1 Radio antenna · 2 Speaker · 3 Processor · 4 Accelerometer & compass · 5 Edge pins · 6 USB · 9 Battery socket · 12 Microphone · 15 Reset"
+  caption: "Back of the micro:bit V2: processor, motion sensors, speaker, radio antenna, USB, and battery socket."
 -->
 
 <!-- SLIDE_BREAK -->

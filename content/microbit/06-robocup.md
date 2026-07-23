@@ -35,6 +35,6 @@ count_label: competitions
   desc: Two robots per team play autonomous soccer, detecting the IR ball, navigating the field, and scoring goals.
 -->
 
-The robot you build next is the **first building block** of a **Rescue Line** robot. It covers the two foundational skills — following the line and avoiding an obstacle — using two IR sensors and an ultrasonic sensor.
+The robot you build next is the **first building block** of a **Rescue Line** robot. It covers the two foundational skills (following the line and avoiding an obstacle) using two IR sensors and an ultrasonic sensor.
 
-A full Rescue Line course also demands intersections and green turn-markers, gaps in the line, ramps and seesaws, and rescuing a "victim" in an evacuation zone. This build doesn't attempt those — it's the starting point you'd extend from. Naming that honestly is the point: students see exactly where their working robot sits on the path to a competition entry, and what they'd add next.
+A full Rescue Line course also demands intersections and green turn-markers, gaps in the line, ramps and seesaws, and rescuing a "victim" in an evacuation zone. This build doesn't attempt those; it's the starting point you'd extend from. That's deliberate: students can see exactly where their working robot sits on the path to a competition entry, and what they'd add next.

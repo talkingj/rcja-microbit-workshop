@@ -802,7 +802,7 @@ pre.code-hint {
 
 /* ── REDUCED MOTION ───────────────────────────── */
 /* Intentional alternative, not a blanket kill: keep short state-change
-   feedback (hover, nav, progress) but drop continuous/large motion —
+   feedback (hover, nav, progress) but drop continuous/large motion:
    smooth-scroll jumps and the auto-rotating 3D model (gated in JS). */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -1056,7 +1056,7 @@ body.presenting #pres-overlay { display: flex; }
 .pres-slide .pin-table td { border-color: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); }
 .pres-slide .code-ref h3 { color: #fff; }
 /* Inline code chips: the light --surface background is invisible against the
-   dark slide, and pres text is white — give them a dark chip + light text. */
+   dark slide, and pres text is white, so give them a dark chip + light text. */
 .pres-slide .pin-table code,
 .pres-slide .setup-steps code {
   background: rgba(255,255,255,0.1);
@@ -1064,7 +1064,7 @@ body.presenting #pres-overlay { display: flex; }
   color: #fff;
 }
 
-/* General text overrides — catch all prose paragraphs, headings, list items */
+/* General text overrides: catch all prose paragraphs, headings, list items */
 .pres-slide p { color: rgba(255,255,255,0.6); }
 .pres-slide h3 { color: #fff; }
 .pres-slide li { color: rgba(255,255,255,0.6); }
@@ -1267,7 +1267,7 @@ body.presenting #pres-overlay { display: flex; }
 <div id="progress"></div>
 
 <header id="top-bar">
-  <a href="index.html" class="top-logo" aria-label="RoboCup Junior Australia — all workshops">
+  <a href="index.html" class="top-logo" aria-label="RoboCup Junior Australia, all workshops">
     <img src="assets/rcja-logo.svg" alt="RoboCup Junior Australia">
   </a>
   <h1><!-- WORKSHOP_NAME --></h1>
@@ -1484,7 +1484,7 @@ function runSTLViewer(container) {
   const w = container.clientWidth || 600;
   const h = container.clientHeight || 420;
 
-  // WebGL support check — fail clearly instead of throwing into the void.
+  // WebGL support check: fail clearly instead of throwing into the void.
   const testCanvas = document.createElement('canvas');
   const gl = testCanvas.getContext('webgl2') || testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
   if (!gl) {
@@ -1550,7 +1550,7 @@ function runSTLViewer(container) {
 
   // Demand-driven render loop. It runs every frame only while auto-rotating or
   // while a drag is still settling (damping), renders once on any change, and
-  // stops entirely when the viewer scrolls off-screen or the tab is hidden — so
+  // stops entirely when the viewer scrolls off-screen or the tab is hidden, so
   // it never spins in the background draining a classroom laptop's battery.
   let rafId = null, renderPending = true, onScreen = true;
 

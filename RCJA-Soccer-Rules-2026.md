@@ -1,4 +1,4 @@
-# RoboCup Junior Australia — Soccer Rules 2026
+# RoboCup Junior Australia: Soccer Rules 2026
 
 **Version 26.0** · Last modified 17 February 2026
 
@@ -22,7 +22,7 @@
 
 ## Change Log
 
-**Revision 26.0 — Initial release for the season.** Key changes from 2025:
+**Revision 26.0: Initial release for the season.** Key changes from 2025:
 
 **General changes**
 
@@ -51,10 +51,10 @@
 
 **1.2** There are four Soccer leagues. All leagues are open to teams of any age (primary and secondary school age).
 
-- **Simple Simon League** — a beginner league played using a ball that emits infrared signals. Robots may weigh up to 1.0 kg and are limited to LEGO parts and an IR sensor. Teams can only participate in Simple Simon for up to 2 years.
-- **Standard League** — played using a ball that emits infrared signals. Robots may weigh up to 1.0 kg and are limited to LEGO parts and a list of other third-party sensors.
-- **Lightweight League** — a mid-level league played using a ball that emits infrared signals. Robots may weigh up to 1.4 kg and are not limited in components used.
-- **Open League** — a high-level league played using an orange coloured ball. Robots may weigh up to 2.5 kg.
+- **Simple Simon League:** a beginner league played using a ball that emits infrared signals. Robots may weigh up to 1.0 kg and are limited to LEGO parts and an IR sensor. Teams can only participate in Simple Simon for up to 2 years.
+- **Standard League:** played using a ball that emits infrared signals. Robots may weigh up to 1.0 kg and are limited to LEGO parts and a list of other third-party sensors.
+- **Lightweight League:** a mid-level league played using a ball that emits infrared signals. Robots may weigh up to 1.4 kg and are not limited in components used.
+- **Open League:** a high-level league played using an orange coloured ball. Robots may weigh up to 2.5 kg.
 
 **1.3** Subject to age limitations and other criteria, teams who perform well in the National Event may qualify for the annual RoboCup Junior International Event:
 
@@ -141,7 +141,7 @@ Other international events may have other divisions/qualification requirements.
 
 ### 3.3 Lightweight Ball Change 2027
 
-Starting in 2027, Lightweight Soccer will move to a new IR ball. The key difference is the size change from 74 mm to 42 mm diameter, the same as Open League's orange passive ball. Simple Simon and Standard Leagues will continue to use the large infrared ball (3.1.1). Due to its orange colour and size, this ball can also be used for Open League. The ball is open source — anyone can produce one from the files and instructions on GitHub: <https://github.com/robocup-junior/ir-golf-ball>.
+Starting in 2027, Lightweight Soccer will move to a new IR ball. The key difference is the size change from 74 mm to 42 mm diameter, the same as Open League's orange passive ball. Simple Simon and Standard Leagues will continue to use the large infrared ball (3.1.1). Due to its orange colour and size, this ball can also be used for Open League. The ball is open source; anyone can produce one from the files and instructions on GitHub: <https://github.com/robocup-junior/ir-golf-ball>.
 
 > *Note:* The new IR ball can be purchased from the RCJA website store: <https://www.robocupjunior.org.au/product/2027-lightweight-soccer-small-ir-ball/>
 
@@ -156,14 +156,14 @@ Starting in 2027, Lightweight Soccer will move to a new IR ball. The key differe
 | Limit | Rule | Simple Simon | Standard | Lightweight | Open |
 |---|---|---|---|---|---|
 | Diameter | 4.1.2 | 220 mm | 220 mm | 220 mm | 220 mm |
-| Height | — | 220 mm | 220 mm | 220 mm | 220 mm |
-| Weight | — | 1.0 kg | 1.0 kg | 1.4 kg | 2.5 kg |
+| Height | N/A | 220 mm | 220 mm | 220 mm | 220 mm |
+| Weight | N/A | 1.0 kg | 1.0 kg | 1.4 kg | 2.5 kg |
 | Ball capture zone | 4.6 | 30 mm | 30 mm | 30 mm | 15 mm |
 | Voltage | 4.1.4 | Limited to the rechargeable LEGO battery | Limited to the rechargeable LEGO battery | 48 V DC / 25 V AC RMS | 48 V DC / 25 V AC RMS |
 
 **4.1.2** A robot, as positioned in gameplay, must rotate freely within an upright 220 mm diameter cylinder and pose little or no resistance to it. Each robot, in its gameplay configuration, must fit within a vertical cylinder with a diameter of 220 mm. The cylinder must be able to rotate freely around the robot and encounter no significant resistance.
 
-**4.1.3** While being inspected, each robot must be positioned as it will be in gameplay and at its maximum size — anything that protrudes from the robot must be fully extended. If a robot has a moving part that extends in two directions, it will be inspected with this part operating. The robot must be able to operate without touching the measuring cylinder.
+**4.1.3** While being inspected, each robot must be positioned as it will be in gameplay and at its maximum size; anything that protrudes from the robot must be fully extended. If a robot has a moving part that extends in two directions, it will be inspected with this part operating. The robot must be able to operate without touching the measuring cylinder.
 
 > *Note:* It is recommended to design your robot to a smaller size, such as 210 mm, to allow for tolerances.
 
@@ -204,10 +204,10 @@ Starting in 2027, Lightweight Soccer will move to a new IR ball. The key differe
 | Item | Rule | Simple Simon & Standard | Lightweight & Open |
 |---|---|---|---|
 | Construction | 4.5.2 | Unmodified LEGO-branded pieces, motors and sensors | Any material or building block, commercial or raw, provided the robot fits the specifications and is primarily and substantially the competitors' original work. Any number of cameras; all commercial lenses and cameras permitted |
-| Third party IR sensors | 4.5.3 | Allowed if on the allowed list | — |
+| Third party IR sensors | 4.5.3 | Allowed if on the allowed list | N/A |
 | Gyro and compass sensors | 4.5.4 | Not allowed (Simple Simon); allowed (Standard) | Allowed |
 | Omni-wheels | 4.5.5 | Not allowed (Simple Simon); allowed with max 80 mm diameter (Standard) | Allowed |
-| Other materials | 4.5.6 | No other building materials (glue, tape, screws, etc.) | — |
+| Other materials | 4.5.6 | No other building materials (glue, tape, screws, etc.) | N/A |
 
 **4.5.2** For Simple Simon and Standard Leagues, all parts used in the robot construction (other than allowed exceptions) must be strictly LEGO-brand pieces, motors and sensors.
 
@@ -231,7 +231,7 @@ Starting in 2027, Lightweight Soccer will move to a new IR ball. The key differe
 
 **4.6.2** The ball cannot penetrate the Ball Capturing Zone by more than the limit specified in rule 4.1.1.
 
-**4.6.3** A robot cannot "hold" a ball. Holding means taking full control of the ball by removing all of its degrees of freedom — e.g. fixing it to the robot's body, surrounding it, encircling it, or otherwise trapping it. If a ball stops rolling while a robot is moving, or does not rebound when rolled into a robot, it is a good indication the ball is trapped.
+**4.6.3** A robot cannot "hold" a ball. Holding means taking full control of the ball by removing all of its degrees of freedom, e.g. fixing it to the robot's body, surrounding it, encircling it, or otherwise trapping it. If a ball stops rolling while a robot is moving, or does not rebound when rolled into a robot, it is a good indication the ball is trapped.
 
 **4.6.4** The ball cannot be held underneath a robot.
 
@@ -447,7 +447,7 @@ Starting in 2027, Lightweight Soccer will move to a new IR ball. The key differe
 **5.17.2** In the event of a tie at full time during a finals game, the following procedure applies:
 
 - Game play is not stopped or interrupted.
-- The game continues as "golden goal" — as soon as a goal is scored, the game ends.
+- The game continues as "golden goal": as soon as a goal is scored, the game ends.
 - If after five minutes no additional goal has been scored, only one robot from each team is allowed on the field. Any team with two robots must pick one to take off; that robot is not allowed back on for the remainder of the game. "Golden goal" then continues.
 - If after a further five minutes no team has scored a golden goal, the team ranked higher in the seeding is considered to have won.
 
@@ -471,7 +471,7 @@ Starting in 2027, Lightweight Soccer will move to a new IR ball. The key differe
 
 ### 6.3 Special Circumstances
 
-**6.3.1** Specific modifications to the rules for special circumstances — such as unforeseen problems and/or capabilities of a team's robots — may be agreed at the time of the tournament, provided a majority of the contestants agree.
+**6.3.1** Specific modifications to the rules for special circumstances (such as unforeseen problems and/or capabilities of a team's robots) may be agreed at the time of the tournament, provided a majority of the contestants agree.
 
 ---
 
@@ -555,7 +555,7 @@ Each team is expected to submit two (2) digital elements prior to competition, b
 
 > *Note:* The older, dark-grey infrared ball previously sold by HiTechnic, or approved open-source alternatives as they become available, is also acceptable.
 
-**A.1.2** The ball will be used in pulsed and stepped-waveform mode — the Elekit RCJ-05 ball will be operated in MODE A (pulsed).
+**A.1.2** The ball will be used in pulsed and stepped-waveform mode; the Elekit RCJ-05 ball will be operated in MODE A (pulsed).
 
 **A.2 IR light**
 

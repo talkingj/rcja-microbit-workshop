@@ -5,7 +5,7 @@ label:
 title: Files to download
 ---
 
-Laser cut chassis template and 3D printable chassis, both designed in Fusion 360. Download the file that matches your fabrication method.
+For your robots chassis, you can use the either the following laser cut chassis template and 3D printable chassis. cDownload the file that matches your fabrication method.
 
 <!-- SLIDE_BREAK -->
 
